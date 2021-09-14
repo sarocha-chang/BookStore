@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 
-const Book = require("../../config/collection/Book")
+const Book = require("../../../config/collection/Book")
 
 app.use(
 	cors({
