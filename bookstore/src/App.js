@@ -6,10 +6,11 @@ function App() {
 	const [product, SetProduct] = useState([]);
 
 	useEffect(() => {
-		axios.get("http://localhost:3001").then((res) => {
+		axios.get("http://localhost:3001/").then((res) => {
 			SetProduct(res.data);
 		});
 	}, []);
+	console.log()
 
 	return (
 		<div className="App">
