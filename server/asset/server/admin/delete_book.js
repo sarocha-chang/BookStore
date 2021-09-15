@@ -13,9 +13,9 @@ app.use(
 	}),
 );
 
-app.delete("/", async (request, response) => {
-	await Book.findOneAndDelete({ id: request.params });
-	// await Book.remove({id:1})
+app.delete("/:id", async (request, response) => {
+	// await Book.findOneAndDelete({ id: request.params });
+	await Book.remove()
 	response.status(200).json(await Book.find());
 });
 
