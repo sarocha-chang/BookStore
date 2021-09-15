@@ -14,8 +14,11 @@ app.use(
 );
 
 app.delete("/:id", async (request, response) => {
-	// await Book.findOneAndDelete({ id: request.params });
-	await Book.remove()
+
+	console.log(parseInt(request.params.id));
+	await Book.findOneAndDelete({ id: parseInt(request.params.id)}
+	);
+	//await Book.remove()
 	response.status(200).json(await Book.find());
 });
 
