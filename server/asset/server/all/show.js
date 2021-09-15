@@ -14,20 +14,6 @@ app.use(
 );
 
 app.get("/", async(request, response) => {
-    let books = new Book({
-        id: 2,
-        name: "String",
-        price: 60,
-        quantity: 2,
-        description: "String",
-        Image: "String"
-    })
-    //await books.save()
-    //await Book.findOneAndDelete({id:2})
-    //await Book.remove({id:2})
-    // await Book.updateOne({id:1}, {quantity:50})
-    //await Book.updateMany({id:2}, {quantity:10000,name: "KIM",})
-    
 	response.status(200).json(await Book.find());
 });
 
