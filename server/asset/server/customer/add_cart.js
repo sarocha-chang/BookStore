@@ -37,10 +37,10 @@ app.post("/", async (request, response) => {
 		Buy_id : buy_success._id
 
 	})
-	await receipt.save().then(async(success) =>{
-		let x = await getCart(success.Customer_id);
-		response.status(200).json(x);
-	})
+	// await receipt.save().then(async(success) =>{
+	// 	let x = await getCart(success.Customer_id);
+	// 	response.status(200).json(x);
+	// })
 });
 
 module.exports = app;
