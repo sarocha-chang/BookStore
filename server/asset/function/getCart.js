@@ -1,4 +1,4 @@
-/*const Book = require("../../config/collection/Book");
+const Book = require("../../config/collection/Book");
 const Customer = require("../../config/collection/Customer");
 const Buy = require("../../config/collection/Buy");
 const Receipt = require("../../config/collection/Receipt");
