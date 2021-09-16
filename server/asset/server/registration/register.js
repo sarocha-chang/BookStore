@@ -13,11 +13,12 @@ app.use(
 	}),
 );
 
-app.post("/", async(request, response) => {
-    let customer = new Customer(request.body)
-    await customer.save(async (err,data) =>{
-		if (err) response.status(400).json("Username that other User has already exist");
+app.post("/", (request, response) => {
+    let customer = new Customer({...request.body,type: "customer"})
+    customer.save().then((data,err) =>{
 		response.status(200).json(data);
+	}).catch(err =>{
+		if (err) response.status(400).json("Username that other User has already exist");
 	})
 });
 

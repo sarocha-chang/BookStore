@@ -9,7 +9,8 @@ const customer = new Schema({
     username:{type: String , unique: true},
     password: String,
     phone: String,
-    email: String
+    email: String,
+    type: String
 })
 
 const Customer = mongoose.model("customers", customer)

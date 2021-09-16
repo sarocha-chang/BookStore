@@ -15,37 +15,39 @@ getBuy = (list) => {
 	});
 };
 
-getBook = (list) =>{
-    return new Promise((resolve) => {
+getBook = (list) => {
+	return new Promise((resolve) => {
 		let book = [];
 		list.forEach((element, count) => {
-			Book.findById(element.Book_id).then(({name ,price ,description, Image}) => {
-				book.push({...element,Book :{name ,price ,description, Image}});
-				if (count + 1 == list.length) resolve(book);
-			});
+			Book.findById(element.Book_id).then(
+				({ name, price, description, Image }) => {
+					book.push({ ...element, Book: { name, price, description, Image } });
+					if (count + 1 == list.length) resolve(book);
+				},
+			);
 		});
-	})
-}
+	});
+};
 
-run = (id) =>{
-    return new Promise((resolve,reject) =>{
-        Receipt.find({ Customer_id: id })
-        .then((list) => {
-            list = list.map((data) => {
-                return data.Buy_id;
-            });
-            return list;
-        })
-        .then(async (list) => {
-            list = await getBuy(list);
-            list = await getBook(list);
-            let Cart = {
-                Customer : id,
-                Order : list
-            }
-            resolve(Cart)
-        });
-    })
-}
+run = (id) => {
+	return new Promise((resolve, reject) => {
+		Receipt.find({ Customer_id: id })
+			.then(async (list) => {
+				if (list.length == 0) {
+					reject("Not found Customer id");
+				}
+				list = list.map((data) => {
+					return data.Buy_id;
+				});
+				list = await getBuy(list);
+				list = await getBook(list);
+				let Cart = {
+					Customer: id,
+					Order: list,
+				};
+				resolve(Cart);
+			})
+	});
+};
 
-module.exports = run
+module.exports = run;

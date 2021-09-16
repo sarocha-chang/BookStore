@@ -14,10 +14,13 @@ app.use(
 );
 
 
-app.get("/:id", async(request, response) => {
+app.get("/:id", (request, response) => {
 	const { id } = request.params;
-    let cart = await getCart(id)
-    response.status(200).json(cart);
+    getCart(id).then((cart) =>{
+        response.status(200).json(cart);
+    }).catch(err =>{
+        response.status(404).json(err);
+    })
 });
 
 module.exports = app;

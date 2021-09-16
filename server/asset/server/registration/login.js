@@ -24,7 +24,7 @@ app.post("/", async(request, response) => {
   if (user) {
     response.status(200).json(user);
   } else {
-      let message = {message: 'Email or Password incorrect'}
+    let message = {message: 'Email or Password incorrect'}
     response.status(200).end(JSON.stringify(message));
   }
    
