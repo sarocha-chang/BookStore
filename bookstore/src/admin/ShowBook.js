@@ -64,12 +64,12 @@ h1{
         font-size: 18px;
         font-weight: bold;    
     }
+  
     td{
         color: black;
         font-size: 14px;
         text-align:center;
         padding: 5px 10px 5px 10px;
-
     }
     td.des{
         width: 200px;
@@ -79,6 +79,9 @@ h1{
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+    }
+    tr.bookDetail {
+        bordet-bottom: 1px solid #e0e0e0;
     }
 
 }

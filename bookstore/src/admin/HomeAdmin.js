@@ -5,7 +5,6 @@ function HomeAdmin ({data}){
     console.log(data);
     return(
         <>
-
         <tr className="bookDetail">
                 <td>{data.name}</td>
                 <td>{data.name}</td>
@@ -20,7 +19,8 @@ function HomeAdmin ({data}){
         </>
     )
 }
-// HomeAdmin.propTypes = {
-//     className: PropTypes.string.isRequired,
-// }
-export default HomeAdmin;
+HomeAdmin.propTypes = {
+    className: PropTypes.string.isRequired,
+}
+export default styled(HomeAdmin)`
+`;
