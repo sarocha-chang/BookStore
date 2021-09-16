@@ -2,10 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 
-const Book = require("../../../config/collection/Book")
-const Customer = require("../../../config/collection/Customer")
-const Buy = require("../../../config/collection/Buy")
-const Receipt = require("../../../config/collection/Receipt")
+const run = require("../../function/pay")
 
 app.use(
 	cors({
@@ -16,15 +13,10 @@ app.use(
 	}),
 );
 
-app.post("/", async(request, response) => {
-    let books = new Book(request.body)
-    // await books.save()
-    // await Book.findOneAndDelete({id:1})
-    // await Book.remove({id:1})
-    // await Book.updateOne({id:1}, {quantity:50})
-    // await Book.updateMany({id:2}, {quantity:0})
-    
-	response.status(200).json(await Receipt.find());
+app.put("/:id", async(request, response) => {
+	const { id } = request.params
+	let x = await run(id)
+	response.status(200).json(x);
 });
 
 module.exports = app;

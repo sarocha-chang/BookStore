@@ -6,9 +6,11 @@ const Customers = require("../../config/json/customer.json");
 const customer = new Schema({
     firstname: String,
     lastname: String,
-    address: String,
+    username:{type: String , unique: true},
+    password: String,
     phone: String,
-    email: String
+    email: String,
+    type: String
 })
 
 const Customer = mongoose.model("customers", customer)

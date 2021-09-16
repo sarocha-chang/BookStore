@@ -2,8 +2,10 @@
     {
         "firstname": "กพล",
         "lastname": "แสงดารา",
-        "address": "46/53 ถนนเพชรเกษม 6 แขวงวัดท่าพระ เขตบางกอกใหญ่ กรุงเทพฯ 10600",
+        "username": "A",
+        "password": "12345",
         "phone": "0983182660",
-        "email": "kaponnon@gmail.com"
+        "email": "kaponnon@gmail.com",
+        "type": "admin"
     }
 ]
