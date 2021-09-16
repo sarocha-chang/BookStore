@@ -14,7 +14,8 @@ app.use(
 );
 
 app.get("/:id", async (request, response) => {
-	response.status(200).json(await Book.find({ id: parseInt(request.params.id) }).catch((err) =>{
+	const { id } = request.params
+	response.status(200).json(await Book.findById(id).catch((err) =>{
         if (err) response.status(400).json("Bad Request");
     }));
 });

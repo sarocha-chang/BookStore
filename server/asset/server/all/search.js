@@ -14,7 +14,6 @@ app.use(
 );
 
 app.get("/:name", async (request, response) => {
-     console.log(request.params.name)
      let data = await Book.find()
      let find = data.filter(p =>(p.name.includes(request.params.name)))
      response.status(200).json(find);

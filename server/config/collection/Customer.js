@@ -1,8 +1,9 @@
 const mongoose = require("../database")
 const Schema = mongoose.Schema
 
+const Customers = require("../../config/json/customer.json");
+
 const customer = new Schema({
-    id: Number,
     firstname: String,
     lastname: String,
     address: String,
@@ -11,5 +12,10 @@ const customer = new Schema({
 })
 
 const Customer = mongoose.model("customers", customer)
+
+const saveCustomer = async () => {
+	if (0 == (await Customer.find())) await Customer.insertMany(Customers);
+};
+saveCustomer();
 
 module.exports = Customer

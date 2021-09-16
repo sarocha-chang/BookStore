@@ -14,11 +14,10 @@ app.use(
 );
 
 app.post("/", async(request, response) => {
-	let count = await Book.count()
-    let books = new Book({id: count+1, ...request.body})
-    await books.save(async (err) =>{
+    let books = new Book(request.body)
+    await books.save(async (err,data) =>{
 		if (err) response.status(400).json("Bad Request");
-		response.status(200).json(await Book.find({id: count+1}));
+		response.status(200).json(data);
 	})
 });
 

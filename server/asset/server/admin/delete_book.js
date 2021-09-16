@@ -14,8 +14,8 @@ app.use(
 );
 
 app.delete("/:id", async (request, response) => {
-
-	await Book.findOneAndDelete({ id: parseInt(request.params.id)});
+	const { id } = request.params
+	await Book.findByIdAndDelete(id);
 	// await Book.remove()
 	
 	response.status(200).json(await Book.find());
