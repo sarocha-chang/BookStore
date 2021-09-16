@@ -6,7 +6,6 @@ const Book = require("../../../config/collection/Book");
 const Customer = require("../../../config/collection/Customer");
 const Buy = require("../../../config/collection/Buy");
 const Receipt = require("../../../config/collection/Receipt");
-const getCart = require("../../function/getCart");
 
 app.use(
 	cors({
@@ -25,22 +24,25 @@ app.post("/", async (request, response) => {
 		response.status(404).json("Not found!!");
 	});
 
-	let buy = new Buy({
-		Book_id: book._id,
-		quantity: request.body.quantity,
-		total: request.body.quantity * book.price
-	});
-	let buy_success = await buy.save()
-
-	let receipt = new Receipt({
-		Customer_id : Customer_id,
-		Buy_id : buy_success._id
-
-	})
-	await receipt.save().then(async(success) =>{
-		let x = await getCart(success.Customer_id);
-		response.status(200).json(x);
-	})
+	if(book.quantity < request.body.quantity){
+		response.status(400).json(`Stock not enough. there have this book = ${book.quantity}`)
+	}else{
+		let buy = new Buy({
+			Book_id: book._id,
+			quantity: request.body.quantity,
+			total: request.body.quantity * book.price
+		});
+		let buy_success = await buy.save()
+	
+		let receipt = new Receipt({
+			Customer_id : Customer_id,
+			Buy_id : buy_success._id
+		})
+	
+		await receipt.save().then((data) =>{
+			response.status(200).json(data);
+		})
+	}
 });
 
 module.exports = app;
