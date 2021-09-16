@@ -25,11 +25,12 @@ function Books({className}) {
                 <td className="Topic"> ราคา</td>
                 <td className="Topic">จำนวน</td>
                 <td className="Topic">สถานะ</td>
+                <td className="Topic"></td>
             </thead>
             <tbody>
             {books ?
                 books.map((data) => {
-                    return <HomeAdmin key={data._id} data={data}/>
+                    return <HomeAdmin key={data._id} data={data} />
                 })
             :(
 				<div>Loading products....</div>
@@ -47,42 +48,31 @@ Books.propTypes={
 }
 
 export default styled(Books)`
-width: 98%;
-h1{
-    font-size: 26px;
-    text-align: center;
-    margin-bottom: 4rem;
-}
-.ShowBook{
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    width: 100%;
-    table-layout: fixed;
-    
-    td.Topic{
+margin-bottom: 50px;
+    width: 98%;
+    h1{
+        font-size: 26px;
         text-align: center;
-        font-size: 18px;
-        font-weight: bold;    
+        margin-bottom: 4rem;
     }
-  
-    td{
-        color: black;
-        font-size: 14px;
-        text-align:center;
-        padding: 5px 10px 5px 10px;
-    }
-    td.des{
-        width: 200px;
-    }
-    .text-overflow {
-        display: block;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-    tr.bookDetail {
-        bordet-bottom: 1px solid #e0e0e0;
-    }
-
-}
+    .ShowBook{
+            border-collapse: collapse;
+            border-radius: 15px;
+            width: 100%;
+            table-layout: fixed;
+            
+            td.Topic{
+                text-align: center;
+                font-size: 18px;
+                font-weight: bold;    
+                padding-bottom: 30px;
+            }
+        
+            td{
+                color: black;
+                font-size: 14px;
+                text-align:center;
+                padding: 5px 10px 5px 10px;
+            }
+        }
     `;
