@@ -25,7 +25,6 @@ function Delete(bookid){
       })
     )
 }
-
 function HomeAdmin ({className,data}){
     return(
         <tr className={className} >
