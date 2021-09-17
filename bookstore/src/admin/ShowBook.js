@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes, { func } from "prop-types";
 import styled from "styled-components";
 import {useState, useEffect } from "react";
 import axios from "axios";
@@ -15,6 +15,9 @@ function Books({className}) {
       <>
       <div className={className}>
           <h1 className="top">ข้อมูลหนังสือ</h1>
+          <form className="form-inline">
+          <input type="text" className="search" placeholder="Search by book's name "  onChange={(e) => SearchBook(e.target.value)}/> 
+          </form>
           <table className="ShowBook">
             <thead>
                 <td className="Topic">รูป</td>
@@ -41,6 +44,16 @@ function Books({className}) {
     </>
   );
 }
+function SearchBook (bookname){
+    // console.log(bookname);
+    // const [resul, setBook] = useState([]);
+	// useEffect(() => {
+    // axios.get(`localhost:3001/search/:${bookname}`).then((res) => {
+	// 		setBook(res.data);
+	// 	});
+	// }, []);
+
+}
 
 Books.propTypes={
     className: PropTypes.string.isRequired,
@@ -56,7 +69,33 @@ margin-bottom: 50px;
         margin-top: 0px;
         font-size: 26px;
         text-align: center;
-        margin-bottom: 4rem;
+        margin-bottom: 1.5rem;
+    }
+    form.form-inline{
+        text-align: center;
+        margin-bottom: 1.5rem;
+
+    }
+    input.search{
+        font-family: 'IBM Plex Sans Thai', sans-serif;
+        padding:5px;
+        border-radius: 12px;
+        font-size: 16px;
+        width: 40%;
+        justify-content: center;
+        transition: border 0.3s;
+    }
+    input.search:focus{
+        outline: none;
+        border-radius: 12px;
+        border: 2px solid #FFC531;
+        transition: border 0.3s;
+        font-family: 'IBM Plex Sans Thai', sans-serif;
+        padding:5px;
+        font-size: 16px;
+        width: 40%;
+        justify-content: center;
+    }
     }
     .ShowBook{
             border-collapse: collapse;
@@ -78,4 +117,5 @@ margin-bottom: 50px;
                 padding: 25px 10px 10px 10px;
             }
         }
+
     `;

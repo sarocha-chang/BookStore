@@ -7,7 +7,7 @@ function Sidebar ({className}){
         <nav className={className}>
           <Link to="/HomeAdmin" className="brand">CHACHAX</Link>
           <Link to="/HomeAdmin" className="menu"> ข้อมูลหนังสือ </Link>
-          <Link to="/AddBook" className="menu"> เพิ่มหนังสือใหม่ </Link>
+          <Link to="/AddBookAdmin" className="menu"> เพิ่มหนังสือใหม่ </Link>
           <Link to="/" className="end"> ออกจากระบบ </Link>
         </nav>
       </>
