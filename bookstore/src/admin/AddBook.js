@@ -157,7 +157,7 @@ function AddBook({ className }) {
 function alertSubmit(imageUrl){
   Swal.fire({
     title: 'Success!',
-    text: 'Your book has been added',
+    text: 'Your book has been added.',
     confirmButtonColor: "#005488",
     imageUrl: imageUrl,
     imageWidth: 400,

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 import React from "react";
-
 import Context from "../Context";
 
 function HomeAdmin({ className, data }) {
@@ -50,7 +49,7 @@ function HomeAdmin({ className, data }) {
 			<td>{data.quantity}</td>
 			<td>{data.status}</td>
 			<td>
-				<Link to="./EditBook.js">
+				<Link to={`./EditBookAdmin/${data._id}`}>
 					<box-icon name="edit" />
 				</Link>
 				<box-icon
