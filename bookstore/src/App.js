@@ -3,23 +3,25 @@ import Sidebar from "./admin/Sidebar";
 import ContainerAd from "./admin/Container";
 import ShowBook from "./admin/ShowBook";
 import GlobalStyle from "./GlobalStyle";
+import AddBookAd from "./admin/AddBook";
 function App() {
   return (
     <>
       <GlobalStyle />
       
       <Switch>
-
         <Route path="/HomeAdmin">
-          <Sidebar />
+          <Sidebar/>
           <ContainerAd>
             <ShowBook />
           </ContainerAd>
         </Route>
 
-        <Route path="/AddBookAd">
-          <Sidebar />
-          <ContainerAd></ContainerAd>
+        <Route path="/AddBookAdmin">
+        <Sidebar/>
+          <ContainerAd>
+          <AddBookAd/>
+          </ContainerAd>
         </Route>
 
         <Route path="/">
