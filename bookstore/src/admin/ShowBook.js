@@ -12,15 +12,24 @@ function Books({ className }) {
 	const [keyword, setKeyword] = useState("");
 
 	useEffect(() => {
-		axios.get("http://localhost:3001/show").then((res) => {
-			setBook(res.data);
-		});
+		function get() {
+			axios.get("http://localhost:3001/show").then((res) => {
+				setBook(res.data);
+			});
+		}
+		get();
 	}, []);
 
-	function useSearch(event) {
-		let find = books.filter((book) => book.name.includes(keyword));
-		setKeyword(event.target.value)
-		setBook(find)
+	async function useSearch(event) {
+		setKeyword(event.target.value);
+		axios.get(`http://localhost:3001/search/${keyword}`).then((data) => {
+			if (data.data.length > 0) setBook(data.data);
+			else {
+				axios.get("http://localhost:3001/show").then((res) => {
+					setBook(res.data);
+				});
+			}
+		});
 	}
 
 	return (
