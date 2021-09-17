@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {useState, useEffect } from "react";
 import axios from "axios";
 import HomeAdmin from "./HomeAdmin";
-
+import 'boxicons' ;
 function Books({className}) {
     const [books, setBook] = useState([]);
 	useEffect(() => {
@@ -14,7 +14,7 @@ function Books({className}) {
   return (
       <>
       <div className={className}>
-          <h1>ข้อมูลหนังสือ</h1>
+          <h1 className="top">ข้อมูลหนังสือ</h1>
           <table className="ShowBook">
             <thead>
                 <td className="Topic">รูป</td>
@@ -50,7 +50,10 @@ Books.propTypes={
 export default styled(Books)`
 margin-bottom: 50px;
     width: 98%;
-    h1{
+    h1.top{
+        font-family: 'IBM Plex Sans Thai', sans-serif;
+        padding-top: 40px;
+        margin-top: 0px;
         font-size: 26px;
         text-align: center;
         margin-bottom: 4rem;
@@ -60,19 +63,19 @@ margin-bottom: 50px;
             border-radius: 15px;
             width: 100%;
             table-layout: fixed;
-            
             td.Topic{
                 text-align: center;
-                font-size: 18px;
+                font-size: 20px;
                 font-weight: bold;    
                 padding-bottom: 30px;
+                border-bottom: 1px solid #e5e5e5;
             }
         
             td{
                 color: black;
-                font-size: 14px;
+                font-size: 18px;
                 text-align:center;
-                padding: 5px 10px 5px 10px;
+                padding: 25px 10px 10px 10px;
             }
         }
     `;

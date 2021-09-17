@@ -1,13 +1,12 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-
 function Sidebar ({className}){
     return (
       <>
         <nav className={className}>
-          <Link to="/ShowBook" className="brand">CHACHAX</Link>
-          <Link to="/ShowBook" className="menu"> ข้อมูลหนังสือ </Link>
+          <Link to="/HomeAdmin" className="brand">CHACHAX</Link>
+          <Link to="/HomeAdmin" className="menu"> ข้อมูลหนังสือ </Link>
           <Link to="/AddBook" className="menu"> เพิ่มหนังสือใหม่ </Link>
           <Link to="/" className="end"> ออกจากระบบ </Link>
         </nav>
@@ -25,8 +24,9 @@ export default styled(Sidebar)`
   background-color: #005488;
   width: 225px;
   height: 100%;
-  position: fixed;
-  font-family: 'Noto Sans Thai', sans-serif;
+  position:fixed;
+  font-family: 'IBM Plex Sans Thai', sans-serif;
+
   .brand {
     display: block;
     font-size: 30px;

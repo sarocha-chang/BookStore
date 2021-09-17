@@ -2,8 +2,9 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Switch, Route,  Link } from "react-router-dom";
 import Sidebar from "./admin/Sidebar";
-import Container from "./admin/Container";
+import ContainerAd from "./admin/Container";
 import ShowBook from "./admin/ShowBook";
+import GlobalStyle from "./GlobalStyle";
 function App() {
   const [product, SetProduct] = useState([]);
   useEffect(() => {
@@ -15,13 +16,19 @@ function App() {
 
   return (
     <>
+    <GlobalStyle />
       <Switch>
         <Route path="/HomeAdmin">
           <Sidebar />
-          <Container>
+          <ContainerAd>
             <ShowBook />
-          </Container>
+          </ContainerAd>
         </Route>
+        <Route path="/AddBookAd">
+          <Sidebar />
+          <ContainerAd>
+          </ContainerAd>
+          </Route>
 		<Route path="/">
 			<Link to="/HomeAdmin">Admin</Link>
 		</Route>
