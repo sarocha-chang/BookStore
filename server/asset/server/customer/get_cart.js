@@ -7,7 +7,7 @@ const getCart = require("../../function/getCart")
 app.use(
 	cors({
 		origin: "http://localhost:3000",
-		methods: "POST",
+		methods: "GET",
 		optionsSuccessStatus: 200,
 		allowedHeaders: "Content-type",
 	}),

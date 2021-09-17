@@ -7,7 +7,7 @@ const Book = require("../../../config/collection/Book");
 app.use(
 	cors({
 		origin: "http://localhost:3000",
-		methods: "POST",
+		methods: "PUT",
 		optionsSuccessStatus: 200,
 		allowedHeaders: "Content-type",
 	}),
