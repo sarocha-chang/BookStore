@@ -13,10 +13,10 @@ app.use(
 	}),
 );
 
-app.get("/:name", async (request, response) => {
-     console.log(request.params.name)
+app.get("/:keyword", async (request, response) => {
+	const { keyword } = request.params
      let data = await Book.find()
-     let find = data.filter(p =>(p.name.includes(request.params.name)))
+     let find = data.filter(p =>(p.name.includes(keyword)))
      response.status(200).json(find);
 });
 

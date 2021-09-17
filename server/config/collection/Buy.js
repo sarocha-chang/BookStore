@@ -2,8 +2,7 @@ const mongoose = require("../database")
 const Schema = mongoose.Schema
 
 const buy = new Schema({
-    id: Number,
-    Book_id: Number,
+    Book_id: String,
     quantity: Number,
     total: Number
 })
