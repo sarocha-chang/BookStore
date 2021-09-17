@@ -9,6 +9,7 @@ import "boxicons";
 
 function Books({ className }) {
 	const [books, setBook] = useState([]);
+	const [keyword, setKeyword] = useState("");
 
 	useEffect(() => {
 		axios.get("http://localhost:3001/show").then((res) => {
@@ -16,47 +17,59 @@ function Books({ className }) {
 		});
 	}, []);
 
+	function useSearch(event) {
+		let find = books.filter((book) => book.name.includes(keyword));
+		setKeyword(event.target.value)
+		setBook(find)
+	}
+
 	return (
-		<>
-			<div className={className}>
-				<h1 className="top">ข้อมูลหนังสือ</h1>
-				<table className="ShowBook">
-					<thead>
-						<tr>
-							<th>รูป</th>
-							<th>ชื่อหนังสือ</th>
-							<th>ชื่อผู้แต่ง</th>
-							<th>คำอธิบาย</th>
-							<th>ประเภท</th>
-							<th> ราคา</th>
-							<th>จำนวน</th>
-							<th>สถานะ</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						{books ? (
-							books.map((data) => {
-								return (
-									<Context.Provider value={[books,setBook]} key={data._id}>
-										{<HomeAdmin  data={data} />}
-									</Context.Provider>
-								);
-							})
-						) : (
-							<div>Loading products....</div>
-						)}
-					</tbody>
-				</table>
-			</div>
-		</>
+		<div className={className}>
+			<h1 className="top">ข้อมูลหนังสือ</h1>
+			<form className="form-inline">
+				<input
+					type="text"
+					className="search"
+					placeholder="Search by book's name"
+					onChange={useSearch}
+					value={keyword}
+				/>
+			</form>
+			<table className="ShowBook">
+				<thead>
+					<tr>
+						<th>รูป</th>
+						<th>ชื่อหนังสือ</th>
+						<th>ชื่อผู้แต่ง</th>
+						<th>คำอธิบาย</th>
+						<th>ประเภท</th>
+						<th> ราคา</th>
+						<th>จำนวน</th>
+						<th>สถานะ</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{books ? (
+						books.map((data) => {
+							return (
+								<Context.Provider value={[books, setBook]} key={data._id}>
+									{<HomeAdmin data={data} />}
+								</Context.Provider>
+							);
+						})
+					) : (
+						<div>Loading products....</div>
+					)}
+				</tbody>
+			</table>
+		</div>
 	);
 }
 
 Books.propTypes = {
 	className: PropTypes.string.isRequired,
 	books: PropTypes.node,
-
 };
 
 export default styled(Books)`
@@ -90,4 +103,30 @@ export default styled(Books)`
 			padding: 25px 10px 10px 10px;
 		}
 	}
-`
+	form.form-inline{
+        text-align: center;
+        margin-bottom: 1.5rem;
+
+    }
+    input.search{
+        font-family: 'IBM Plex Sans Thai', sans-serif;
+        padding:5px;
+        border-radius: 12px;
+        font-size: 16px;
+        width: 40%;
+        justify-content: center;
+        transition: border 0.3s;
+    }
+    input.search:focus{
+        outline: none;
+        border-radius: 12px;
+        border: 2px solid #FFC531;
+        transition: border 0.3s;
+        font-family: 'IBM Plex Sans Thai', sans-serif;
+        padding:5px;
+        font-size: 16px;
+        width: 40%;
+        justify-content: center;
+    }
+    }
+`;
