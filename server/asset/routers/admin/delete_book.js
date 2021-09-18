@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const app = express();
+const app = express.Router();
 
 const Book = require("../../../config/collection/Book");
 
