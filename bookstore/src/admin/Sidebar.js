@@ -17,8 +17,6 @@ Sidebar.propTypes = {
     className: PropTypes.string.isRequired
 }; 
 
-
-
 export default styled(Sidebar)`
   margin: 0;
   background-color: #005488;

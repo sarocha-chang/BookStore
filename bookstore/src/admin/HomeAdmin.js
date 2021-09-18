@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import React from "react";
 import Context from "../Context";
-
+import "boxicons";
 function HomeAdmin({ className, data }) {
 	const [id] = React.useState(data._id);
 	const [books, setBook] = React.useContext(Context);
@@ -29,6 +29,7 @@ function HomeAdmin({ className, data }) {
 						1,
 					);
 					setBook(book);
+					window.location.reload();
 				});
 			}
 		});

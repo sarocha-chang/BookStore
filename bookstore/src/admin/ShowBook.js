@@ -2,11 +2,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
 import HomeAdmin from "./HomeAdmin";
 import Context from "../Context";
-import "boxicons";
-
 function Books({ className }) {
 	const [books, setBook] = useState([]);
 	const [keyword, setKeyword] = useState("");
@@ -83,9 +80,10 @@ export default styled(Books)`
 		font-family: "IBM Plex Sans Thai", sans-serif;
 		padding-top: 40px;
 		margin-top: 0px;
+		font-weight: bold;
 		font-size: 26px;
 		text-align: center;
-		margin-bottom: 4rem;
+		margin-bottom: 2.5rem;
 	}
 	.ShowBook {
 		border-collapse: collapse;
@@ -109,7 +107,7 @@ export default styled(Books)`
 	}
 	form.form-inline{
         text-align: center;
-        margin-bottom: 1.5rem;
+        margin-bottom:2rem;
 
     }
     input.search{

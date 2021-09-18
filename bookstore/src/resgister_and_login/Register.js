@@ -142,6 +142,7 @@ export default styled(Register)`
   }
   form .input-group {
     margin-bottom: 1.5rem;
+    justify-content: center;
   }
 
   form {
