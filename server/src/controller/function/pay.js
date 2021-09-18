@@ -1,7 +1,7 @@
-const Book = require("../../config/collection/Book");
-const Customer = require("../../config/collection/Customer");
-const Buy = require("../../config/collection/Buy");
-const Receipt = require("../../config/collection/Receipt");
+const Book = require("../../../config/model/Book");
+const Customer = require("../../../config/model/Customer");
+const Buy = require("../../../config/model/Buy");
+const Receipt = require("../../../config/model/Receipt");
 
 getReceipt = (id) =>{
     return new Promise( async(resolve, reject) => {
@@ -43,7 +43,7 @@ run = (id) => {
         let Receipt = await getReceipt(id)
         let Buy = await getBuy(Receipt)
         let Book = await getBook(Buy)
-        let Pay = await pay([Receipt,Buy,Book])
+        // let Pay = await pay([Receipt,Buy,Book])
         resolve({Receipt,Buy,Book})
 	});
 };

@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express.Router();
 
-const Book = require("../../../config/collection/Book")
+const allControllers = require("../controller/all")
 
 app.use(
 	cors({
@@ -13,8 +13,8 @@ app.use(
 	}),
 );
 
-app.get("/", async(request, response) => {
-	response.status(200).json(await Book.find());
-});
+app.get("/show",allControllers.show);
+app.get("/show_detail/:id",allControllers.show_detail);
+app.get("/search/:keyword",allControllers.search);
 
 module.exports = app;
