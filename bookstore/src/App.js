@@ -4,6 +4,7 @@ import ContainerAd from "./admin/Container";
 import ShowBook from "./admin/ShowBook";
 import GlobalStyle from "./GlobalStyle";
 import AddBookAd from "./admin/AddBook";
+import EditBookAd from "./admin/EditBook";
 
 function App() {
   return (
@@ -22,6 +23,13 @@ function App() {
         <Sidebar/>
           <ContainerAd>
           <AddBookAd/>
+          </ContainerAd>
+        </Route>
+
+        <Route path="/EditBookAdmin/:id">
+        <Sidebar/>
+          <ContainerAd>
+          <EditBookAd/>
           </ContainerAd>
         </Route>
 
