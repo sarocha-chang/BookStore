@@ -1,0 +1,15 @@
+.container
+{
+    align-items: center;
+    text-align: center;
+}
+.row
+{
+    align-items: center;
+    text-align: center;
+}
+.card
+{
+    margin-left: 60px;
+    margin-top: 20px;
+}

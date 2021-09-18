@@ -1,24 +1,18 @@
 import React from 'react'
-import { Button, Carousel, Container } from 'react-bootstrap'
+import "./css/Navbar.css"
+import { Button, Carousel, Container,Navbar,Nav,Form,FormControl } from 'react-bootstrap'
+import 'boxicons'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function navbar_list() {
     return (
         <>
-            <Navbar bg="light" expand="lg">
-                <Navbar.Brand href="#">CHACHAX</Navbar.Brand>
+            <Navbar  expand="lg">
+                <Navbar.Brand href="#" className="logo" style={{color:"#fff"}}>CHACHAX</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
-                    <Nav
-                        className="mr-auto my-2 my-lg-0"
-                        style={{ maxHeight: '100px' }}
-                        navbarScroll
-                    >
-                        <Nav.Link href="#action1">Home</Nav.Link>
-                        <Nav.Link href="#action2">Link</Nav.Link>
-                      
-                    </Nav>
+                  
                     <Form className="d-flex">
                         <FormControl
                             type="search"
@@ -28,6 +22,16 @@ export default function navbar_list() {
                         />
                         <Button variant="outline-success">Search</Button>
                     </Form>
+
+                    <Nav
+                        className="mr-auto my-2 my-lg-0"
+                        style={{ maxHeight: '100px' }}
+                        navbarScroll
+                    >
+                        <Nav.Link href="#action1" style={{color:"#fff"}}>เข้าสู่ระบบ</Nav.Link>
+                        <Nav.Link href="#action2"><box-icon name='shopping-bag' color='#fff' ></box-icon></Nav.Link>
+                      
+                    </Nav>
                 </Navbar.Collapse>
             </Navbar>
         </>

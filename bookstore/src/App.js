@@ -9,6 +9,8 @@ import Register from "./resgister_and_login/Register";
 import AddBookAd from "./admin/AddBook";
 import EditBookAd from "./admin/EditBook";
 import Navbar from "./home/Navbar"
+import Navbar_list from "./listpage/Navbar_list"
+import List from "./listpage/List"
 
 function App() {
 
@@ -18,6 +20,9 @@ function App() {
       <GlobalStyle />
 
       <Switch>
+        <Route path="/List">
+          <List/>
+        </Route>
 
         <Route path="/Home">
           <Navbar />
@@ -58,7 +63,8 @@ function App() {
 
         <Route path="/">
           <Link to="/HomeAdmin" style={{margin:"30px"}}>Admin</Link>
-          <Link to="/Home">Home</Link>
+          <Link to="/Home" style={{margin:"30px"}}>Home</Link>
+          <Link to="/List">List</Link>
         </Route>
 
       </Switch>
