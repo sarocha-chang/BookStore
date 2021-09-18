@@ -17,6 +17,7 @@ const change_quantity_in_cart = require("../asset/server/customer/change_quantit
 
 const register = require("../asset/server/registration/register")
 const login = require("../asset/server/registration/login")
+const showCustomer = require("../asset/server/registration/getcustomer")
 
 
 app.use(express.json());
@@ -37,5 +38,7 @@ app.use("/change_quantity_in_cart",change_quantity_in_cart)
 
 app.use("/register",register)
 app.use("/login",login)
+app.use("/showCustomer",showCustomer)
+
 
 module.exports = app;
