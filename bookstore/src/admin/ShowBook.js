@@ -23,12 +23,7 @@ function Books({ className }) {
 	function useSearch(event) {
 		setKeyword(event.target.value);
 		axios.get(`http://localhost:3001/search/${keyword}`).then((data) => {
-			if (data.data.length > 0) setBook(data.data);
-			else {
-				axios.get("http://localhost:3001/show").then((res) => {
-					setBook(res.data);
-				});
-			}
+			setBook(data.data);
 		});
 	}
 
