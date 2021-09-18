@@ -290,7 +290,4 @@ button.cancel:hover{
   border: 1px solid #FFC531;
   transition: all 0.3s;
 }
-}
-
-  
-`;
+`
