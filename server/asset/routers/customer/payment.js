@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
-const app = express();
+const app = express.Router();
 
-const run = require("../../function/pay")
+const run = require("../../controller/pay")
 
 app.use(
 	cors({

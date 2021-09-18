@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const app = express();
+const app = express.Router();
 
 const Buy = require("../../../config/collection/Buy");
 const Receipt = require("../../../config/collection/Receipt");
