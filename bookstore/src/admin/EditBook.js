@@ -107,7 +107,8 @@ function AddBook({ className }) {
           </div>
           <div className="col-90">
           <select 
-          onChange={(event) => setType(event.target.value)}>
+          onChange={(event) => setType(event.target.value)}
+          value={type}>
             <option> นวนิยาย </option> <option> ภาษา </option>
             <option> ความรู้ทั่วไป </option> <option> พัฒนาตนเอง </option>
           </select>
@@ -161,9 +162,10 @@ function AddBook({ className }) {
           </div>
           <div className="col-90">
           <select onChange={(event) => setStatus(event.target.value)}
-          >
+          value={status}>
             <option> ปกติ </option> <option> มาใหม่ </option>
             <option> ยอดนิยม </option>
+        
           </select>
         </div>
         </div>
@@ -236,7 +238,7 @@ export default styled(AddBook)`
       border: 1px solid #ccc;
     }
     input.short{
-      width: 20%;
+      width: 25%;
     }input.medium{
       width: 55%;
     }

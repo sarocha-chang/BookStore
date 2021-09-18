@@ -212,7 +212,7 @@ export default styled(AddBook)`
       border: 1px solid #ccc;
     }
     input.short{
-      width: 20%;
+      width: 25%;
     }input.medium{
       width: 55%;
     }
