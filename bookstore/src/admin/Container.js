@@ -12,6 +12,6 @@ Container.propTypes = {
 };
 
 export default styled(Container)`
-	margin: 0 0 0 18rem;
+	margin: 0 0 0 16rem;
 	font-family: 'IBM Plex Sans Thai', sans-serif;
 	`;

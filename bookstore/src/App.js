@@ -3,6 +3,11 @@ import Sidebar from "./admin/Sidebar";
 import ContainerAd from "./admin/Container";
 import ShowBook from "./admin/ShowBook";
 import GlobalStyle from "./GlobalStyle";
+import Login from "./resgister_and_login/Login";
+import Container from "./resgister_and_login/components/containerforlogin";
+import Register from "./resgister_and_login/Register";
+import AddBookAd from "./admin/AddBook";
+import EditBookAd from "./admin/EditBook";
 import Navbar from "./home/Navbar"
 
 function App() {
@@ -12,6 +17,7 @@ function App() {
 
     <Switch>
       
+      <Switch>
     <Route path="/Home">
       <Navbar/>
     </Route> 
@@ -24,15 +30,36 @@ function App() {
       <Switch>
         
         <Route path="/HomeAdmin">
-          <Sidebar />
+          <Sidebar/>
           <ContainerAd>
             <ShowBook />
           </ContainerAd>
         </Route>
 
-        <Route path="/AddBookAd">
-          <Sidebar />
-          <ContainerAd></ContainerAd>
+        <Route path="/AddBookAdmin">
+        <Sidebar/>
+          <ContainerAd>
+          <AddBookAd/>
+          </ContainerAd>
+        </Route>
+
+        <Route path="/EditBookAdmin/:id">
+        <Sidebar/>
+          <ContainerAd>
+          <EditBookAd/>
+          </ContainerAd>
+        </Route>
+
+        <Route path="/Login">
+          <Container>
+            <Login/>
+          </Container>
+        </Route>
+
+        <Route path="/Register">
+          <Container>
+            <Register/>
+          </Container>
         </Route>
 
         <Route path="/">

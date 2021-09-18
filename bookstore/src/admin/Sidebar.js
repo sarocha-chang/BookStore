@@ -7,7 +7,7 @@ function Sidebar ({className}){
         <nav className={className}>
           <Link to="/HomeAdmin" className="brand">CHACHAX</Link>
           <Link to="/HomeAdmin" className="menu"> ข้อมูลหนังสือ </Link>
-          <Link to="/AddBook" className="menu"> เพิ่มหนังสือใหม่ </Link>
+          <Link to="/AddBookAdmin" className="menu"> เพิ่มหนังสือใหม่ </Link>
           <Link to="/" className="end"> ออกจากระบบ </Link>
         </nav>
       </>
@@ -52,7 +52,7 @@ export default styled(Sidebar)`
   .end {
     display: block;
     border-top: 1px solid #ffffff;
-    margin-top: 280%;
+    margin-top: 265%;
     font-size: 20px;
     color: #ffffff;
     padding: 20px;
