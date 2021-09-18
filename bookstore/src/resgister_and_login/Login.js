@@ -44,6 +44,7 @@ function Login({ className }) {
               </button>
             </form>
           </div>
+
         </div>
       </div>
     </div>
@@ -88,6 +89,7 @@ export default styled(Login)`
   }
   form .input-group {
     margin-bottom: 1.5rem;
+    margin-left: 60px;
   }
   form .link{
     margin-bottom: 1.5rem;
