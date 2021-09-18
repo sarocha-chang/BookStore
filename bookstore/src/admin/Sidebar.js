@@ -50,7 +50,7 @@ export default styled(Sidebar)`
   .end {
     display: block;
     border-top: 1px solid #ffffff;
-    margin-top: 265%;
+    margin-top: 175%;
     font-size: 20px;
     color: #ffffff;
     padding: 20px;

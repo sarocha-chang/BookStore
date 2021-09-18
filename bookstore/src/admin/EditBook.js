@@ -38,7 +38,7 @@ function EditBook({ className }) {
       setImageUrl(imageUrl);
       setStatus(status);
     });
-  }, []);
+  },[]);
 
   function onSubmit(event) {
     event.preventDefault();
