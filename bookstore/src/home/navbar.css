@@ -27,12 +27,6 @@ header a
     text-decoration: none;
     color: #fff;
 }
-
-.container  img
-{   
-    width: 400px;
-    height: 550px;
-}
 .container
 {
     margin-top: 30px;
@@ -43,3 +37,4 @@ header a
 {
     margin-top: 30px;
 }
+
