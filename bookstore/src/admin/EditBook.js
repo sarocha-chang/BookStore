@@ -45,15 +45,14 @@ function AddBook({ className }) {
       status: status,
     };
     axios
-      .put(`localhost:3001/update_book/${id}`, data)
+      .put(`http://localhost:3001/update_book/${id}`, data)
       .then((response) => {
         setData(response.data);
-        console.log(response.data);
-      })
+        })
       .catch((error) => {
         console.log(error);
       });
-    alertSubmit(imageUrl);
+    alertSubmit(imageUrl)
   }
 
   return (
