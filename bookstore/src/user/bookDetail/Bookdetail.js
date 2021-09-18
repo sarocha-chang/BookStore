@@ -6,7 +6,7 @@ import { Link, useParams , useHistory } from "react-router-dom";
 function BookDetail({ className }) {
   const { id } = useParams();
   const [book, setBook] = useState({});
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const history = useHistory();
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -67,6 +67,7 @@ function BookDetail({ className }) {
               min="1"
               max="100"
               onChange={(event) => setQuantity(event.target.value)}
+              value={quantity}
             />
             <Link to="/">
               <button className="btn" onClick={onSubmit}>
