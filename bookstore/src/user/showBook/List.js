@@ -80,14 +80,16 @@ function App() {
                           style={{ width: "175px", height: "175px" }}
                         />
                         <Card.Body>
-                          <Card.Title
-                            style={{
-                              fontSize: "16px",
-                              fontFamily: "IBM Plex Sans Thai",
-                            }}
-                          >
-                            {data.name}
-                          </Card.Title>
+                          <Link to={`./BookDetail/${data._id}`}>
+                            <Card.Title
+                              style={{
+                                fontSize: "16px",
+                                fontFamily: "IBM Plex Sans Thai",
+                              }}
+                            >
+                              {data.name}
+                            </Card.Title>
+                          </Link>
                           <Card.Text
                             style={{
                               fontSize: "16px",
@@ -97,7 +99,6 @@ function App() {
                             ราคา : {data.price} บาท
                           </Card.Text>
                           <Link to="./">
-                            {" "}
                             <Button variant="primary">เพิ่มไปยังตระกร้า</Button>
                           </Link>
                         </Card.Body>
