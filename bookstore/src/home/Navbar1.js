@@ -4,7 +4,7 @@ export default function Navbar1() {
     return (
         <>
             <header>
-                <h1><a href="#">CHACHAX</a></h1>
+                <h3><a href="#">CHACHAX</a></h3>
                 <nav>
                     <ul class="nav-link">
                         <li><a href="#">login</a></li>

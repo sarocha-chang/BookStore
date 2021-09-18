@@ -8,16 +8,24 @@ import Container from "./resgister_and_login/components/containerforlogin";
 import Register from "./resgister_and_login/Register";
 import AddBookAd from "./admin/AddBook";
 import EditBookAd from "./admin/EditBook";
-import Navbar from "./home/Navbar"
+import Navbar from "./home/Navbar";
+import List from "./user/showBook/List";
+import NavBarAll from "./user/Navbar_list";
+import ContainerAll from "./user/Container";
+import BookDetail from "./user/bookDetail/Bookdetail";
 
 function App() {
-
   return (
-
     <>
       <GlobalStyle />
 
       <Switch>
+        <Route path="/List">
+          <NavBarAll />
+          <ContainerAll>
+            <List />
+          </ContainerAll>
+        </Route>
 
         <Route path="/Home">
           <Navbar />
@@ -56,13 +64,23 @@ function App() {
           </Container>
         </Route>
 
-        <Route path="/">
-          <Link to="/HomeAdmin" style={{margin:"30px"}}>Admin</Link>
-          <Link to="/Home">Home</Link>
+        <Route path="/BookDetail/:id">
+          <NavBarAll />
+          <ContainerAll>
+            <BookDetail />
+          </ContainerAll>
         </Route>
 
+        <Route path="/">
+          <Link to="/HomeAdmin" style={{ margin: "30px" }}>
+            Admin
+          </Link>
+          <Link to="/Home" style={{ margin: "30px" }}>
+            Home
+          </Link>
+          <Link to="/List">List</Link>
+        </Route>
       </Switch>
-
     </>
   );
 }
