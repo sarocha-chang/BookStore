@@ -1,44 +1,26 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
-const show = require("../asset/routers/all/show");
-const search = require("../asset/routers/all/search");
-const show_detail = require("../asset/routers/all/show_detail");
-
-const add_book = require("../asset/routers/admin/add_book");
-const delete_book = require("../asset/routers/admin/delete_book");
-const update_book = require("../asset/routers/admin/update_book");
-
-const add_cart = require("../asset/routers/customer/add_cart")
-const get_cart = require("../asset/routers/customer/get_cart")
-const payment = require("../asset/routers/customer/payment")
-const delete_cart_item = require("../asset/routers/customer/delete_cart_item")
-const change_quantity_in_cart = require("../asset/routers/customer/change_quantity_in_cart")
-
-const register = require("../asset/routers/registration/register")
-const login = require("../asset/routers/registration/login")
-const showCustomer = require("../asset/routers/registration/getcustomer")
-
+const all = require("../src/routers/all")
+const admin = require("../src/routers/admin")
+const customer = require("../src/routers/customer")
+const registration = require("../src/routers/registration")
 
 app.use(express.json());
 
-app.use("/show", show);
-app.use("/show_detail", show_detail);
-app.use("/search", search);
+app.use(
+	cors({
+		origin: "http://localhost:3000",
+		methods: "GET,POST,DELETE,PUT",
+		optionsSuccessStatus: 200,
+		allowedHeaders: "Content-type",
+	}),
+);
 
-app.use("/add_book", add_book);
-app.use("/delete_book", delete_book);
-app.use("/update_book", update_book);
-
-app.use("/add_cart", add_cart);
-app.use("/get_cart", get_cart);
-app.use("/payment", payment);
-app.use("/delete_cart_item",delete_cart_item)
-app.use("/change_quantity_in_cart",change_quantity_in_cart)
-
-app.use("/register",register)
-app.use("/login",login)
-app.use("/showCustomer",showCustomer)
-
+app.use("/", all)
+app.use("/", admin)
+app.use("/", customer)
+app.use("/", registration)
 
 module.exports = app;
