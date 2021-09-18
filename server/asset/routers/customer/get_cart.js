@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
-const app = express();
+const app = express.Router();
 
-const getCart = require("../../function/getCart")
+const getCart = require("../../controller/getCart")
 
 app.use(
 	cors({

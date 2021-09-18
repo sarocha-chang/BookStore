@@ -1,23 +1,23 @@
 const express = require("express");
 const app = express();
 
-const show = require("../asset/server/all/show");
-const search = require("../asset/server/all/search");
-const show_detail = require("../asset/server/all/show_detail");
+const show = require("../asset/routers/all/show");
+const search = require("../asset/routers/all/search");
+const show_detail = require("../asset/routers/all/show_detail");
 
-const add_book = require("../asset/server/admin/add_book");
-const delete_book = require("../asset/server/admin/delete_book");
-const update_book = require("../asset/server/admin/update_book");
+const add_book = require("../asset/routers/admin/add_book");
+const delete_book = require("../asset/routers/admin/delete_book");
+const update_book = require("../asset/routers/admin/update_book");
 
-const add_cart = require("../asset/server/customer/add_cart")
-const get_cart = require("../asset/server/customer/get_cart")
-const payment = require("../asset/server/customer/payment")
-const delete_cart_item = require("../asset/server/customer/delete_cart_item")
-const change_quantity_in_cart = require("../asset/server/customer/change_quantity_in_cart")
+const add_cart = require("../asset/routers/customer/add_cart")
+const get_cart = require("../asset/routers/customer/get_cart")
+const payment = require("../asset/routers/customer/payment")
+const delete_cart_item = require("../asset/routers/customer/delete_cart_item")
+const change_quantity_in_cart = require("../asset/routers/customer/change_quantity_in_cart")
 
-const register = require("../asset/server/registration/register")
-const login = require("../asset/server/registration/login")
-const showCustomer = require("../asset/server/registration/getcustomer")
+const register = require("../asset/routers/registration/register")
+const login = require("../asset/routers/registration/login")
+const showCustomer = require("../asset/routers/registration/getcustomer")
 
 
 app.use(express.json());

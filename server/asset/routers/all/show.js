@@ -1,23 +1,19 @@
 const express = require("express");
 const cors = require("cors");
-const app = express();
+const app = express.Router();
 
-const Book = require("../../../config/collection/Book");
+const Book = require("../../../config/collection/Book")
 
 app.use(
 	cors({
 		origin: "http://localhost:3000",
-		methods: "DELETE",
+		methods: "GET",
 		optionsSuccessStatus: 200,
 		allowedHeaders: "Content-type",
 	}),
 );
 
-app.delete("/:id", async (request, response) => {
-	const { id } = request.params
-	await Book.findByIdAndDelete(id);
-	// await Book.remove()
-	
+app.get("/", async(request, response) => {
 	response.status(200).json(await Book.find());
 });
 

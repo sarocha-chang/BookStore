@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const app = express();
+const app = express.Router();
 
 const Book = require("../../../config/collection/Book");
 
@@ -13,12 +13,11 @@ app.use(
 	}),
 );
 
-app.get("/:keyword", async (request, response) => {
-	const { keyword } = request.params
-     let data = await Book.find()
-     let find = data.filter(p =>(p.name.includes(keyword)))
-     response.status(200).json(find);
+app.get("/:id", async (request, response) => {
+	const { id } = request.params
+	response.status(200).json(await Book.findById(id).catch((err) =>{
+        if (err) response.status(400).json("Bad Request");
+    }));
 });
 
-
-module.exports = app;
+module.exports = app

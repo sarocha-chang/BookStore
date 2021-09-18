@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
-const app = express();
+const app = express.Router();
 
-const Book = require("../../../config/collection/Book")
+const Customer = require("../../../config/collection/Customer")
 
 app.use(
 	cors({
@@ -14,7 +14,7 @@ app.use(
 );
 
 app.get("/", async(request, response) => {
-	response.status(200).json(await Book.find());
+	response.status(200).json(await Customer.find());
 });
 
 module.exports = app;
