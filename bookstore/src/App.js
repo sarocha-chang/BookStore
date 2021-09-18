@@ -3,13 +3,26 @@ import Sidebar from "./admin/Sidebar";
 import ContainerAd from "./admin/Container";
 import ShowBook from "./admin/ShowBook";
 import GlobalStyle from "./GlobalStyle";
+import Navbar from "./home/Navbar"
+
 function App() {
   return (
     <>
       <GlobalStyle />
-      
-      <Switch>
 
+    <Switch>
+      
+    <Route path="/Home">
+      <Navbar/>
+    </Route> 
+    <Route path="/">
+    <Link to="/Home">Home</Link>
+    </Route>
+
+    </Switch>
+        
+      <Switch>
+        
         <Route path="/HomeAdmin">
           <Sidebar />
           <ContainerAd>
@@ -25,8 +38,11 @@ function App() {
         <Route path="/">
           <Link to="/HomeAdmin">Admin</Link>
         </Route>
-
+      
       </Switch>
+
+     
+     
     </>
   );
 }
