@@ -11,65 +11,58 @@ import EditBookAd from "./admin/EditBook";
 import Navbar from "./home/Navbar"
 
 function App() {
+
   return (
+
     <>
       <GlobalStyle />
 
-    <Switch>
-      
       <Switch>
-    <Route path="/Home">
-      <Navbar/>
-    </Route> 
-    <Route path="/">
-    <Link to="/Home">Home</Link>
-    </Route>
 
-    </Switch>
-        
-      <Switch>
-        
+        <Route path="/Home">
+          <Navbar />
+        </Route>
+
         <Route path="/HomeAdmin">
-          <Sidebar/>
+          <Sidebar />
           <ContainerAd>
             <ShowBook />
           </ContainerAd>
         </Route>
 
         <Route path="/AddBookAdmin">
-        <Sidebar/>
+          <Sidebar />
           <ContainerAd>
-          <AddBookAd/>
+            <AddBookAd />
           </ContainerAd>
         </Route>
 
         <Route path="/EditBookAdmin/:id">
-        <Sidebar/>
+          <Sidebar />
           <ContainerAd>
-          <EditBookAd/>
+            <EditBookAd />
           </ContainerAd>
         </Route>
 
         <Route path="/Login">
           <Container>
-            <Login/>
+            <Login />
           </Container>
         </Route>
 
         <Route path="/Register">
           <Container>
-            <Register/>
+            <Register />
           </Container>
         </Route>
 
         <Route path="/">
-          <Link to="/HomeAdmin">Admin</Link>
+          <Link to="/HomeAdmin" style={{margin:"30px"}}>Admin</Link>
+          <Link to="/Home">Home</Link>
         </Route>
-      
+
       </Switch>
 
-     
-     
     </>
   );
 }
