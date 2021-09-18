@@ -1,8 +1,8 @@
 import axios from "axios";
 import styled from "styled-components";
 import { useState } from "react";
-import {Link} from "react-router-dom";
-import Swal from 'sweetalert2';
+import { Link, useHistory } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function AddBook({ className }) {
   const [name, setName] = useState("");
@@ -14,7 +14,7 @@ function AddBook({ className }) {
   const [imageUrl, setImageUrl] = useState("");
   const [status, setStatus] = useState("");
   const [data, setData] = useState("");
-
+  const history = useHistory();
   function onSubmit(event) {
     event.preventDefault();
     const data = {
@@ -27,147 +27,154 @@ function AddBook({ className }) {
       imageUrl: imageUrl,
       status: status,
     };
+    
     axios
       .post("http://localhost:3001/add_book", data)
       .then((response) => {
         setData(response.data);
         console.log(response.data);
+        alertSubmit(imageUrl);
+        history.push("/HomeAdmin");
       })
       .catch((error) => {
         console.log(error);
       });
-    alertSubmit(imageUrl);
   }
 
   return (
     <div className={className}>
       <h1 className="top"> เพิ่มหนังสือใหม่ </h1>
       <form className="add">
-          <div className="row">
-            <div className="col-10">
-          <label> ชื่อหนังสือ: </label>
-          </div>
-          <div className="col-90">
-          <input
-            type="text"
-            placeholder="กรุณากรอกชื่อหนังสือ"
-            className="medium"
-            onChange={(event) => setName(event.target.value)}
-          />
-        </div>
-        </div>
         <div className="row">
-            <div className="col-10">
-          <label> ชื่อผู้แต่ง: </label>
+          <div className="col-10">
+            <label> ชื่อหนังสือ: </label>
           </div>
           <div className="col-90">
-          <input
-            type="text"
-            placeholder="กรุณากรอกชื่อผู้เขียน"
-            className="medium"
-            onChange={(event) => setAuthor(event.target.value)}
-          />
-        </div>
-        </div>
-        <div className="row">
-            <div className="col-10">
-          <label> คำอธิบาย: </label>
+            <input
+              type="text"
+              placeholder="กรุณากรอกชื่อหนังสือ"
+              className="medium"
+              onChange={(event) => setName(event.target.value)}
+            />
           </div>
-          <div className="col-90">
-          <textarea
-            type="text"
-            placeholder="กรุณากรอกคำอธิบาย. . . . . . . . . ."
-            className="long"
-            onChange={(event) => setDescription(event.target.value)}
-          />
-        </div>
-        </div>
-        <div className="row">
-            <div className="col-10">
-          <label> ประเภท: </label>
-          </div>
-          <div className="col-90">
-          <select onChange={(event) => setType(event.target.value)}>
-            <option> นวนิยาย </option> <option> ภาษา </option>
-            <option> ความรู้ทั่วไป </option> <option> พัฒนาตนเอง </option>
-          </select>
-        </div>
-        </div>
-        <div className="row">
-            <div className="col-10">
-          <label> ราคา: </label>
-          </div>
-          <div className="col-90">
-          <input
-            type="text"
-            placeholder="กรุณากรอกราคา"
-            className="short"
-            onChange={(event) => setPrice(event.target.value)}
-          />
-        </div>
-        </div>
-        <div className="row">
-            <div className="col-10">
-          <label> จำนวน: </label>
-          </div>
-          <div className="col-90">
-          <input
-            type="text"
-            placeholder="กรุณากรอกจำนวนหนังสือ"
-            className="short"
-            onChange={(event) => setQuantity(event.target.value)}
-          />
-        </div>
-        </div>
-        <div className="row">
-            <div className="col-10">
-          <label> ลิงค์รูปภาพ: </label>
-          </div>
-          <div className="col-90">
-          <input
-            type="text"
-            placeholder="กรุณากรอกลิงค์รูปภาพ"
-            className="medium"
-            onChange={(event) => setImageUrl(event.target.value)}
-          />
-        </div>
         </div>
         <div className="row">
           <div className="col-10">
-          <label> สถานะ: </label>
+            <label> ชื่อผู้แต่ง: </label>
           </div>
           <div className="col-90">
-          <select onChange={(event) => setStatus(event.target.value)}>
-            <option> ปกติ </option> <option> มาใหม่ </option>
-            <option> ยอดนิยม </option>
-          </select>
+            <input
+              type="text"
+              placeholder="กรุณากรอกชื่อผู้เขียน"
+              className="medium"
+              onChange={(event) => setAuthor(event.target.value)}
+            />
+          </div>
         </div>
+        <div className="row">
+          <div className="col-10">
+            <label> คำอธิบาย: </label>
+          </div>
+          <div className="col-90">
+            <textarea
+              type="text"
+              placeholder="กรุณากรอกคำอธิบาย. . . . . . . . . ."
+              className="long"
+              onChange={(event) => setDescription(event.target.value)}
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-10">
+            <label> ประเภท: </label>
+          </div>
+          <div className="col-90">
+            <select onChange={(event) => setType(event.target.value)}>
+              <option> นวนิยาย </option> <option> ภาษา </option>
+              <option> ความรู้ทั่วไป </option> <option> พัฒนาตนเอง </option>
+            </select>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-10">
+            <label> ราคา: </label>
+          </div>
+          <div className="col-90">
+            <input
+              type="text"
+              placeholder="กรุณากรอกราคา"
+              className="short"
+              onChange={(event) => setPrice(event.target.value)}
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-10">
+            <label> จำนวน: </label>
+          </div>
+          <div className="col-90">
+            <input
+              type="text"
+              placeholder="กรุณากรอกจำนวนหนังสือ"
+              className="short"
+              onChange={(event) => setQuantity(event.target.value)}
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-10">
+            <label> ลิงค์รูปภาพ: </label>
+          </div>
+          <div className="col-90">
+            <input
+              type="text"
+              placeholder="กรุณากรอกลิงค์รูปภาพ"
+              className="medium"
+              onChange={(event) => setImageUrl(event.target.value)}
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-10">
+            <label> สถานะ: </label>
+          </div>
+          <div className="col-90">
+            <select onChange={(event) => setStatus(event.target.value)}>
+              <option> ปกติ </option> <option> มาใหม่ </option>
+              <option> ยอดนิยม </option>
+            </select>
+          </div>
         </div>
         <div className="butt">
-          <Link to="./HomeAdmin"><button type="cancel" className="cancel"> ยกเลิก </button></Link>
           <button type="submit" className="submit" onClick={onSubmit}>
             ยืนยัน
           </button>
+          <Link to="./HomeAdmin">
+            <button type="cancel" className="cancel">
+              ยกเลิก
+            </button>
+          </Link>
         </div>
       </form>
     </div>
   );
 }
 
-function alertSubmit(imageUrl){
+function alertSubmit(imageUrl) {
   Swal.fire({
-    title: 'Success!',
-    text: 'Your book has been added.',
+    title: "Success!",
+    text: "Your book has been added.",
     confirmButtonColor: "#005488",
     imageUrl: imageUrl,
-    imageWidth: 400,
     imageHeight: 200,
-    imageAlt: 'Custom image',
-  })
+    imageAlt: "Custom image",
+  });
 }
+
 export default styled(AddBook)`
   font-family: "IBM Plex Sans Thai", sans-serif;
   h1.top {
+    font-weight: bold;
     font-family: "IBM Plex Sans Thai", sans-serif;
     font-size: 26px;
     text-align: center;
@@ -188,13 +195,13 @@ export default styled(AddBook)`
     padding: 15px 10px 15px 10px;
     .col-10 {
       float: left;
-      width: 10%;
+      width: 15%;
       margin-top: 16px;
 
     }
     .col-90 {
       float: left;
-      width: 90%;
+      width: 85%;
       margin-top: 16px;
 
     }
