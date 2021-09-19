@@ -1,41 +1,52 @@
 import axios from "axios";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import { Link, useParams , useHistory } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 
 function BookDetail({ className }) {
-
-  const user = JSON.parse(localStorage.getItem("InLogin"));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("InLogin")));
   const { id } = useParams();
   const [book, setBook] = useState({});
   const [quantity, setQuantity] = useState(1);
   const history = useHistory();
   const [data, setData] = useState([]);
+  var run = () => new Promise((resolve, reject) => {
+      setUser(JSON.parse(localStorage.getItem("InLogin")));
+      resolve();
+    });
+  
   useEffect(() => {
     axios.get(`http://localhost:3001/show_detail/${id}`).then((res) => {
       setBook(res.data);
-      console.log(book);
     });
   }, []);
 
   function onSubmit(event) {
     event.preventDefault();
-    const data = {
-        Customer_id:user._id,
-        Book_id: id,
-        quantity:quantity,
-    };
-    axios
-    .post(`http://localhost:3001/add_cart`, data)
-    .then((response) => {
-      setData(response.data);
-      history.push("/List");
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
-  
+
+    run()
+      .then(() => {
+        let data = {
+          Customer_id: user._id,
+          Book_id: id,
+          quantity: quantity,
+        };
+        return data;
+      })
+      .then((data) => {
+        console.log(data);
+        axios
+          .post(`http://localhost:3001/add_cart`, data)
+          .then((response) => {
+            setData(response.data);
+            history.push("/List");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      });
+  }
+
   return (
     <div className={className}>
       <div className="row">
@@ -46,7 +57,7 @@ function BookDetail({ className }) {
           <h1>{book.name}</h1>
           <div className="author">
             <p>
-              ผู้แต่ง: <span>{book.author} </span>ประเภท:{" "}
+              ผู้แต่ง: <span>{book.author} </span>ประเภท:
               <span>{book.type}</span>
             </p>
           </div>
@@ -82,7 +93,6 @@ function BookDetail({ className }) {
     </div>
   );
 }
-
 
 export default styled(BookDetail)`
   font-family: "IBM Plex Sans Thai", sans-serif;

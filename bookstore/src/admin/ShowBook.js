@@ -130,5 +130,5 @@ export default styled(Books)`
         width: 40%;
         justify-content: center;
     }
-    }
+    
 `;
