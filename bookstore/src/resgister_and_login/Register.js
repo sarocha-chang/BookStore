@@ -1,27 +1,54 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link ,useHistory} from "react-router-dom";
 import {useState, useEffect } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function Register({ className }) {
-  const [firstname, setFirstname] = useState([""]);
-  const [lastname, setLastname] = useState([""]);
-  const [username, setUsername] = useState([""]);
-  const [password, setPassword] = useState([""]);
-  const [phone, setPhone] = useState([""]);
-  const [email, setEmail] = useState([""]);
-  const [customers, setCustomer] = useState([]);
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [customers, setCustomer] = useState();
+  const history = useHistory();
 
-
-  useEffect(() => {
-		axios.get("http://localhost:3001/showCustomer").then((res) => {
-			setCustomer(res.data);
-		});
-	}, []);
-
-
+ 
+  function  onSubmit (event) {
+    event.preventDefault();
+    const data = {
+      firstname: firstname,
+      lastname: lastname,
+      username: username,
+      password: password,
+      phone: phone,
+      email:email,
+    };
+    
+    axios
+      .post("http://localhost:3001/register", data)
+      .then((response) => {
+        setCustomer(response.data);
+        console.log(response.data);
+        alertSubmit();
+        history.push("/Login");
+      }).catch((error) => {
+        console.log(error);
+      });
+  }
+  function alertSubmit() {
+    Swal.fire({
+      title: "Success!",
+      text: "Register success",
+      confirmButtonColor: "#005488",
+    });
+  }
+  
+  
+ 
 
   return (
     <div className={className}>
@@ -66,7 +93,7 @@ function Register({ className }) {
                   name="password"
                   type="text"
                   id="password"
-                  placeholder="รหัสผ่าน"
+                  placeholder="รหัสผ่าน 8 ตัวขึ้นไป"
                   onChange={(event) => setPassword(event.target.value)}
                 />
               </div>
@@ -86,10 +113,10 @@ function Register({ className }) {
                 />
               </div>
 
-              <button type="submit" className="Back">
+             <Link to="/Home"> <button type="submit" className="Back" >
                 กลับหน้าหลัก
-              </button>
-              <button type="submit" className="Login">
+              </button></Link>
+              <button type="submit" className="Login" onClick={onSubmit}>
                 ลงทะเบียน
               </button>
             </form>
@@ -106,6 +133,8 @@ function Register({ className }) {
 Register.propTypes = {
   className: PropTypes.string.isRequired,
 };
+
+
 
 export default styled(Register)`
   .parent {

@@ -22,7 +22,7 @@ module.exports = {
        
     },
 
-	register: (request, response) => {
+	register: async (request, response) => {
         let {firstname, lastname,username, password,phone,email} = request.body
         if(firstname == "" || lastname == "" || username == "" || password == "" || phone == "" || email == ""){
             response.status(400).json({
@@ -53,13 +53,22 @@ module.exports = {
                 message: "Invalid email entered"
             })
         }else{
-            let customer = new Customer({...request.body,type: "customer"})
-            customer.save().then((data,err) =>{
-                response.status(200).json(data);
-            }).catch(err =>{
+            let customers = new Customer(request.body)
+            await customers.save(async (err,data) =>{
                 if (err) response.status(400).json("Username that other User has already exist");
+                response.status(200).json(data);
             })
+
         }
+
+
+
+
+        
        
-    },
+    }
+        
+	        
+            
+   
 }

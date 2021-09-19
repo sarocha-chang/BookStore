@@ -32,6 +32,7 @@ function AddBook({ className }) {
     axios
       .post("http://localhost:3001/add_book", data)
       .then((response) => {
+        
         setData(response.data);
         console.log(response.data);
         alertSubmit(imageUrl);
@@ -274,7 +275,4 @@ button.cancel:hover{
   border: 1px solid #FFC531;
   transition: all 0.3s;
 }
-}
-
-  
 `;

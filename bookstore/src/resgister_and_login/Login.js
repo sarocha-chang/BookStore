@@ -36,9 +36,9 @@ function Login({ className }) {
                 <Link to="/Register"><a href="#">ยังไม่มีบัญชีผู้ใช้ ?</a></Link>
               </div>
 
-              <button type="submit" className="Back">
+              <Link to="/Home">  <button type="submit" className="Back">
                 กลับหน้าหลัก
-              </button>
+              </button> </Link>
               <button type="submit" className="Login">
                 เข้าสู่ระบบ
               </button>
