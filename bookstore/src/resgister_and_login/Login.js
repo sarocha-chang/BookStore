@@ -11,6 +11,8 @@ function Login({ className }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [InLogin, setInLogin] = useState("");
+  const history = useHistory();
+
 
 
   function  onSubmit (event) {
@@ -23,12 +25,23 @@ function Login({ className }) {
     .then((response) => {
       setInLogin(response.data);
       console.log(response.data);
-  
-      
+      localStorage.setItem(`InLogin`, JSON.stringify(response.data));
+      history.push("/Home");
     }).catch((error) => {
-      
+      alertError(error);
     });
   }
+
+  function alertError(error) {
+    Swal.fire({
+      title: "Email or Password incorrect",
+      text: "Email or Password incorrect",
+      confirmButtonColor: "#005488",
+    });
+  }
+  
+  
+  
 
 
 

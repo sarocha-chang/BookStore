@@ -21,7 +21,7 @@ function navbar_list({ className }) {
           <Button variant="outline-success">Search</Button>
         </form>
         <div className="nav-right">
-          <Link to="/" className="login">
+          <Link to="/login" className="login">
             เข้าสู่ระบบ
           </Link>
           <Link to="/" className="cart">
