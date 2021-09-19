@@ -25,8 +25,15 @@ function Login({ className }) {
     .then((response) => {
       setInLogin(response.data);
       console.log(response.data);
-      localStorage.setItem(`InLogin`, JSON.stringify(response.data));
-      history.push("/Home");
+      
+      if(response.data.type === "admin"){
+        localStorage.setItem(`InLogin`, JSON.stringify(response.data));
+        history.push("/HomeAdmin");
+      }else{
+        localStorage.setItem(`InLogin`, JSON.stringify(response.data));
+        history.push("/Home");
+      }
+     
     }).catch((error) => {
       alertError(error);
     });
