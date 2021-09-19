@@ -58,14 +58,14 @@ function ShowCart({ className }) {
             <h4>รวมทั้งหมด</h4>
             <div className="price">
               <h5>
-                ยอดเงินรวม <span>300 THB</span>
+                ยอดเงินรวม <span>{cart.Total-50} THB</span>
               </h5>
               <h5>
                 ค่าส่ง <span>50 THB</span>
               </h5>
             </div>
             <h5>
-                ยอดรวมสุทธิ <span> 350 THB</span>
+                ยอดรวมสุทธิ <span>{cart.Total} THB</span>
               </h5>
               <div className="btnsub">
               <button className="btn btn-secondary" >ดำเนินการชำระเงิน</button>
