@@ -1,14 +1,18 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import axios from "axios";
 import React from "react";
-import Context from "../Context";
 import "boxicons";
+
+import { deleteBook } from "../app/actions";
+
 function HomeAdmin({ className, data }) {
   const [id] = React.useState(data._id);
-  const [books, setBook] = React.useContext(Context);
+  const dispatch = useDispatch();
+
 
   function delete_book() {
     return Swal.fire({
@@ -22,14 +26,8 @@ function HomeAdmin({ className, data }) {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
-        axios.delete(`http://localhost:3001/delete_book/${id}`).then((data) => {
-          const book = [...books];
-          book.splice(
-            book.findIndex((item) => item._id === id),
-            1
-          );
-          setBook(book);
-          window.location.reload();
+        axios.delete(`http://localhost:3001/delete_book/${id}`).then(() => {
+            dispatch(deleteBook({_id :id}))
         });
       }
     });
