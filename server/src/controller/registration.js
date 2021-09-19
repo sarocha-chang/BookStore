@@ -30,7 +30,7 @@ module.exports = {
                 message: "Empty inputs fields"
             })
     
-        }else if(!/^[a-zA-Z ]*$/.test(firstname) || !/^[a-zA-Z ]*$/.test(lastname)){
+        }else if(!/^[a-zA-Zก-๙]*$/.test(firstname) || !/^[a-zA-Zก-๙]*$/.test(lastname)){
             response.status(400).json({
                 status: "FAILED",
                 message: "Invalid firstname or lastname  entered"

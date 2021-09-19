@@ -36,7 +36,7 @@ function Register({ className }) {
         alertSubmit();
         history.push("/Login");
       }).catch((error) => {
-        console.log(error);
+         alertError()
       });
   }
   function alertSubmit() {
@@ -46,6 +46,14 @@ function Register({ className }) {
       confirmButtonColor: "#005488",
     });
   }
+  function alertError() {
+    Swal.fire({
+      title: "Error",
+      text: "กรุณากรอกข้อมูลให้ถูกต้อง",
+      confirmButtonColor: "#005488",
+    });
+  }
+  
   
   
  
