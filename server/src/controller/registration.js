@@ -7,8 +7,6 @@ module.exports = {
 
     login: async(request, response) => {
         const { username, password } = request.body
-        console.log(username,password)
-    
       const user = await Customer.findOne({
         username,
         password
@@ -17,7 +15,7 @@ module.exports = {
         response.status(200).json(user);
       } else {
         let message = {message: 'Email or Password incorrect'}
-        response.status(200).end(JSON.stringify(message));
+        response.status(400).end(JSON.stringify(message));
       }
        
     },
@@ -53,7 +51,7 @@ module.exports = {
                 message: "Invalid email entered"
             })
         }else{
-            let customers = new Customer(request.body)
+            let customers = new Customer({...request.body,type: "customer"})
             await customers.save(async (err,data) =>{
                 if (err) response.status(400).json("Username that other User has already exist");
                 response.status(200).json(data);
