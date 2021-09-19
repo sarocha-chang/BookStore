@@ -23,7 +23,6 @@ function BookDetail({ className }) {
 
   function onSubmit(event) {
     event.preventDefault();
-
     run()
       .then(() => {
         let data = {
