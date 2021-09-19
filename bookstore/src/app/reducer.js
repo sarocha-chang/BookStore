@@ -6,7 +6,7 @@ import {
 	updateBook,
 	deleteBook,
     searchBook,
-	detailBook
+	detailBook,
 } from "./actions";
 
 export default createReducer([], {
@@ -32,6 +32,6 @@ export default createReducer([], {
         return action.payload
     },
 	[detailBook]: (state, action) =>{
-		return action.payload
+		return state.payload
 	}
 });

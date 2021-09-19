@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-
-import { detailBook } from "../../app/actions"
+import { searchBook, fetchBooks } from "../../app/actions";
+import Swal from "sweetalert2";
 
 function BookDetail({ className }) {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("InLogin")));
@@ -13,18 +13,20 @@ function BookDetail({ className }) {
 
   const history = useHistory();
   const book = useSelector((state) => state.books);
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  var run = () => new Promise((resolve, reject) => {
+  var run = () =>
+    new Promise((resolve, reject) => {
       setUser(JSON.parse(localStorage.getItem("InLogin")));
       resolve();
     });
-  
+
   useEffect(() => {
     axios.get(`http://localhost:3001/show_detail/${id}`).then((res) => {
-      dispatch(detailBook(res.data));
+      dispatch(searchBook(res.data));
     });
   }, [dispatch, id]);
+  console.log(book);
 
   function onSubmit(event) {
     event.preventDefault();
@@ -38,15 +40,20 @@ function BookDetail({ className }) {
         return data;
       })
       .then((data) => {
-        console.log(data);
-        axios
-          .post(`http://localhost:3001/add_cart`, data)
-          .then((response) => {
-            history.push("/List");
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        Swal.fire("Added succes!").then(() => {
+          axios
+            .post(`http://localhost:3001/add_cart`, data)
+            .then((response) => {
+              axios.get(`/get_cart/${user._id}`).then((res) => {
+                dispatch(fetchBooks(res.data));
+              }).then(() => {
+                history.push("/List");
+              })
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        });
       });
   }
 
@@ -92,6 +99,16 @@ function BookDetail({ className }) {
             </Link>
           </div>
         </div>
+        <div className="back">
+          <Link to="/List">
+            <button className="btn btn-secondary">
+              <span>
+                <box-icon name="arrow-back" color="#fbf8f8"></box-icon>
+                <span>ย้อนกลับ</span>
+              </span>
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
@@ -108,6 +125,7 @@ export default styled(BookDetail)`
     margin-left: 6rem;
     padding: 3rem;
     border-radius: 10px;
+    position: relative;
   }
   .col-60 {
     width: 60%;
@@ -177,6 +195,16 @@ export default styled(BookDetail)`
         background-color: #3e3838;
         color: white;
       }
+    }
+  }
+  .back {
+    bottom: -10%;
+    left: -1%;
+    position: absolute;
+    span {
+      display: flex;
+      justify-content: space-evenly;
+      font-size: 1.1rem;
     }
   }
 `;

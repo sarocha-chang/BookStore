@@ -1,30 +1,59 @@
+import React from "react";
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
+
+import { useSelector, useDispatch } from "react-redux";
+import { fetchBooks } from "../../app/actions"
 
 function Cart({ className, data }) {
-  const [quantity, setQuantity] = useState(data.Buy.quantity);
-  const [buyId, setBuyId] = useState(data.Buy.Buy_id);
+  const [quantity] = useState(data.Buy.quantity);
+  const [buyId] = useState(data.Buy.Buy_id);
+
+  const cart = useSelector((state) => state.books);
+  const dispatch = useDispatch();
 
   function delete_item() {
-    axios.delete(`http://localhost:3001/delete_cart_item/${buyId}`).
-    then((response) => {
-        window.location.reload();
-    }).catch((error) => {
-        console.log(error);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`/delete_cart_item/${buyId}`)
+          .then((response) => {
+            Swal.fire(
+              "Deleted!",
+              "Your file has been deleted.",
+              "success"
+            ).then(() => {
+                window.location.reload();
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     });
-
   }
-  
-  function add_quan(id,quan){
-   const data={
-       quantity:parseInt(quan)
-   }
-    axios.put(`http://localhost:3001/change_quantity_in_cart/${id}`,data).
-    then((response) => {
-    }).catch((error) => {
+
+  function add_quan(id, quan) {
+    const data = {
+      quantity: parseInt(quan),
+    };
+    axios
+      .put(`http://localhost:3001/change_quantity_in_cart/${id}`, data)
+      .then((response) => {
+      })
+      .catch((error) => {
         console.log(error);
-    });
+      });
   }
 
   return (
@@ -40,8 +69,8 @@ function Cart({ className, data }) {
           className="quantity"
           min="1"
           max="100"
-        value={quantity}
-          onChange={(event) => add_quan(data.Buy.Buy_id,event.target.value)}
+          value={quantity}
+          onChange={(event) => add_quan(data.Buy.Buy_id, event.target.value)}
         />
       </td>
       <td>{data.Buy.total}</td>
@@ -56,12 +85,10 @@ function Cart({ className, data }) {
     </tr>
   );
 }
-
 export default styled(Cart)`
   img {
     width: 80px;
     box-shadow: 0px 0px 6px black;
-
   }
   input {
     text-align: center;

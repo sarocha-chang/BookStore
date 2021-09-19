@@ -26,7 +26,7 @@ function HomeAdmin({ className, data }) {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
-        axios.delete(`http://localhost:3001/delete_book/${id}`).then(() => {
+        axios.delete(`/delete_book/${id}`).then(() => {
             dispatch(deleteBook({_id :id}))
         });
       }

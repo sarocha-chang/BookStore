@@ -20,7 +20,7 @@ function Login({ className }) {
       username: username,
       password: password
     }
-    axios.post("http://localhost:3001/login",data)
+    axios.post("/login",data)
     .then((response) => {
       console.log(response.data);
       

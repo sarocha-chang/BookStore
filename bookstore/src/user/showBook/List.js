@@ -8,7 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   const [product, SetProduct] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:3001/show").then((res) => {
+    axios.get("/show").then((res) => {
       SetProduct(res.data);
     });
   }, []);
