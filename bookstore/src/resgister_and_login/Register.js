@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link ,useHistory} from "react-router-dom";
-import {useState, useEffect } from "react";
+import {useState} from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -13,7 +13,6 @@ function Register({ className }) {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [customers, setCustomer] = useState();
   const history = useHistory();
 
  
@@ -31,7 +30,6 @@ function Register({ className }) {
     axios
       .post("http://localhost:3001/register", data)
       .then((response) => {
-        setCustomer(response.data);
         console.log(response.data);
         alertSubmit();
         history.push("/Login");
@@ -131,7 +129,7 @@ function Register({ className }) {
           </div>
         </div>
         <div className="div2">
-          <img src={require("./image2.png").default}></img>
+          <img alt="" src={require("./image2.png").default}></img>
         </div>
       </div>
     </div>
