@@ -14,6 +14,7 @@ import NavBarAll from "./user/Navbar_list";
 import ContainerAll from "./user/Container";
 import BookDetail from "./user/bookDetail/Bookdetail";
 import Footer from "./user/Footer";
+import Cart from "./user/cart/Cart";
 
 function App() {
   return (
@@ -70,6 +71,13 @@ function App() {
           <NavBarAll />
           <ContainerAll>
             <BookDetail />
+          </ContainerAll>
+        </Route>
+
+        <Route path="/Cart">
+          <NavBarAll />
+          <ContainerAll>
+            <Cart />
           </ContainerAll>
         </Route>
 

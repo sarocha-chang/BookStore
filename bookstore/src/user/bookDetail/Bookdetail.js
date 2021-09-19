@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { Link, useParams , useHistory } from "react-router-dom";
 
 function BookDetail({ className }) {
+
+  const user = JSON.parse(localStorage.getItem("InLogin"));
   const { id } = useParams();
   const [book, setBook] = useState({});
   const [quantity, setQuantity] = useState(1);
@@ -19,7 +21,7 @@ function BookDetail({ className }) {
   function onSubmit(event) {
     event.preventDefault();
     const data = {
-        Customer_id:"61439b731fc54ce260480716",
+        Customer_id:user._id,
         Book_id: id,
         quantity:quantity,
     };

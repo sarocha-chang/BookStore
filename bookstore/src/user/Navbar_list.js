@@ -24,7 +24,7 @@ function navbar_list({ className }) {
           <Link to="/login" className="login">
             เข้าสู่ระบบ
           </Link>
-          <Link to="/" className="cart">
+          <Link to="/Cart" className="cart">
             <box-icon name="shopping-bag" color="#fff"></box-icon>
           </Link>
         </div>
