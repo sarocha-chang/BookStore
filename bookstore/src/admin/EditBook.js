@@ -60,7 +60,7 @@ function EditBook({ className }) {
 		};
 
 		axios
-			.put(`http://localhost:3001/update_book/${id}`, data)
+			.put(`/update_book/${id}`, data)
 			.then((response) => {
 				dispatch(updateBook(response.data));
 				alertSubmit(imageUrl);

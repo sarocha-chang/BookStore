@@ -1,11 +1,18 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import Getcart from "./getCart";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+
+import { fetchBooks } from "../../app/actions"
+
 function ShowCart({ className }) {
-  const [cart, setCart] = useState([]);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("InLogin")));
+
+  const cart = useSelector((state) => state.books);
+	const dispatch = useDispatch();
 
   var run = () =>
     new Promise(function (resolve, reject) {
@@ -14,15 +21,15 @@ function ShowCart({ className }) {
     });
 
   useEffect(() => {
-    async function get() {
+    function get() {
       run().then(() => {
-        axios.get(`http://localhost:3001/get_cart/${user._id}`).then((res) => {
-          setCart(res.data);
-        });
-      });
-    }
-    get();
-  }, []);
+        axios.get(`/get_cart/${user._id}`).then((res) => {
+            dispatch(fetchBooks(res.data));
+        })
+        })
+      }
+      get();
+    }, [dispatch]);
 
   return (
     <div className={className}>
@@ -52,24 +59,29 @@ function ShowCart({ className }) {
               )}
             </tbody>
           </table>
+          <div className="back">
+            <Link to="/List">
+              <button className="btn btn-secondary"><span><box-icon name='arrow-back' color='#fbf8f8' ></box-icon><span>ย้อนกลับ</span></span></button>
+            </Link>
+          </div>
         </div>
         <div className="col-30">
           <div className="box">
             <h4>รวมทั้งหมด</h4>
             <div className="price">
               <h5>
-                ยอดเงินรวม <span>{cart.Total-50} THB</span>
+                ยอดเงินรวม <span>{cart.Total - 50}  THB</span>
               </h5>
               <h5>
                 ค่าส่ง <span>50 THB</span>
               </h5>
             </div>
             <h5>
-                ยอดรวมสุทธิ <span>{cart.Total} THB</span>
-              </h5>
-              <div className="btnsub">
-              <button className="btn btn-secondary" >ดำเนินการชำระเงิน</button>
-              </div>
+              ยอดรวมสุทธิ <span>{cart.Total} THB</span>
+            </h5>
+            <div className="btnsub">
+              <button className="btn btn-secondary">ดำเนินการชำระเงิน</button>
+            </div>
           </div>
         </div>
       </div>
@@ -83,8 +95,10 @@ ShowCart.propTypes = {
 };
 
 export default styled(ShowCart)`
+  overflow: hidden;
   margin-bottom: 50px;
   .row {
+    position: relative;
     margin-left: 2rem;
     h1 {
       font-family: "IBM Plex Sans Thai", sans-serif;
@@ -97,6 +111,7 @@ export default styled(ShowCart)`
     }
     .col-70 {
       width: 70%;
+      margin-bottom: 4rem;
       .ShowBook {
         border: 1px solid #cecccc;
         border-collapse: collapse;
@@ -118,6 +133,15 @@ export default styled(ShowCart)`
           padding: 25px 10px 20px 10px;
         }
       }
+      .back {
+        bottom: 2%;
+        position: absolute;
+        span{
+          display:flex;
+          justify-content:space-evenly;
+          font-size: 1.1rem;
+        }
+      }
     }
     .col-30 {
       width: 30%;
@@ -132,26 +156,24 @@ export default styled(ShowCart)`
           font-weight: bold;
         }
         .price {
-            margin-top: 2rem;
+          margin-top: 2rem;
           display: flex;
           justify-content: space-between;
           flex-direction: column;
           border-bottom: 1px solid #cecccc;
           margin-bottom: 2rem;
         }
-        h5{
-              display: flex;
-              margin-bottom: 1.5rem;
-              justify-content: space-between;
-              
-          }
-          
-        .btnsub{
-            margin-top: 2rem;
-            display: flex;
-            justify-content:center;
-        } 
-        
+        h5 {
+          display: flex;
+          margin-bottom: 1.5rem;
+          justify-content: space-between;
+        }
+
+        .btnsub {
+          margin-top: 2rem;
+          display: flex;
+          justify-content: center;
+        }
       }
     }
   }

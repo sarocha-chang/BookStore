@@ -15,6 +15,8 @@ import ContainerAll from "./user/Container";
 import BookDetail from "./user/bookDetail/Bookdetail";
 import Footer from "./user/Footer";
 import Cart from "./user/cart/Cart";
+import "boxicons";
+
 
 function App() {
   return (

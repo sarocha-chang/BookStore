@@ -28,7 +28,7 @@ function Register({ className }) {
     };
     
     axios
-      .post("http://localhost:3001/register", data)
+      .post("/register", data)
       .then((response) => {
         console.log(response.data);
         alertSubmit();

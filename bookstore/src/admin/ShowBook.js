@@ -13,7 +13,7 @@ function Books({ className }) {
 
 	useEffect(() => {
 		function get() {
-			axios.get("http://localhost:3001/show").then((res) => {
+			axios.get("/show").then((res) => {
 				dispatch(fetchBooks(res.data));
 			})
 		}
@@ -22,7 +22,7 @@ function Books({ className }) {
 
 	function useSearch(event) {
 		setKeyword(event.target.value);
-		axios.get(`http://localhost:3001/search/${keyword}`).then((res) => {
+		axios.get(`/search/${keyword}`).then((res) => {
 			dispatch(searchBook(res.data))
 		}).catch((err) =>{
 			console.log(err);
