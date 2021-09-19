@@ -22,8 +22,8 @@ function Books({ className }) {
 
 	function useSearch(event) {
 		setKeyword(event.target.value);
-		axios.get(`http://localhost:3001/search/${keyword}`).then((data) => {
-			dispatch(searchBook(data.data))
+		axios.get(`http://localhost:3001/search/${keyword}`).then((res) => {
+			dispatch(searchBook(res.data))
 		}).catch((err) =>{
 			console.log(err);
 		})
