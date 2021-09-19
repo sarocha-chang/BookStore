@@ -1,27 +1,32 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import axios from "axios";
+
+import { fetchBooks,searchBook } from "../app/actions";
 import HomeAdmin from "./HomeAdmin";
-import Context from "../Context";
 function Books({ className }) {
-	const [books, setBook] = useState([]);
+	const books = useSelector((state) => state.books);
+	const dispatch = useDispatch();
 	const [keyword, setKeyword] = useState("");
 
 	useEffect(() => {
 		function get() {
 			axios.get("http://localhost:3001/show").then((res) => {
-				setBook(res.data);
-			});
+				dispatch(fetchBooks(res.data));
+			})
 		}
 		get();
-	}, []);
+	}, [dispatch]);
 
 	function useSearch(event) {
 		setKeyword(event.target.value);
-		axios.get(`http://localhost:3001/search/${keyword}`).then((data) => {
-			setBook(data.data);
-		});
+		axios.get(`http://localhost:3001/search/${keyword}`).then((res) => {
+			dispatch(searchBook(res.data))
+		}).catch((err) =>{
+			console.log(err);
+		})
 	}
 
 	return (
@@ -53,11 +58,7 @@ function Books({ className }) {
 				<tbody>
 					{books ? (
 						books.map((data) => {
-							return (
-								<Context.Provider value={[books, setBook]} key={data._id}>
-									{<HomeAdmin data={data} />}
-								</Context.Provider>
-							);
+							return <HomeAdmin data={data} key={data._id}/>;
 						})
 					) : (
 						<div>Loading products....</div>
@@ -105,30 +106,28 @@ export default styled(Books)`
 			padding: 25px 10px 10px 10px;
 		}
 	}
-	form.form-inline{
-        text-align: center;
-        margin-bottom:2rem;
-
-    }
-    input.search{
-        font-family: 'IBM Plex Sans Thai', sans-serif;
-        padding:5px;
-        border-radius: 12px;
-        font-size: 16px;
-        width: 40%;
-        justify-content: center;
-        transition: border 0.3s;
-    }
-    input.search:focus{
-        outline: none;
-        border-radius: 12px;
-        border: 2px solid #FFC531;
-        transition: border 0.3s;
-        font-family: 'IBM Plex Sans Thai', sans-serif;
-        padding:5px;
-        font-size: 16px;
-        width: 40%;
-        justify-content: center;
-    }
-    
+	form.form-inline {
+		text-align: center;
+		margin-bottom: 2rem;
+	}
+	input.search {
+		font-family: "IBM Plex Sans Thai", sans-serif;
+		padding: 5px;
+		border-radius: 12px;
+		font-size: 16px;
+		width: 40%;
+		justify-content: center;
+		transition: border 0.3s;
+	}
+	input.search:focus {
+		outline: none;
+		border-radius: 12px;
+		border: 2px solid #ffc531;
+		transition: border 0.3s;
+		font-family: "IBM Plex Sans Thai", sans-serif;
+		padding: 5px;
+		font-size: 16px;
+		width: 40%;
+		justify-content: center;
+	}
 `;
