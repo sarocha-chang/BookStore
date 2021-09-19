@@ -33,123 +33,135 @@ function AddBook({ className }) {
 			status: status,
 		};
 
-		return (
-			<div className={className}>
-				<h1 className="top"> เพิ่มหนังสือใหม่ </h1>
-				<form className="add">
-					<div className="row">
-						<div className="col-10">
-							<label> ชื่อหนังสือ: </label>
-						</div>
-						<div className="col-90">
-							<input
-								type="text"
-								placeholder="กรุณากรอกชื่อหนังสือ"
-								className="medium"
-								onChange={(event) => setName(event.target.value)}
-							/>
-						</div>
+		axios
+			.post("http://localhost:3001/add_book", data)
+			.then((book) => {
+				dispatch(addBook(book));
+				alertSubmit(imageUrl);
+				history.push("/HomeAdmin");
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
+
+	return (
+		<div className={className}>
+			<h1 className="top"> เพิ่มหนังสือใหม่ </h1>
+			<form className="add">
+				<div className="row">
+					<div className="col-10">
+						<label> ชื่อหนังสือ: </label>
 					</div>
-					<div className="row">
-						<div className="col-10">
-							<label> ชื่อผู้แต่ง: </label>
-						</div>
-						<div className="col-90">
-							<input
-								type="text"
-								placeholder="กรุณากรอกชื่อผู้เขียน"
-								className="medium"
-								onChange={(event) => setAuthor(event.target.value)}
-							/>
-						</div>
+					<div className="col-90">
+						<input
+							type="text"
+							placeholder="กรุณากรอกชื่อหนังสือ"
+							className="medium"
+							onChange={(event) => setName(event.target.value)}
+						/>
 					</div>
-					<div className="row">
-						<div className="col-10">
-							<label> คำอธิบาย: </label>
-						</div>
-						<div className="col-90">
-							<textarea
-								type="text"
-								placeholder="กรุณากรอกคำอธิบาย. . . . . . . . . ."
-								className="long"
-								onChange={(event) => setDescription(event.target.value)}
-							/>
-						</div>
+				</div>
+				<div className="row">
+					<div className="col-10">
+						<label> ชื่อผู้แต่ง: </label>
 					</div>
-					<div className="row">
-						<div className="col-10">
-							<label> ประเภท: </label>
-						</div>
-						<div className="col-90">
-							<select onChange={(event) => setType(event.target.value)}>
-								<option> นวนิยาย </option> <option> ภาษา </option>
-								<option> ความรู้ทั่วไป </option> <option> พัฒนาตนเอง </option>
-							</select>
-						</div>
+					<div className="col-90">
+						<input
+							type="text"
+							placeholder="กรุณากรอกชื่อผู้เขียน"
+							className="medium"
+							onChange={(event) => setAuthor(event.target.value)}
+						/>
 					</div>
-					<div className="row">
-						<div className="col-10">
-							<label> ราคา: </label>
-						</div>
-						<div className="col-90">
-							<input
-								type="text"
-								placeholder="กรุณากรอกราคา"
-								className="short"
-								onChange={(event) => setPrice(event.target.value)}
-							/>
-						</div>
+				</div>
+				<div className="row">
+					<div className="col-10">
+						<label> คำอธิบาย: </label>
 					</div>
-					<div className="row">
-						<div className="col-10">
-							<label> จำนวน: </label>
-						</div>
-						<div className="col-90">
-							<input
-								type="text"
-								placeholder="กรุณากรอกจำนวนหนังสือ"
-								className="short"
-								onChange={(event) => setQuantity(event.target.value)}
-							/>
-						</div>
+					<div className="col-90">
+						<textarea
+							type="text"
+							placeholder="กรุณากรอกคำอธิบาย. . . . . . . . . ."
+							className="long"
+							onChange={(event) => setDescription(event.target.value)}
+						/>
 					</div>
-					<div className="row">
-						<div className="col-10">
-							<label> ลิงค์รูปภาพ: </label>
-						</div>
-						<div className="col-90">
-							<input
-								type="text"
-								placeholder="กรุณากรอกลิงค์รูปภาพ"
-								className="medium"
-								onChange={(event) => setImageUrl(event.target.value)}
-							/>
-						</div>
+				</div>
+				<div className="row">
+					<div className="col-10">
+						<label> ประเภท: </label>
 					</div>
-					<div className="row">
-						<div className="col-10">
-							<label> สถานะ: </label>
-						</div>
-						<div className="col-90">
-							<select onChange={(event) => setStatus(event.target.value)}>
-								<option> ปกติ </option> <option> มาใหม่ </option>
-								<option> ยอดนิยม </option>
-							</select>
-						</div>
+					<div className="col-90">
+						<select onChange={(event) => setType(event.target.value)}>
+							<option> นวนิยาย </option> <option> ภาษา </option>
+							<option> ความรู้ทั่วไป </option> <option> พัฒนาตนเอง </option>
+						</select>
 					</div>
-					<div className="butt">
-						<button type="submit" className="submit" onClick={onSubmit}>
-							ยืนยัน
+				</div>
+				<div className="row">
+					<div className="col-10">
+						<label> ราคา: </label>
+					</div>
+					<div className="col-90">
+						<input
+							type="text"
+							placeholder="กรุณากรอกราคา"
+							className="short"
+							onChange={(event) => setPrice(event.target.value)}
+						/>
+					</div>
+				</div>
+				<div className="row">
+					<div className="col-10">
+						<label> จำนวน: </label>
+					</div>
+					<div className="col-90">
+						<input
+							type="text"
+							placeholder="กรุณากรอกจำนวนหนังสือ"
+							className="short"
+							onChange={(event) => setQuantity(event.target.value)}
+						/>
+					</div>
+				</div>
+				<div className="row">
+					<div className="col-10">
+						<label> ลิงค์รูปภาพ: </label>
+					</div>
+					<div className="col-90">
+						<input
+							type="text"
+							placeholder="กรุณากรอกลิงค์รูปภาพ"
+							className="medium"
+							onChange={(event) => setImageUrl(event.target.value)}
+						/>
+					</div>
+				</div>
+				<div className="row">
+					<div className="col-10">
+						<label> สถานะ: </label>
+					</div>
+					<div className="col-90">
+						<select onChange={(event) => setStatus(event.target.value)}>
+							<option> ปกติ </option> <option> มาใหม่ </option>
+							<option> ยอดนิยม </option>
+						</select>
+					</div>
+				</div>
+				<div className="butt">
+					<button type="submit" className="submit" onClick={onSubmit}>
+						ยืนยัน
+					</button>
+					<Link to="./HomeAdmin">
+						<button type="cancel" className="cancel">
+							ยกเลิก
 						</button>
-						<Link to="./HomeAdmin">
-							<button type="cancel" className="cancel">
-								ยกเลิก
-							</button>
-						</Link>
-					</div>
-				</form>
-			</div>
-		);
+					</Link>
+				</div>
+			</form>
+		</div>
+	);
 }
 
 function alertSubmit(imageUrl) {
