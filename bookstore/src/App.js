@@ -13,6 +13,7 @@ import List from "./user/showBook/List";
 import NavBarAll from "./user/Navbar_list";
 import ContainerAll from "./user/Container";
 import BookDetail from "./user/bookDetail/Bookdetail";
+import Footer from "./user/Footer";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <ContainerAll>
             <List />
           </ContainerAll>
+          <Footer/>
         </Route>
 
         <Route path="/Home">
