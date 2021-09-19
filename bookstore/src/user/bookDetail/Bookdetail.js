@@ -2,14 +2,19 @@ import axios from "axios";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
+import { detailBook } from "../../app/actions"
 
 function BookDetail({ className }) {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("InLogin")));
   const { id } = useParams();
-  const [book, setBook] = useState({});
   const [quantity, setQuantity] = useState(1);
+
   const history = useHistory();
-  const [data, setData] = useState([]);
+  const book = useSelector((state) => state.books);
+	const dispatch = useDispatch();
+
   var run = () => new Promise((resolve, reject) => {
       setUser(JSON.parse(localStorage.getItem("InLogin")));
       resolve();
@@ -17,9 +22,9 @@ function BookDetail({ className }) {
   
   useEffect(() => {
     axios.get(`http://localhost:3001/show_detail/${id}`).then((res) => {
-      setBook(res.data);
+      dispatch(detailBook(res.data));
     });
-  }, []);
+  }, [dispatch, id]);
 
   function onSubmit(event) {
     event.preventDefault();
@@ -37,7 +42,6 @@ function BookDetail({ className }) {
         axios
           .post(`http://localhost:3001/add_cart`, data)
           .then((response) => {
-            setData(response.data);
             history.push("/List");
           })
           .catch((error) => {

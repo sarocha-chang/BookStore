@@ -2,6 +2,7 @@ const Book = require("../../../config/model/Book");
 const Customer = require("../../../config/model/Customer");
 const Buy = require("../../../config/model/Buy");
 const Receipt = require("../../../config/model/Receipt");
+const { count } = require("../../../config/model/Book");
 
 getReceipt = (id) => {
 	return new Promise((resolve, reject) => {
@@ -47,17 +48,34 @@ getBooks = (list) => {
 		});
 	});
 };
+ 
+allTax = (list,id) =>{
+	return new Promise(async(resolve, reject) =>{
+		cal_total = () => new Promise((resolve,reject) =>{
+			var total = 0 
+			list.forEach((element,count) =>{
+				total += element.Buy.total
+				if (count +1 == list.length) resolve(total)
+			})
+		})
+		cal_total().then(total =>{
+			let cart = {
+				Customer: id,
+				Total: total + 50,
+				Order: list,
+			}
+			resolve(cart)
+		})
+	})
+}
 
 run = (id) => {
 	return new Promise(async (resolve, reject) => {
 		let list = await getReceipt(id);
 		list = await getBuy(list);
 		list = await getBooks(list);
-		let Cart = {
-			Customer: id,
-			Order: list,
-		};
-		resolve(Cart);
+		list = await allTax(list,id)
+		resolve(list);
 	});
 };
 

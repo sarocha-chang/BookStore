@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link ,useHistory} from "react-router-dom";
-import {useState, useEffect } from "react";
+import {useState} from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -10,7 +10,6 @@ function Login({ className }) {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [InLogin, setInLogin] = useState("");
   const history = useHistory();
 
 
@@ -23,7 +22,6 @@ function Login({ className }) {
     }
     axios.post("http://localhost:3001/login",data)
     .then((response) => {
-      setInLogin(response.data);
       console.log(response.data);
       
       if(response.data.type === "admin"){
@@ -56,7 +54,7 @@ function Login({ className }) {
     <div className={className}>
       <div className="parent">
         <div className="div1">
-          <img src={require("./image1.png").default}></img>
+          <img alt="" src={require("./image1.png").default }></img>
         </div>
 
         <div className="div2">
@@ -83,7 +81,7 @@ function Login({ className }) {
               </div>
 
               <div className="link">
-                <Link to="/Register"><a href="#">ยังไม่มีบัญชีผู้ใช้ ?</a></Link>
+                <Link to="/Register">ยังไม่มีบัญชีผู้ใช้ ?</Link>
               </div>
 
               <Link to="/Home">  <button type="submit" className="Back">
