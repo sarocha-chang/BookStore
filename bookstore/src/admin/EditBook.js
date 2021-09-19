@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { Link, useParams, useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 
-import { updateBook } from "../app/actions"
+import { updateBook } from "../app/actions";
 
 function EditBook({ className }) {
 	const { id } = useParams();
@@ -20,7 +20,7 @@ function EditBook({ className }) {
 	const [status, setStatus] = useState("");
 
 	const history = useHistory();
-  const dispatch = useDispatch()
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		axios.get(`http://localhost:3001/show_detail/${id}`).then((res) => {
@@ -47,7 +47,7 @@ function EditBook({ className }) {
 
 	function onSubmit(event) {
 		event.preventDefault();
-    
+
 		const data = {
 			name: name,
 			author: author,
