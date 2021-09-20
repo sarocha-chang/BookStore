@@ -10,28 +10,28 @@ function navbar_list({ className }) {
         <footer style={{background:"#e65100"}}>
             <Container>
                 <Row>
-                    <Col sm={4}>
+                    <Col sm={5} style={{marginTop:"22px"}}>
                        <ul>
                           
                            <li style={{listStyleType:"none",color:"#fff"}}>
                            <box-icon name='location-plus' color='#005488' ></box-icon> ซอย สุโขทัย 5 สุเทพ อำเภอเมืองเชียงใหม่ เชียงใหม่ 50200
                            </li>
-                           <li style={{listStyleType:"none",color:"#fff"}}>
+                           <li style={{listStyleType:"none",color:"#fff",marginRight:"295px",marginTop:"10px"}}>
                            <box-icon name='phone' color='#005488' ></box-icon> 053-120-446
                            </li>
                        </ul>
                     </Col>
-                    <Col sm={4}>
+                    <Col sm={3}>
                         <ul>
                             <li style={{listStyleType:"none",marginTop:"40px"}}>
                             <box-icon name='copyright' type='solid' color='#005488' ></box-icon>
                             </li>
                         </ul>
                     </Col> 
-                    <Col sm={4}>
+                    <Col sm={4} style={{marginTop:"8px"}}>
                         <ul>
                             <li style={{listStyleType:"none",color:"#fff"}}>
-                            <box-icon name='instagram' type='logo' color='#de0eb4' ></box-icon>chachax_bookstore  
+                            <box-icon name='instagram' type='logo' color='#de0eb4'  style={{marginTop:"5px"}}></box-icon>chachax_bookstore  
                             </li >
                             <li style={{listStyleType:"none",color:"#fff"}}>
                             <box-icon name='twitter' type='logo' color='#005488' ></box-icon>chachax_bookstore
@@ -63,8 +63,8 @@ export default styled(navbar_list)`
     .cart box-icon {
       margin-top: 1rem;
     }
-     li{
+    /*  li{
         list-style-type: none;
-    }
+    } */
   }
 `;
