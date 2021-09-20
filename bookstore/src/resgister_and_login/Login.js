@@ -26,10 +26,12 @@ function Login({ className }) {
       
       if(response.data.type === "admin"){
         localStorage.setItem(`InLogin`, JSON.stringify(response.data));
+        localStorage.setItem(`username`, response.data.username)
         history.push("/HomeAdmin");
       }else{
         localStorage.setItem(`InLogin`, JSON.stringify(response.data));
-        history.push("/Home");
+        localStorage.setItem(`username`, response.data.username)
+        history.push("/List");
       }
      
     }).catch((error) => {

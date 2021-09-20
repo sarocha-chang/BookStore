@@ -34,7 +34,7 @@ function AddBook({ className }) {
 		};
 
 		axios
-			.post("/add_book", data)
+			.post("http://localhost:3001/add_book", data)
 			.then((book) => {
 				dispatch(addBook(book));
 				alertSubmit(imageUrl);

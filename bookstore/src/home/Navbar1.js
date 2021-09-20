@@ -9,7 +9,9 @@ export default function Navbar1() {
                 <nav>
                     <ul class="nav-link">
                         <Link to="/Login"><li><a href="#">login</a></li></Link>
-                        <li><a href="#">cart</a></li>
+                        <li><Link to="/Cart" className="cart">
+                            <box-icon name="shopping-bag" color="#fff"></box-icon>
+                        </Link></li>
                     </ul>
                 </nav>
             </header>

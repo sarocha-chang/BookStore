@@ -7,17 +7,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function navbar_list({ className }) {
   return (
     <>
-        <footer style={{background:"#5a5b64"}}>
+        <footer style={{background:"#e65100"}}>
             <Container>
                 <Row>
                     <Col sm={4}>
                        <ul>
                           
-                           <li style={{listStyleType:"none"}}>
+                           <li style={{listStyleType:"none",color:"#fff"}}>
                            <box-icon name='location-plus' color='#005488' ></box-icon> ซอย สุโขทัย 5 สุเทพ อำเภอเมืองเชียงใหม่ เชียงใหม่ 50200
                            </li>
-                           <li style={{listStyleType:"none"}}>
-                           <box-icon name='phone' color='#005488' ></box-icon> 053120446
+                           <li style={{listStyleType:"none",color:"#fff"}}>
+                           <box-icon name='phone' color='#005488' ></box-icon> 053-120-446
                            </li>
                        </ul>
                     </Col>
@@ -30,13 +30,13 @@ function navbar_list({ className }) {
                     </Col> 
                     <Col sm={4}>
                         <ul>
-                            <li style={{listStyleType:"none"}}>
+                            <li style={{listStyleType:"none",color:"#fff"}}>
                             <box-icon name='instagram' type='logo' color='#de0eb4' ></box-icon>chachax_bookstore  
                             </li >
-                            <li style={{listStyleType:"none"}}>
+                            <li style={{listStyleType:"none",color:"#fff"}}>
                             <box-icon name='twitter' type='logo' color='#005488' ></box-icon>chachax_bookstore
                             </li>
-                            <li style={{listStyleType:"none"}}>
+                            <li style={{listStyleType:"none",color:"#fff"}}>
                             <box-icon name='internet-explorer' type='logo' color='#005488' ></box-icon> www.chachax.com
                             </li>
                         </ul>

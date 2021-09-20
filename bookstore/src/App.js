@@ -15,6 +15,7 @@ import ContainerAll from "./user/Container";
 import BookDetail from "./user/bookDetail/Bookdetail";
 import Footer from "./user/Footer";
 import Cart from "./user/cart/Cart";
+import Payment from "./user/payment/Payment";
 import "boxicons";
 
 
@@ -83,6 +84,13 @@ function App() {
           </ContainerAll>
         </Route>
 
+      <Route path="/Payment">
+        <NavBarAll />
+        <ContainerAll>
+          <Payment />
+        </ContainerAll>
+      </Route>
+      
         <Route path="/">
           <Link to="/HomeAdmin" style={{ margin: "30px" }}>
             Admin
