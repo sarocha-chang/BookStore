@@ -5,14 +5,23 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 import { useSelector, useDispatch } from "react-redux";
-import { fetchBooks } from "../../app/actions"
+import { deleteReceipt,updateReceipt,fetchReceipts } from "../../app/Receipt/actions"
 
 function Cart({ className, data }) {
   const [quantity] = useState(data.Buy.quantity);
-  const [buyId] = useState(data.Buy.Buy_id);
+  const [user] = useState(JSON.parse(localStorage.getItem("InLogin")));
 
-  const cart = useSelector((state) => state.books);
+  const receipt = useSelector((state) => state.receipts);
   const dispatch = useDispatch();
+
+  React.useEffect(() =>{
+		const get_cart = (id) => {
+			axios.get(`/get_cart/${id}`).then((res) => {
+				dispatch(fetchReceipts(res.data));
+			});
+		};
+    get_cart(user._id)
+  },[dispatch, receipt, user._id])
 
   function delete_item() {
     Swal.fire({
@@ -26,14 +35,15 @@ function Cart({ className, data }) {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`/delete_cart_item/${buyId}`)
-          .then((response) => {
+          .delete(`/delete_cart_item/${data.Buy.Buy_id}`)
+          .then(() => {
             Swal.fire(
               "Deleted!",
               "Your file has been deleted.",
               "success"
             ).then(() => {
-                window.location.reload();
+                dispatch(deleteReceipt(data.Buy.Buy_id))
+                window.location.reload()
             });
           })
           .catch((error) => {
@@ -50,6 +60,8 @@ function Cart({ className, data }) {
     axios
       .put(`http://localhost:3001/change_quantity_in_cart/${id}`, data)
       .then((response) => {
+        console.log(response.data);
+        dispatch()
       })
       .catch((error) => {
         console.log(error);

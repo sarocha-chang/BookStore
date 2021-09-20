@@ -29,7 +29,10 @@ export default createReducer([], {
 		state.splice(bookIndex, 1);
 	},
     [searchBook]: (state, action) =>{
-        return action.payload
+		const id = action.payload
+		return state.filter((book) =>{
+			return book._id === id
+		})
     },
 	[detailBook]: (state, action) =>{
 		return state.payload
