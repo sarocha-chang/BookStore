@@ -5,7 +5,7 @@ import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { searchBook, fetchBooks } from "../../app/actions";
+import { searchBook, fetchBooks } from "../../app/Book/actions";
 import Swal from "sweetalert2";
 
 function App() {
