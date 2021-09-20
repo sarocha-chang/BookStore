@@ -1,9 +1,12 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Button, Container, Row, Col, Card, ListGroup,Navbar,Nav, NavbarBrand } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link, useParams, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { searchBook, fetchBooks } from "../../app/actions";
+import Swal from "sweetalert2";
 
 function App() {
   const [product, SetProduct] = useState([]);
@@ -12,11 +15,63 @@ function App() {
       SetProduct(res.data);
     });
   }, []);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("InLogin")));
+  const { id } = useParams();
+  const [quantity, setQuantity] = useState(1);
+
+  const history = useHistory();
+  const book = useSelector((state) => state.books);
+  const dispatch = useDispatch();
+
+  var run = () =>
+    new Promise((resolve, reject) => {
+      setUser(JSON.parse(localStorage.getItem("InLogin")));
+      resolve();
+    });
+
+  useEffect(() => {
+    axios.get(`http://localhost:3001/show_detail/${id}`).then((res) => {
+      dispatch(searchBook(res.data));
+      
+    });
+  }, [dispatch, id]);
+  console.log(book);
+
+  function onSubmit(e,data_) {
+    e.preventDefault();
+    
+    run()
+      .then(() => {
+        let data = {
+          Customer_id: user._id,
+          Book_id: data_,
+          quantity: quantity,
+        };
+        return data;
+      })
+      .then((data) => {
+        Swal.fire("Added succes!").then(() => {
+          axios
+            .post(`http://localhost:3001/add_cart`, data)
+            .then((response) => {
+              axios.get(`/get_cart/${user._id}`).then((res) => {
+                dispatch(fetchBooks(res.data));
+              }).then(() => {
+                history.push("/List");
+              })
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        });
+      });
+  }
+
 
   return (
     <div className="App">
 
-      <Navbar bg="gray" variant="light" style={{background:'gray',height:'60px'}}>
+      <Navbar bg="gray" variant="light" style={{background:'#e65100',height:'60px'}}>
         <Container>
          
           <Nav className="me-auto" style={{marginBottom:"20px",marginLeft:"400px",}}>
@@ -68,6 +123,8 @@ function App() {
                                 style={{
                                   fontSize: "11px",
                                   fontFamily: "IBM Plex Sans Thai",
+                                  color:"#000",
+                                  textDecoration:"none"
                                 }}
                               >
                                 {data.name}
@@ -85,13 +142,13 @@ function App() {
                             ราคา : {data.price} บาท
                           </Card.Text>
                           <Link to="/">
-                            <Button variant="primary" className="button" style={{
+                            <Button variant="primary" data-id={data._id} onClick={(e)=>onSubmit(e,data._id)} className="button"  style={{
                               fontSize: "14px",
                               fontFamily: "IBM Plex Sans Thai",
                               borderRadius: '20px',
                               paddingLeft: '45px',
                               paddingRight: '45px',
-                              background: '#fedc56',
+                              background: 'none',
                               color: '#000'
 
 
@@ -131,6 +188,9 @@ function App() {
                                 style={{
                                   fontSize: "11px",
                                   fontFamily: "IBM Plex Sans Thai",
+                                  color:"#000",
+                                  textDecoration:'none'
+
                                 }}
                               >
                                 {data.name}
@@ -147,14 +207,14 @@ function App() {
                           >
                             ราคา : {data.price} บาท
                           </Card.Text>
-                          <Link to="./">
-                            <Button variant="primary" style={{
+                          <Link to="/">
+                            <Button variant="primary" data-id={data._id} onClick={(e)=>onSubmit(e,data._id)} style={{
                               fontSize: "14px",
                               fontFamily: "IBM Plex Sans Thai",
                               borderRadius: '20px',
                               paddingLeft: '45px',
                               paddingRight: '45px',
-                              background: '#fedc56',
+                              background: 'none',
                               color: '#000'
 
                             }}>เพิ่มไปยังตระกร้า</Button>
@@ -182,24 +242,7 @@ function App() {
         }}
       />
       <Row>
-        {/*  <Col sm={3} style={{ marginLeft: "20px" }}>
-          <ListGroup variant="flush" style={{ marginTop: "110px" }}>
-            <ListGroup.Item>category</ListGroup.Item>
-            <Link to="/" style={{ textDecoration: "none", marginLeft: "25px" }}>
-              นวนิยาย
-            </Link>
-            <Link to="/" style={{ textDecoration: "none", marginLeft: "25px" }} >
-              การ์ตูน
-            </Link>
-            <Link to="/" style={{ textDecoration: "none", marginLeft: "25px" }}>
-              ศิลปะ
-            </Link>
-            <Link to="/" style={{ textDecoration: "none", marginLeft: "25px" }}>
-              ความรู้
-            </Link>
-          </ListGroup>
-
-        </Col> */}
+        
         <Col sm={12} className="normallist" style={{ marginTop: "30px", marginLeft: "20px" }}>
 
           <Row>
@@ -224,6 +267,8 @@ function App() {
                             style={{
                               fontSize: "12px",
                               fontFamily: "IBM Plex Sans Thai",
+                              color:"#000",
+                              textDecoration:"none"
                             }}
                           >
                             {data.name}
@@ -241,15 +286,15 @@ function App() {
                       >
                         ราคา : {data.price} บาท
                       </Card.Text>
-                      <Link to="./">
-                        <Button variant="primary" style={{
+                      <Link to="/">
+                        <Button variant="primary" data-id={data._id} onClick={(e)=>onSubmit(e,data._id)} style={{
                           fontSize: "14px",
                           fontFamily: "IBM Plex Sans Thai",
                           marginLeft: "15px",
                           borderRadius: '20px',
                           paddingLeft: '20px',
                           paddingRight: '20px',
-                          background: '#fedc56',
+                          background: 'none',
                           color: '#000'
 
 

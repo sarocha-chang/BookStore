@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
-
 function navbar_list({ className }) {
   return (
     <>
@@ -21,11 +19,11 @@ function navbar_list({ className }) {
             aria-label="Search"
             style={{paddingRight:"140px"}}
           />
-          <Button variant="outline-success">Search</Button>
+          <Button variant="outline-success" style={{color:"#fff",background:"#e65100"}}>Search</Button>
         </form>
         <div className="nav-right">
-          <Link to="/login" className="login">
-            เข้าสู่ระบบ
+          <Link to={localStorage.getItem("username") ? '#':'/login' }    className="login">
+          {localStorage.getItem("username") ?localStorage.getItem("username"):'เข้าสู่ระบบ' }   
           </Link>
           <Link to="/Cart" className="cart">
             <box-icon name="shopping-bag" color="#fff"></box-icon>
