@@ -10,11 +10,13 @@ import Swal from "sweetalert2";
 
 function App() {
   const [product, SetProduct] = useState([]);
+
   useEffect(() => {
     axios.get("/show").then((res) => {
       SetProduct(res.data);
     });
   }, []);
+  
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("InLogin")));
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
