@@ -1,4 +1,5 @@
 import axios from "axios";
+import './List.css'
 import { useState, useEffect } from "react";
 import { Button, Container, Row, Col, Card, ListGroup,Navbar,Nav, NavbarBrand } from "react-bootstrap";
 import styled from "styled-components";
@@ -107,7 +108,7 @@ function App() {
                           border="gray"
                           style={{
                             width: "15rem",
-                            height: "330px",
+                            height: "345px",
                             marginLeft: "20px",
                             marginTop: "10px",
                             webkitBoxShadow: "0 12px 34px rgba(0, 0, 0, 0.12)",
@@ -120,20 +121,20 @@ function App() {
                             variant="top"
                             src={data.imageUrl}
                             style={{
-                              width: "200px",
-                              height: "150px",
+                              width: "150px",
+                              height: "155px",
                               marginTop: "10px",
-                              marginLeft: "20px",
+                              marginLeft: "45px",
                             }}
                           />
                           <Card.Body>
-                            <Link to={`./BookDetail/${data._id}`}>
+                            <Link to={`./BookDetail/${data._id}`} style={{textDecoration:"none"}}>
                               <Card.Title
                                 style={{
                                   fontSize: "11px",
                                   fontFamily: "IBM Plex Sans Thai",
                                   color:"#000",
-                                  textDecoration:"none"
+                                  
                                 }}
                               >
                                 {data.name}
@@ -152,11 +153,12 @@ function App() {
                             <Button variant="primary" data-id={data._id} onClick={(e)=>onSubmit(e,data._id)} className="button"  style={{
                               fontSize: "14px",
                               fontFamily: "IBM Plex Sans Thai",
-                              borderRadius: '20px',
+                              borderRadius: '10px ',
                               paddingLeft: '45px',
                               paddingRight: '45px',
                               background: 'none',
-                              color: '#000'
+                              color: '#000',
+                              marginBottom:'10px'
 
 
                             }}>เพิ่มไปยังตระกร้า</Button>
@@ -183,7 +185,7 @@ function App() {
                           border="gray"
                           style={{
                             width: "15rem",
-                            height: "330px",
+                            height: "345px",
                             marginLeft: "20px",
                             marginTop: "10px",
                             webkitBoxShadow: "0 12px 34px rgba(0, 0, 0, 0.12)",
@@ -195,14 +197,14 @@ function App() {
                             variant="top"
                             src={data.imageUrl}
                             style={{
-                              width: "200px",
-                              height: "150px",
+                              width: "150px",
+                              height: "155px",
                               marginTop: "10px",
-                              marginLeft: "20px",
+                              marginLeft: "45px",
                             }}
                           />
                           <Card.Body>
-                            <Link to={`./BookDetail/${data._id}`}>
+                            <Link to={`./BookDetail/${data._id}`} style={{textDecoration:"none"}}  >
                               <Card.Title
                                 style={{
                                   fontSize: "11px",
@@ -228,10 +230,11 @@ function App() {
                             <Button variant="primary" data-id={data._id} onClick={(e)=>onSubmit(e,data._id)} style={{
                               fontSize: "14px",
                               fontFamily: "IBM Plex Sans Thai",
-                              borderRadius: '20px',
+                              borderRadius: '10px',
                               paddingLeft: '45px',
                               paddingRight: '45px',
                               background: 'none',
+                              marginBottom:"10px",
                               color: '#000'
 
                             }}>เพิ่มไปยังตระกร้า</Button>
@@ -265,12 +268,13 @@ function App() {
                 .filter((x) => x.status === "ปกติ")
                 .map((data) => {
                   return (
+                    <Col sm={3}>
                     <Card
                       border="gray"
                       style={{
                         width: "12rem",
                         height: "350px",
-                        marginLeft: "20px",
+                        marginLeft: "55px",
                         marginTop: "20px",
                         webkitBoxShadow: "0 12px 34px rgba(0, 0, 0, 0.12)",
                         mozBoxShadow: "0 12px 34px rgba(0, 0, 0, 0.12)",
@@ -281,20 +285,21 @@ function App() {
                         variant="top"
                         src={data.imageUrl}
                         style={{
-                          width: "170px",
+                          width: "135px",
                           height: "150px",
                           marginTop: "10px",
-                          marginRight: "10px",
+                          marginLeft: "25px",
                         }}
                       />
                       <Card.Body>
-                        <Link to={`./BookDetail/${data._id}`}>
+                        <Link to={`./BookDetail/${data._id}`} style={{textDecoration:"none"}}>
                           <Card.Title
                             style={{
                               fontSize: "12px",
                               fontFamily: "IBM Plex Sans Thai",
                               color:"#000",
-                              textDecoration:"none"
+                              textDecoration:"none",
+                              marginLeft:"15px"
                             }}
                           >
                             {data.name}
@@ -305,17 +310,18 @@ function App() {
                         style={{
                           fontSize: "16px",
                           fontFamily: "IBM Plex Sans Thai",
-                          marginLeft: "30px",
+                          marginLeft: "40px",
                         }}
                       >
                         ราคา : {data.price} บาท
                       </Card.Text>
                       <Link to="/">
-                        <Button variant="primary" data-id={data._id} onClick={(e)=>onSubmit(e,data._id)} style={{
+                        <Button variant="primary" data-id={data._id} onClick={(e)=>onSubmit(e,data._id)} className="btn"style={{
                           fontSize: "14px",
                           fontFamily: "IBM Plex Sans Thai",
-                          marginLeft: "15px",
-                          borderRadius: '20px',
+                          marginLeft: "25px",
+                          marginBottom:"10px",
+                          borderRadius: '10px',
                           paddingLeft: '20px',
                           paddingRight: '20px',
                           background: 'none',
@@ -326,6 +332,7 @@ function App() {
                         }}>เพิ่มไปยังตระกร้า</Button>
                       </Link>
                     </Card>
+                    </Col>
                   );
                 })
             ) : (
@@ -340,7 +347,11 @@ function App() {
 export default styled(App)`
   overflow: hidden;
 
+  .Card
+  {
+
   .button:hover {
     background: yellow;
   }
+}
 `;

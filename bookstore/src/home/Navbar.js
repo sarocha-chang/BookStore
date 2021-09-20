@@ -5,6 +5,7 @@ import { Button, Carousel, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar1 from "./Navbar1";
 import { sliderdata } from "./imgslide/imagedata";
+import { Link, useParams, useHistory } from "react-router-dom";
 
 function App() {
   const [product, SetProduct] = useState([]);
@@ -36,8 +37,9 @@ function App() {
             })}
           </Carousel>
         </section>
-        
+        <Link to="/List">
         <Button variant="primary">Go to site</Button>
+        </Link>
       </Container>
     </div>
   );
