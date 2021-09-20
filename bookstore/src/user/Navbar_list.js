@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+
+
 function navbar_list({ className }) {
   return (
     <>
@@ -17,6 +19,7 @@ function navbar_list({ className }) {
             placeholder="Search"
             className="search"
             aria-label="Search"
+            style={{paddingRight:"140px"}}
           />
           <Button variant="outline-success">Search</Button>
         </form>
