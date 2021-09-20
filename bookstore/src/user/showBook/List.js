@@ -1,5 +1,4 @@
 import axios from "axios";
-import './List.css'
 import { useState, useEffect } from "react";
 import { Button, Container, Row, Col, Card, ListGroup,Navbar,Nav, NavbarBrand } from "react-bootstrap";
 import styled from "styled-components";
