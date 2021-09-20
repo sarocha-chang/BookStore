@@ -1,17 +1,25 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Button, Container, Row, Col, Card, ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import { useSelector, useDispatch } from "react-redux";
+import { fetchBooks } from "../../app/Book/actions";
+
 function App() {
-  const [product, SetProduct] = useState([]);
+	const books = useSelector((state) => state.books);
+	const dispatch = useDispatch();
+
   useEffect(() => {
-    axios.get("/show").then((res) => {
-      SetProduct(res.data);
-    });
-  }, []);
+    const getCategories = () =>{
+      axios.get("/show").then((res) => {
+        dispatch(fetchBooks(res.data));
+      });
+    }
+    getCategories()
+  }, [dispatch]);
 
   return (
     <div className="App">
@@ -20,8 +28,8 @@ function App() {
           <Col sm={6} className="newlist">
             <h3>หนังสือมาใหม่</h3>
             <Row>
-              {product ? (
-                product
+              {books ? (
+                books
                   .filter((x) => x.status === "มาใหม่")
                   .map((data) => {
                     return (
@@ -72,8 +80,8 @@ function App() {
           <Col sm={6} className="popular">
             <h3>หนังสือยอดนิยม</h3>
             <Row>
-              {product ? (
-                product
+              {books ? (
+                books
                   .filter((x) => x.status === "ยอดนิยม")
                   .map((data) => {
                     return (
@@ -140,8 +148,8 @@ function App() {
           <Col sm={8} className="normallist" style={{ marginTop: "50px" }}>
             <h3>รายการหนังสือ</h3>
             <Row>
-              {product ? (
-                product
+              {books ? (
+                books
                   .filter((x) => x.status === "ปกติ")
                   .map((data) => {
                     return (

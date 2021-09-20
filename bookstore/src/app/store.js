@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import booksReducers from "./reducer"
+import booksReducers from "./Book/reducer"
+import receiptsReducers from "./Receipt/reducer"
 
 export default configureStore({
     reducer: {
         books: booksReducers,
+        receipts: receiptsReducers
       }
 });

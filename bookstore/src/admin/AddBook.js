@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 
-import { addBook } from "../app/actions";
+import { addBook } from "../app/Book/actions";
 
 function AddBook({ className }) {
 	const [name, setName] = useState("");

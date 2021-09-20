@@ -7,7 +7,7 @@ import axios from "axios";
 import React from "react";
 import "boxicons";
 
-import { deleteBook } from "../app/actions";
+import { deleteBook } from "../app/Book/actions";
 
 function HomeAdmin({ className, data }) {
   const [id] = React.useState(data._id);
