@@ -80,7 +80,7 @@ function ShowCart({ className }) {
               ยอดรวมสุทธิ <span>{cart.Total} THB</span>
             </h5>
             <div className="btnsub">
-              <button className="btn btn-secondary">ดำเนินการชำระเงิน</button>
+              <Link to ="/Payment"><button className="btn btn-secondary">ดำเนินการชำระเงิน</button></Link>
             </div>
           </div>
         </div>
