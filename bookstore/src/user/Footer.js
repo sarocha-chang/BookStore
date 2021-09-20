@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function navbar_list({ className }) {
   return (
     <>
-        <footer style={{background:"gray"}}>
+        <footer style={{background:"#e65100"}}>
             <Container>
                 <Row>
                     <Col sm={4}>
