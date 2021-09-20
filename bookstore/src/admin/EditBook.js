@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { Link, useParams, useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 
-import { updateBook } from "../app/actions";
+import { updateBook } from "../app/Book/actions";
 
 function EditBook({ className }) {
 	const { id } = useParams();
@@ -23,7 +23,7 @@ function EditBook({ className }) {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		axios.get(`http://localhost:3001/show_detail/${id}`).then((res) => {
+		axios.get(`/show_detail/${id}`).then((res) => {
 			let {
 				name,
 				author,

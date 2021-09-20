@@ -1,21 +1,13 @@
 import "./navbar.css";
-import axios from "axios";
-import { useState, useEffect } from "react";
 import { Button, Carousel, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar1 from "./Navbar1";
 import { sliderdata } from "./imgslide/imagedata";
 import { Link, useParams, useHistory } from "react-router-dom";
 
-function App() {
-  const [product, SetProduct] = useState([]);
 
-  useEffect(() => {
-    axios.get("http://localhost:3001/show").then((res) => {
-      SetProduct(res.data);
-    });
-  }, []);
-  console.log();
+
+function App() {
 
   return (
     <div className="App">

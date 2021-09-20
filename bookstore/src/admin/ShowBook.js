@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import { fetchBooks,searchBook } from "../app/actions";
+import { fetchBooks } from "../app/Book/actions";
+
 import HomeAdmin from "./HomeAdmin";
 function Books({ className }) {
 	const books = useSelector((state) => state.books);
@@ -23,7 +24,7 @@ function Books({ className }) {
 	function useSearch(event) {
 		setKeyword(event.target.value);
 		axios.get(`/search/${keyword}`).then((res) => {
-			dispatch(searchBook(res.data))
+			dispatch(fetchBooks(res.data))
 		}).catch((err) =>{
 			console.log(err);
 		})
