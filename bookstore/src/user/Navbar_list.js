@@ -25,6 +25,7 @@ function navbar_list({ className }) {
           <Link to={localStorage.getItem("username") ? '#':'/login' }    className="login" >
           {localStorage.getItem("username") ?localStorage.getItem("username"):'เข้าสู่ระบบ' }   
           </Link>
+          
           <Link to="/Cart" className="cart">
             <box-icon name="shopping-bag" color="#fff" ></box-icon>
           </Link>
