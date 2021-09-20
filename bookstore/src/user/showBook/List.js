@@ -8,7 +8,6 @@ import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { searchBook, fetchBooks } from "../../app/actions";
 import Swal from "sweetalert2";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -79,7 +78,6 @@ function App() {
 
   return (
     <div className="App">
-
       <Navbar bg="gray" variant="light" style={{background:'#e65100',height:'60px'}}>
         <Container>
           <Nav
