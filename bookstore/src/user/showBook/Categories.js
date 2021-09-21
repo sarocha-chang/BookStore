@@ -8,9 +8,13 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 
+import { useDispatch } from "react-redux";
+import { fetchReceipts } from "../../app/Receipt/actions";
+
 export default function Categories({data}) {
-    const [user] = React.useState(JSON.parse(localStorage.getItem("InLogin")));
+	const [user] = React.useState(JSON.parse(localStorage.getItem("InLogin")));
 	const [quantity] = React.useState(1);
+	const dispatch = useDispatch();
 
 
     function onSubmit(e, data_detail) {
@@ -21,7 +25,11 @@ export default function Categories({data}) {
 			quantity: quantity,
 		};
 		Swal.fire("Added success!").then(() => {
-			axios.post(`/add_cart`, data)
+			axios.post(`/add_cart`, data).then(() =>{
+				axios.get(`/get_cart/${user._id}`).then((res) => {
+					dispatch(fetchReceipts(res.data));
+				});
+			})
 		});
 	}
 

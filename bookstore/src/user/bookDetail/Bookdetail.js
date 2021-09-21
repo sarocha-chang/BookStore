@@ -4,19 +4,23 @@ import { useState, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 
+import { useDispatch } from "react-redux";
+import { fetchReceipts } from "../../app/Receipt/actions";
+
 function BookDetail({ className }) {
 	const [user] = useState(JSON.parse(localStorage.getItem("InLogin")));
 	const [book, setBook] = useState();
 	const { id } = useParams();
 	const [quantity, setQuantity] = useState(1);
 
+	const dispatch = useDispatch();
 	const history = useHistory();
 
 	useEffect(() => {
 		const getBookDetail = () => {
 			axios.get(`/show_detail/${id}`).then((res) => {
 				setBook(res.data);
-			});
+			})
 		};
 		getBookDetail();
 	}, [id]);
@@ -30,6 +34,9 @@ function BookDetail({ className }) {
 		};
 		axios.post(`/add_cart`, data)
 		.then(() => {
+			axios.get(`/get_cart/${user._id}`).then((res) => {
+				dispatch(fetchReceipts(res.data));
+			});
 			Swal.fire("Added success!").then(() => {
 				history.push("/User");
 			});
