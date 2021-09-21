@@ -21,8 +21,6 @@ function Login({ className }) {
     }
     axios.post("/login",data)
     .then((response) => {
-      console.log("sss"
-      );
       if(response.data.type === "admin"){
         localStorage.setItem(`InLogin`, JSON.stringify(response.data));
         localStorage.setItem(`username`, response.data.username)
