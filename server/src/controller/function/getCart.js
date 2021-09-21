@@ -35,11 +35,11 @@ getBooks = (list) => {
 			Book.findById(element.Book_id).then(({ name, price, imageUrl }) => {
 				book.push({
 					Buy: {
-						Buy_id: element._id,
+						Buy_id: element.Buy_id,
 						quantity: element.quantity,
 						total: element.total,
 					},
-					Book: { name, price, imageUrl },
+					Book: { name, price, imageUrl }
 				});
 				if (count + 1 == list.length) resolve(book);
 			});

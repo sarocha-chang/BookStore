@@ -6,7 +6,7 @@ import axios from "axios";
 
 import { fetchBooks } from "../app/Book/actions";
 
-import HomeAdmin from "./HomeAdmin";
+import DetailTable from "./DetailTable";
 function Books({ className }) {
 	const books = useSelector((state) => state.books);
 	const dispatch = useDispatch();
@@ -59,7 +59,7 @@ function Books({ className }) {
 				<tbody>
 					{books ? (
 						books.map((data) => {
-							return <HomeAdmin data={data} key={data._id}/>;
+							return <DetailTable data={data} key={data._id}/>;
 						})
 					) : (
 						<div>Loading products....</div>

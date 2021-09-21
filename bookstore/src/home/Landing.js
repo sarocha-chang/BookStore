@@ -1,7 +1,7 @@
 import "./navbar.css";
 import { Button, Carousel, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar1 from "./Navbar1";
+import Navbar_Landing from "./Navbar_Landing";
 import { sliderdata } from "./imgslide/imagedata";
 import { Link } from "react-router-dom";
 
@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar1 />
+      <Navbar_Landing />
 
       <Container>
         <section className="slider">

@@ -6,7 +6,7 @@ import axios from "axios";
 import { Link , useHistory} from "react-router-dom";
 import Swal from "sweetalert2";
 
-import { fetchReceipts } from "../../app/Receipt/actions";
+import { fetchReceipts,searchReceipt } from "../../app/Receipt/actions";
 
 function Payment({ className }) {
   const cart = useSelector((state) => state.receipts);
@@ -19,18 +19,17 @@ function Payment({ className }) {
   const [zip, setZip] = useState("");
   const [phone, setPhone] = useState("");
   const [typePay, setTypePay] = useState("");
-  const [data, setData] = useState();
   const history = useHistory();
 	const [user] = useState(JSON.parse(localStorage.getItem("InLogin")));
 
 	
 	useEffect(() => {
-		axios.get(`/get_cart/${user._id}`).then((res) => {
-			dispatch(fetchReceipts(res.data));
+    axios.get(`/get_cart/${user._id}`).then((res) => {
+      dispatch(fetchReceipts(res.data));
 		});
-	}, [dispatch, user._id]);
-
-
+	}, [dispatch, user._id,]);
+  
+  
   function onSubmit() {
     if (typePay === "promt") {
       Swal.fire({
@@ -57,16 +56,16 @@ function Payment({ className }) {
           zip,
           phone
         }
-        setData({cart,address})
-        axios.post("/payment",data).then(() =>{
-          // history.push("/List");
+        axios.post("/payment",{cart,address}).then(() =>{
+          dispatch(searchReceipt());
+          history.push("/List");
         }).catch((err) =>{
           console.log(err);
         })
       })
     }
   }
-
+  
   return (
     <div className={className}>
       <div className="row">

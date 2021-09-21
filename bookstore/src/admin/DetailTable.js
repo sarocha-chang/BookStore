@@ -9,7 +9,7 @@ import "boxicons";
 
 import { deleteBook } from "../app/Book/actions";
 
-function HomeAdmin({ className, data }) {
+function DetailTable({ className, data }) {
   const [id] = React.useState(data._id);
   const dispatch = useDispatch();
 
@@ -48,7 +48,7 @@ function HomeAdmin({ className, data }) {
       <td>{data.quantity}</td>
       <td>{data.status}</td>
       <td>
-        <Link to={`./EditBookAdmin/${data._id}`}>
+        <Link to={`/Admin/EditBookAdmin/${data._id}`}>
           <box-icon name="edit" />
         </Link>
         <box-icon
@@ -62,11 +62,11 @@ function HomeAdmin({ className, data }) {
   );
 }
 
-HomeAdmin.propTypes = {
+DetailTable.propTypes = {
   className: PropTypes.string.isRequired,
 };
 
-export default styled(HomeAdmin)`
+export default styled(DetailTable)`
   border-bottom: 1px solid #e0e0e0;
   td.des {
     width: 200px;

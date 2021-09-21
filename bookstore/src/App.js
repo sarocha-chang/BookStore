@@ -1,14 +1,11 @@
 import { Switch, Route } from "react-router-dom";
-import Sidebar from "./admin/Sidebar";
-import ContainerAd from "./admin/Container";
-import ShowBook from "./admin/ShowBook";
+
 import GlobalStyle from "./GlobalStyle";
+import Admin from "./admin/Admin";
+import Landing from "./home/Landing";
 import Login from "./resgister_and_login/Login";
 import Container from "./resgister_and_login/components/containerforlogin";
 import Register from "./resgister_and_login/Register";
-import AddBookAd from "./admin/AddBook";
-import EditBookAd from "./admin/EditBook";
-import Navbar from "./home/Navbar";
 import List from "./user/showBook/List";
 import NavBarAll from "./user/Navbar_list";
 import ContainerAll from "./user/Container";
@@ -34,27 +31,6 @@ function App() {
 					<Container>
 						<Register />
 					</Container>
-				</Route>
-
-				<Route path="/HomeAdmin">
-					<Sidebar />
-					<ContainerAd>
-						<ShowBook />
-					</ContainerAd>
-				</Route>
-
-				<Route path="/AddBookAdmin">
-					<Sidebar />
-					<ContainerAd>
-						<AddBookAd />
-					</ContainerAd>
-				</Route>
-
-				<Route path="/EditBookAdmin/:id">
-					<Sidebar />
-					<ContainerAd>
-						<EditBookAd />
-					</ContainerAd>
 				</Route>
 
 				<Route path="/List">
@@ -86,10 +62,13 @@ function App() {
 					</ContainerAll>
 				</Route>
 
-				<Route path="/">
-					<Navbar />
+				<Route path="/Admin">
+					<Admin />
 				</Route>
 
+				<Route path="/">
+					<Landing />
+				</Route>
 			</Switch>
 		</>
 	);
