@@ -10,11 +10,10 @@ function Login({ className }) {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
   const history = useHistory();
 
-
-
-  function  onSubmit (event) {
+  function onSubmit (event) {
     event.preventDefault();
     const data = {
       username: username,
@@ -22,8 +21,8 @@ function Login({ className }) {
     }
     axios.post("/login",data)
     .then((response) => {
-      console.log(response.data);
-      
+      console.log("sss"
+      );
       if(response.data.type === "admin"){
         localStorage.setItem(`InLogin`, JSON.stringify(response.data));
         localStorage.setItem(`username`, response.data.username)

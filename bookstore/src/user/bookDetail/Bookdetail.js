@@ -28,16 +28,17 @@ function BookDetail({ className }) {
 			Book_id: id,
 			quantity: quantity,
 		};
-		Swal.fire("Added success!").then(() => {
-			axios
-				.post(`/add_cart`, data)
-				.then(() => {
-						history.push("/List");
-				})
-				.catch((error) => {
-					console.log(error);
-				});
+		axios.post(`/add_cart`, data)
+		.then(() => {
+			Swal.fire("Added success!").then(() => {
+				history.push("/List");
+			});
+		})
+		.catch((error) => {
+			Swal.fire("Fail Book is not enough!")
+			console.log(error);
 		});
+
 	}
 
 	return (
@@ -61,8 +62,8 @@ function BookDetail({ className }) {
 							<box-icon name="star" type="solid" color="#ffd058"></box-icon>
 							<box-icon name="star" type="solid" color="#ffd058"></box-icon>
 							<box-icon
-								name="star-half"
 								type="solid"
+								name="star-half"
 								color="#ffd058"></box-icon>
 						</div>
 						<h2>{book.price} THB </h2>

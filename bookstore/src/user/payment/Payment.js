@@ -4,32 +4,32 @@ import { useSelector, useDispatch } from "react-redux";
 import Getitem from "./getItem";
 import axios from "axios";
 import { Link , useHistory} from "react-router-dom";
-import { fetchBooks } from "../../app/Book/actions";
 import Swal from "sweetalert2";
 
+import { fetchReceipts } from "../../app/Receipt/actions";
+
 function Payment({ className }) {
-  const cart = useSelector((state) => state.books);
+  const cart = useSelector((state) => state.receipts);
   const dispatch = useDispatch();
+  const [fullname, setFullname] = useState("");
+  const [homeNo, setHomeNo] = useState("");
+  const [province, setProvince] = useState("");
+  const [district, setDistrict] = useState("");
+  const [subDistrict, setSubDistrict] = useState("");
+  const [zip, setZip] = useState("");
+  const [phone, setPhone] = useState("");
   const [typePay, setTypePay] = useState("");
+  const [data, setData] = useState();
   const history = useHistory();
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("InLogin")));
+	const [user] = useState(JSON.parse(localStorage.getItem("InLogin")));
 
-  var run = () =>
-    new Promise(function (resolve, reject) {
-      setUser(JSON.parse(localStorage.getItem("InLogin")));
-      resolve();
-    });
+	
+	useEffect(() => {
+		axios.get(`/get_cart/${user._id}`).then((res) => {
+			dispatch(fetchReceipts(res.data));
+		});
+	}, [dispatch, user._id]);
 
-  useEffect(() => {
-    function get() {
-      run().then(() => {
-        axios.get(`/get_cart/${user._id}`).then((res) => {
-          dispatch(fetchBooks(res.data));
-        });
-      });
-    }
-    get();
-  }, [dispatch]);
 
   function onSubmit() {
     if (typePay === "promt") {
@@ -48,7 +48,21 @@ function Payment({ className }) {
         title: "กรุณาชำระเงินเมื่อได้รับสินค้า",
         text: `ยอดรวมสุทธิ: ${cart.Total} THB`,
       }).then(() => {
-        history.push("/List");
+        let address = {
+          fullname,
+          homeNo,
+          province,
+          district,
+          subDistrict,
+          zip,
+          phone
+        }
+        setData({cart,address})
+        axios.post("/payment",data).then(() =>{
+          // history.push("/List");
+        }).catch((err) =>{
+          console.log(err);
+        })
       })
     }
   }
@@ -68,6 +82,8 @@ function Payment({ className }) {
                   type="text"
                   placeholder="กรุณากรอกชื่อ ตัวอย่าง นางสาวแสนดี คำปู้จู้"
                   className="long"
+                  value={fullname}
+                  onChange={(event) => setFullname(event.target.value)}
                 />
               </div>
             </div>
@@ -80,6 +96,8 @@ function Payment({ className }) {
                   type="text"
                   placeholder="กรุณากรอกบ้านเลขที่"
                   className="medium"
+                  value={homeNo}
+                  onChange={(event) => setHomeNo(event.target.value)}
                 />
               </div>
               <div className="col-10">
@@ -90,6 +108,8 @@ function Payment({ className }) {
                   type="text"
                   placeholder="กรุณากรอกจังหวัด"
                   className="medium"
+                  value={province}
+                  onChange={(event) => setProvince(event.target.value)}
                 />
               </div>
             </div>
@@ -102,6 +122,8 @@ function Payment({ className }) {
                   type="text"
                   placeholder="กรุณากรอกอำเภอ"
                   className="medium"
+                  value={district}
+                  onChange={(event) => setDistrict(event.target.value)}
                 />
               </div>
               <div className="col-10">
@@ -112,6 +134,8 @@ function Payment({ className }) {
                   type="text"
                   placeholder="กรุณากรอกตำบล"
                   className="medium"
+                  value={subDistrict}
+                  onChange={(event) => setSubDistrict(event.target.value)}
                 />
               </div>
             </div>
@@ -124,6 +148,8 @@ function Payment({ className }) {
                   type="text"
                   placeholder="กรุณากรอกรหัสไปรษณีย์"
                   className="medium"
+                  value={zip}
+                  onChange={(event) => setZip(event.target.value)}
                 />
               </div>
               <div className="col-10">
@@ -134,6 +160,8 @@ function Payment({ className }) {
                   type="text"
                   placeholder="กรุณากรอกเบอร์โทรศ้พท์"
                   className="medium"
+                  value={phone}
+                  onChange={(event) => setPhone(event.target.value)}
                 />
               </div>
             </div>
@@ -197,7 +225,7 @@ function Payment({ className }) {
                 </button>
               </Link>
               <button className="btn-secondary" onClick={onSubmit}>
-                ยืนยันการชำระเงิน จำนวน 350 THB
+                ยืนยันการชำระเงิน จำนวน {cart.Total} THB
               </button>
             </div>
           </div>

@@ -1,8 +1,6 @@
 const Book = require("../../../config/model/Book");
-const Customer = require("../../../config/model/Customer");
 const Buy = require("../../../config/model/Buy");
 const Receipt = require("../../../config/model/Receipt");
-const { count } = require("../../../config/model/Book");
 
 getReceipt = (id) => {
 	return new Promise((resolve, reject) => {

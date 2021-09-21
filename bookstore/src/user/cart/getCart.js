@@ -4,24 +4,13 @@ import { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-import { useSelector, useDispatch } from "react-redux";
-import { deleteReceipt,updateReceipt,fetchReceipts } from "../../app/Receipt/actions"
+import { useDispatch } from "react-redux";
+import { deleteReceipt,updateReceipt } from "../../app/Receipt/actions"
 
 function Cart({ className, data }) {
-  const [quantity] = useState(data.Buy.quantity);
-  const [user] = useState(JSON.parse(localStorage.getItem("InLogin")));
+  const [quantity,SetQuantity] = useState(data.Buy.quantity);
 
-  const receipt = useSelector((state) => state.receipts);
   const dispatch = useDispatch();
-
-  React.useEffect(() =>{
-		const get_cart = (id) => {
-			axios.get(`/get_cart/${id}`).then((res) => {
-				dispatch(fetchReceipts(res.data));
-			});
-		};
-    get_cart(user._id)
-  },[dispatch, receipt, user._id])
 
   function delete_item() {
     Swal.fire({
@@ -43,7 +32,6 @@ function Cart({ className, data }) {
               "success"
             ).then(() => {
                 dispatch(deleteReceipt(data.Buy.Buy_id))
-                window.location.reload()
             });
           })
           .catch((error) => {
@@ -53,19 +41,13 @@ function Cart({ className, data }) {
     });
   }
 
-  function add_quan(id, quan) {
+  function add_quantity(id, quantity) {
     const data = {
-      quantity: parseInt(quan),
+      quantity: parseInt(quantity),
     };
-    axios
-      .put(`http://localhost:3001/change_quantity_in_cart/${id}`, data)
-      .then((response) => {
-        console.log(response.data);
-        dispatch()
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    SetQuantity(quantity)
+    dispatch(updateReceipt({id,quantity}))
+    axios.put(`/change_quantity_in_cart/${id}`, data)
   }
 
   return (
@@ -82,7 +64,7 @@ function Cart({ className, data }) {
           min="1"
           max="100"
           value={quantity}
-          onChange={(event) => add_quan(data.Buy.Buy_id, event.target.value)}
+          onChange={(event) => add_quantity(data.Buy.Buy_id, event.target.value)}
         />
       </td>
       <td>{data.Buy.total}</td>

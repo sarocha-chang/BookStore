@@ -13,21 +13,30 @@ export default createReducer([], {
 		return action.payload;
 	},
 	[addReceipt]: (state, action) => {
-		state.push({ id: 1, ...action.payload });
+		state.push(action.payload);
 	},
 	[updateReceipt]: (state, action) => {
 		const receiptIndex = state.Order.findIndex(
-			(receipt) => receipt._id === action.payload._id,
+			(receipt) => receipt.Buy.Buy_id === action.payload.id
 		);
-		state.Order[receiptIndex] = action.payload;
+		const x = {
+			Buy_id: action.payload.id,
+			quantity: action.payload.quantity,
+			total: action.payload.quantity * state.Order[receiptIndex].Book.price
+		}
+		state.Order[receiptIndex].Buy = x
+		const calTotal = state.Order.map(receipt =>{
+			return receipt.Buy.total
+		})
+		state.Total = calTotal.reduce((a,b) => a+b)
 	},
 	[deleteReceipt]: (state, action) => {
 		const receiptIndex = state.Order.findIndex(
-			(receipt) => receipt._id === action.payload,
+			(receipt) => receipt.Buy.Buy_id === action.payload
 		);
 		state.Order.splice(receiptIndex, 1);
 	},
     [searchReceipt]: (state, action) =>{
-        return action.payload
+        return state
     }
 });

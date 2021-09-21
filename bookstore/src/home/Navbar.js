@@ -3,7 +3,7 @@ import { Button, Carousel, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar1 from "./Navbar1";
 import { sliderdata } from "./imgslide/imagedata";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 
@@ -18,7 +18,7 @@ function App() {
           <Carousel>
             {sliderdata.map((slide, index) => {
               return (
-                <Carousel.Item>
+                <Carousel.Item key={index}>
                   <img
                     className="d-block w-100"
                     src={slide.image }

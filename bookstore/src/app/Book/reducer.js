@@ -14,7 +14,7 @@ export default createReducer([], {
 		return action.payload;
 	},
 	[addBook]: (state, action) => {
-		state.push({ id: 1, ...action.payload });
+		state.push(action.payload);
 	},
 	[updateBook]: (state, action) => {
 		const bookIndex = state.findIndex(

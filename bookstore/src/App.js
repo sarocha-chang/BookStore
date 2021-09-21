@@ -1,4 +1,4 @@
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Sidebar from "./admin/Sidebar";
 import ContainerAd from "./admin/Container";
 import ShowBook from "./admin/ShowBook";
@@ -18,91 +18,81 @@ import Cart from "./user/cart/Cart";
 import Payment from "./user/payment/Payment";
 import "boxicons";
 
-
 function App() {
-  return (
-    <>
-      <GlobalStyle />
+	return (
+		<>
+			<GlobalStyle />
 
-      <Switch>
-        <Route path="/List">
-          <NavBarAll />
-          <ContainerAll>
-            <List />
-          </ContainerAll>
-          <Footer/>
-        </Route>
+			<Switch>
+				<Route path="/Login">
+					<Container>
+						<Login />
+					</Container>
+				</Route>
 
-        <Route path="/Home">
-          <Navbar />
-        </Route>
+				<Route path="/Register">
+					<Container>
+						<Register />
+					</Container>
+				</Route>
 
-        <Route path="/HomeAdmin">
-          <Sidebar />
-          <ContainerAd>
-            <ShowBook />
-          </ContainerAd>
-        </Route>
+				<Route path="/HomeAdmin">
+					<Sidebar />
+					<ContainerAd>
+						<ShowBook />
+					</ContainerAd>
+				</Route>
 
-        <Route path="/AddBookAdmin">
-          <Sidebar />
-          <ContainerAd>
-            <AddBookAd />
-          </ContainerAd>
-        </Route>
+				<Route path="/AddBookAdmin">
+					<Sidebar />
+					<ContainerAd>
+						<AddBookAd />
+					</ContainerAd>
+				</Route>
 
-        <Route path="/EditBookAdmin/:id">
-          <Sidebar />
-          <ContainerAd>
-            <EditBookAd />
-          </ContainerAd>
-        </Route>
+				<Route path="/EditBookAdmin/:id">
+					<Sidebar />
+					<ContainerAd>
+						<EditBookAd />
+					</ContainerAd>
+				</Route>
 
-        <Route path="/Login">
-          <Container>
-            <Login />
-          </Container>
-        </Route>
+				<Route path="/List">
+					<NavBarAll />
+					<ContainerAll>
+						<List />
+					</ContainerAll>
+					<Footer />
+				</Route>
 
-        <Route path="/Register">
-          <Container>
-            <Register />
-          </Container>
-        </Route>
+				<Route path="/BookDetail/:id">
+					<NavBarAll />
+					<ContainerAll>
+						<BookDetail />
+					</ContainerAll>
+				</Route>
 
-        <Route path="/BookDetail/:id">
-          <NavBarAll />
-          <ContainerAll>
-            <BookDetail />
-          </ContainerAll>
-        </Route>
+				<Route path="/Cart">
+					<NavBarAll />
+					<ContainerAll>
+						<Cart />
+					</ContainerAll>
+				</Route>
 
-        <Route path="/Cart">
-          <NavBarAll />
-          <ContainerAll>
-            <Cart />
-          </ContainerAll>
-        </Route>
+				<Route path="/Payment">
+					<NavBarAll />
+					<ContainerAll>
+						<Payment />
+					</ContainerAll>
+				</Route>
 
-      <Route path="/Payment">
-        <NavBarAll />
-        <ContainerAll>
-          <Payment />
-        </ContainerAll>
-      </Route>
-      
-        <Route path="/">
-          <Link to="/HomeAdmin" style={{ margin: "30px" }}>
-            Admin
-          </Link>
-          <Link to="/Home" style={{ margin: "30px" }}>
-            Home
-          </Link>
-          <Link to="/List">List</Link>
-        </Route>
-      </Switch>
-    </>
-  );
+				<Route path="/">
+					<Navbar />
+				</Route>
+
+			</Switch>
+		</>
+	);
 }
 
 export default App;

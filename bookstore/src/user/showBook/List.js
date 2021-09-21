@@ -1,362 +1,116 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { Button, Container, Row, Col, Card,Navbar,Nav } from "react-bootstrap";
-import styled from "styled-components";
+import { useEffect } from "react";
+import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link, useParams, useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { searchBook, fetchBooks } from "../../app/Book/actions";
-import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
 
-function App() {
-  const [product, SetProduct] = useState([]);
+import Categories from "./Categories";
+import CategoriesAll from "./CategoriesAll";
 
-  useEffect(() => {
-    axios.get("/show").then((res) => {
-      SetProduct(res.data);
-    });
-  }, []);
-  
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("InLogin")));
-  const { id } = useParams();
-  const [quantity, setQuantity] = useState(1);
+import { fetchBooks } from "../../app/Book/actions";
 
-  const history = useHistory();
-  const book = useSelector((state) => state.books);
-  const dispatch = useDispatch();
+export default function List() {
+	const book = useSelector((state) => state.books);
 
-  var run = () =>
-    new Promise((resolve, reject) => {
-      setUser(JSON.parse(localStorage.getItem("InLogin")));
-      resolve();
-    });
+	const dispatch = useDispatch();
 
-  useEffect(() => {
-    axios.get(`http://localhost:3001/show_detail/${id}`).then((res) => {
-      dispatch(searchBook(res.data));
-      
-    });
-  }, [dispatch, id]);
-  console.log(book);
+	useEffect(() => {
+		axios.get("/show").then((res) => {
+			dispatch(fetchBooks(res.data));
+		});
+	}, [dispatch]);
 
-  function onSubmit(e,data_) {
-    e.preventDefault();
-    
-    run()
-      .then(() => {
-        let data = {
-          Customer_id: user._id,
-          Book_id: data_,
-          quantity: quantity,
-        };
-        return data;
-      })
-      .then((data) => {
-        Swal.fire("Added succes!").then(() => {
-          axios
-            .post(`http://localhost:3001/add_cart`, data)
-            .then((response) => {
-              axios.get(`/get_cart/${user._id}`).then((res) => {
-                dispatch(fetchBooks(res.data));
-              }).then(() => {
-                history.push("/List");
-              })
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        });
-      });
-  }
+	return (
+		<div className="App">
+			<Navbar
+				bg="gray"
+				variant="light"
+				style={{ background: "#e65100", height: "60px" }}>
+				<Container>
+					<Nav
+						className="me-auto"
+						style={{ marginBottom: "20px", marginLeft: "400px" }}>
+						<Nav.Link href="#" style={{ marginRight: "80px", color: "#fff" }}>
+							นวนิยาย
+						</Nav.Link>
+						<Nav.Link href="#" style={{ marginRight: "80px", color: "#fff" }}>
+							การ์ตูน
+						</Nav.Link>
+						<Nav.Link href="#" style={{ marginRight: "80px", color: "#fff" }}>
+							ศิลปะ
+						</Nav.Link>
+						<Nav.Link href="#" style={{ marginRight: "80px", color: "#fff" }}>
+							ความรู้
+						</Nav.Link>
+					</Nav>
+				</Container>
+			</Navbar>
+			<Container style={{ paddingLeft: "65px" }}>
+				<Row>
+					<Col sm={6} className="newlist">
+						<h3 style={{ marginRight: "70px" }}>หนังสือมาใหม่</h3>
+						<Row>
+							{book ? (
+								book
+									.filter((x) => x.status === "มาใหม่")
+									.map((data) => {
+										return <Categories key={data._id} data={data} />;
+									})
+							) : (
+								<div>Loading books....</div>
+							)}
+						</Row>
+					</Col>
+					<Col sm={6} className="popular">
+						<h3 style={{ marginRight: "70px" }}>หนังสือยอดนิยม</h3>
+						<Row>
+							{book ? (
+								book
+									.filter((x) => x.status === "ยอดนิยม")
+									.map((data) => {
+										return <Categories key={data._id} data={data} />;
+									})
+							) : (
+								<div>Loading books....</div>
+							)}
+						</Row>
+					</Col>
+				</Row>
+			</Container>
+			<hr
+				style={{
+					color: "gray",
+					backgroundColor: "gray",
+					height: "1px",
+					marginTop: "60px",
+				}}
+			/>
 
-
-  return (
-    <div className="App">
-
-      <Navbar bg="gray" variant="light" style={{background:'#e65100',height:'60px'}}>
-        <Container>
-          <Nav
-            className="me-auto"
-            style={{ marginBottom: "20px", marginLeft: "400px" }}
-          >
-            <Nav.Link href="#" style={{ marginRight: "80px", color: "#fff" }}>
-              นวนิยาย
-            </Nav.Link>
-            <Nav.Link href="#" style={{ marginRight: "80px", color: "#fff" }}>
-              การ์ตูน
-            </Nav.Link>
-            <Nav.Link href="#" style={{ marginRight: "80px", color: "#fff" }}>
-              ศิลปะ
-            </Nav.Link>
-            <Nav.Link href="#" style={{ marginRight: "80px", color: "#fff" }}>
-              ความรู้
-            </Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
-      <Container style={{paddingLeft:"65px"}}>
-        <Row>
-          <Col sm={6} className="newlist">
-            <h3 style={{ marginRight: "70px" }}>หนังสือมาใหม่</h3>
-            <Row>
-              {product ? (
-                product
-                  .filter((x) => x.status === "มาใหม่")
-                  .map((data) => {
-                    return (
-                      <Col sm={5}>
-                        <Card
-                          border="gray"
-                          style={{
-                            width: "15rem",
-                            height: "345px",
-                            marginLeft: "20px",
-                            marginTop: "10px",
-                            webkitBoxShadow: "0 12px 34px rgba(0, 0, 0, 0.12)",
-                            mozBoxShadow: "0 12px 34px rgba(0, 0, 0, 0.12)",
-                            boxShadow: " 0 12px 34px rgba(0, 0, 0, 0.12)",
-                          }}
-                          key={data._id}
-                        >
-                          <Card.Img
-                            variant="top"
-                            src={data.imageUrl}
-                            style={{
-                              width: "150px",
-                              height: "155px",
-                              marginTop: "10px",
-                              marginLeft: "45px",
-                            }}
-                          />
-                          <Card.Body>
-                            <Link to={`./BookDetail/${data._id}`} style={{textDecoration:"none"}}>
-                              <Card.Title
-                                style={{
-                                  fontSize: "11px",
-                                  fontFamily: "IBM Plex Sans Thai",
-                                  color:"#000",
-                                  fontWeight:"bold"
-                                  
-                                }}
-                              >
-                                {data.name}
-                              </Card.Title>
-                            </Link>
-                          </Card.Body>
-                          <Card.Text
-                            style={{
-                              fontSize: "14px",
-                              fontFamily: "IBM Plex Sans Thai",
-                            }}
-                          >
-                            ราคา : {data.price} บาท
-                          </Card.Text>
-                          <Link to="/">
-                            <Button variant="primary" data-id={data._id} onClick={(e)=>onSubmit(e,data._id)} className="button"  style={{
-                              fontSize: "14px",
-                              fontFamily: "IBM Plex Sans Thai",
-                              borderRadius: '10px ',
-                              paddingLeft: '45px',
-                              paddingRight: '45px',
-                              background: 'none',
-                              color: '#000',
-                              marginBottom:'10px'
-
-
-                            }}>เพิ่มไปยังตระกร้า</Button>
-                          </Link>
-                        </Card>
-                      </Col>
-                    );
-                  })
-              ) : (
-                <div>Loading products....</div>
-              )}
-            </Row>
-          </Col>
-          <Col sm={6} className="popular">
-            <h3 style={{ marginRight: "70px" }}>หนังสือยอดนิยม</h3>
-            <Row>
-              {product ? (
-                product
-                  .filter((x) => x.status === "ยอดนิยม")
-                  .map((data) => {
-                    return (
-                      <Col sm={5}>
-                        <Card
-                          border="gray"
-                          style={{
-                            width: "15rem",
-                            height: "345px",
-                            marginLeft: "20px",
-                            marginTop: "10px",
-                            webkitBoxShadow: "0 12px 34px rgba(0, 0, 0, 0.12)",
-                            mozBoxShadow: "0 12px 34px rgba(0, 0, 0, 0.12)",
-                            boxShadow: " 0 12px 34px rgba(0, 0, 0, 0.12)",
-                          }}
-                        >
-                          <Card.Img
-                            variant="top"
-                            src={data.imageUrl}
-                            style={{
-                              width: "150px",
-                              height: "155px",
-                              marginTop: "10px",
-                              marginLeft: "45px",
-                            }}
-                          />
-                          <Card.Body>
-                            <Link to={`./BookDetail/${data._id}`} style={{textDecoration:"none"}}  >
-                              <Card.Title
-                                style={{
-                                  fontSize: "11px",
-                                  fontFamily: "IBM Plex Sans Thai",
-                                  color:"#000",
-                                  fontWeight:"bold"
-                                  
-
-                                }}
-                              >
-                                {data.name}
-                              </Card.Title>
-                            </Link>
-                          </Card.Body>
-                          <Card.Text
-                            style={{
-                              fontSize: "14px",
-                              fontFamily: "IBM Plex Sans Thai",
-                            }}
-                          >
-                            ราคา : {data.price} บาท
-                          </Card.Text>
-                          <Link to="/">
-                            <Button variant="primary" data-id={data._id} onClick={(e)=>onSubmit(e,data._id)} style={{
-                              fontSize: "14px",
-                              fontFamily: "IBM Plex Sans Thai",
-                              borderRadius: '10px',
-                              paddingLeft: '45px',
-                              paddingRight: '45px',
-                              background: 'none',
-                              marginBottom:"10px",
-                              color: '#000'
-
-                            }}>เพิ่มไปยังตระกร้า</Button>
-                          </Link>
-                        </Card>
-                      </Col>
-                    );
-                  })
-              ) : (
-                <div>Loading products....</div>
-              )}
-            </Row>
-          </Col>
-        </Row>
-      </Container>
-      <hr
-        style={{
-          color: "gray",
-          backgroundColor: "gray",
-          height: "1px",
-          marginTop: "60px",
-        }}
-      />
-      
-      <Row>
-        <h3 style={{paddingLeft:"43.5%",marginTop:"20px"}} >รายการหนังสือ</h3>
-        <Col sm={12} className="normallist" style={{ marginTop: "30px" ,paddingLeft:"200px",paddingRight:"320px"}}>
-
-          <Row>
-            {product ? (
-              product
-                .filter((x) => x.status === "ปกติ")
-                .map((data) => {
-                  return (
-                    <Col sm={3} className="allbook">
-                    <Card
-                      border="gray"
-                      style={{
-                        width: "15rem",
-                        height: "365px",
-                        marginLeft: "55px",
-                        marginTop: "20px",
-                        webkitBoxShadow: "0 12px 34px rgba(0, 0, 0, 0.12)",
-                        mozBoxShadow: "0 12px 34px rgba(0, 0, 0, 0.12)",
-                        boxShadow: " 0 12px 34px rgba(0, 0, 0, 0.12)",
-                      }}
-                    >
-                      <Card.Img
-                        variant="top"
-                        src={data.imageUrl}
-                        style={{
-                          width: "160px",
-                          height: "180px",
-                          marginTop: "10px",
-                          marginLeft: "40px",
-                          
-                        }}
-                      />
-                      <Card.Body>
-                        <Link to={`./BookDetail/${data._id}`} style={{textDecoration:"none"}}>
-                          <Card.Title
-                            style={{
-                              fontSize: "13px",
-                              fontFamily: "IBM Plex Sans Thai",
-                              color:"#000",
-                              textDecoration:"none",
-                              marginLeft:"30px",
-                              fontWeight:"bold"
-                            }}
-                          >
-                            {data.name}
-                          </Card.Title>
-                        </Link>
-                      </Card.Body>
-                      <Card.Text
-                        style={{
-                          fontSize: "16px",
-                          fontFamily: "IBM Plex Sans Thai",
-                          marginLeft: "60px",
-                        }}
-                      >
-                        ราคา : {data.price} บาท
-                      </Card.Text>
-                      <Link to="/">
-                        <Button variant="primary" data-id={data._id} onClick={(e)=>onSubmit(e,data._id)} className="btn"style={{
-                          fontSize: "14px",
-                          fontFamily: "IBM Plex Sans Thai",
-                          marginLeft: "35px",
-                          marginBottom:"10px",
-                          borderRadius: '10px',
-                          paddingLeft: '35px',
-                          paddingRight: '35px',
-                          background: 'none', 
-                          color: '#000'
-
-
-
-                        }}>เพิ่มไปยังตระกร้า</Button>
-                      </Link>
-                    </Card>
-                    </Col>
-                  );
-                })
-            ) : (
-              <div>Loading products....</div>
-            )}
-          </Row>
-        </Col>
-      </Row>
-    </div>
-  );
+			<Row style={{justifyContent: "center", display: "flex"}}>
+				<h3 style={{ paddingLeft: "45%", marginTop: "20px" }}>
+					รายการหนังสือ
+				</h3>
+				<Col
+					sm={12}
+					className="normallist"
+					style={{
+						paddingLeft: "15%",
+						paddingRight: "25%",
+						marginLeft: "5%"
+					}}>
+					<Row>
+						{book ? (
+							book
+								.filter((x) => x.status === "ปกติ")
+								.map((data) => {
+									return <CategoriesAll key={data._id} data={data} />;
+								})
+						) : (
+							<div>Loading books....</div>
+						)}
+					</Row>
+				</Col>
+			</Row>
+		</div>
+	);
 }
-export default styled(App)`
-  overflow: hidden;
-  .allbook{
-    .btn{
-      background-color: none;
-    }
-  }
-
- 
-`;

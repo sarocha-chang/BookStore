@@ -15,12 +15,12 @@ function ShowCart({ className }) {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		const get_cart = (id) => {
-			axios.get(`/get_cart/${id}`).then((res) => {
+		const get = () =>{
+			axios.get(`/get_cart/${user._id}`).then((res) => {
 				dispatch(fetchReceipts(res.data));
 			});
-		};
-    get_cart(user._id)
+		}
+		get()
 	}, [dispatch, user._id]);
 
 	return (
@@ -76,9 +76,11 @@ function ShowCart({ className }) {
 						<h5>
 							ยอดรวมสุทธิ <span>{cart.Total} THB</span>
 						</h5>
-						<div className="btnsub">
-							<button className="btn btn-secondary">ดำเนินการชำระเงิน</button>
-						</div>
+						<Link to="/Payment">
+							<div className="btnsub">
+								<button className="btn btn-secondary">ดำเนินการชำระเงิน</button>
+							</div>
+						</Link>
 					</div>
 				</div>
 			</div>
