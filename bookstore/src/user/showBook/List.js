@@ -94,7 +94,7 @@ function App() {
           </Nav>
         </Container>
       </Navbar>
-      <Container>
+      <Container style={{paddingLeft:"65px"}}>
         <Row>
           <Col sm={6} className="newlist">
             <h3 style={{ marginRight: "70px" }}>หนังสือมาใหม่</h3>
@@ -135,6 +135,7 @@ function App() {
                                   fontSize: "11px",
                                   fontFamily: "IBM Plex Sans Thai",
                                   color:"#000",
+                                  fontWeight:"bold"
                                   
                                 }}
                               >
@@ -211,7 +212,8 @@ function App() {
                                   fontSize: "11px",
                                   fontFamily: "IBM Plex Sans Thai",
                                   color:"#000",
-                                  textDecoration:'none'
+                                  fontWeight:"bold"
+                                  
 
                                 }}
                               >
@@ -259,9 +261,10 @@ function App() {
           marginTop: "60px",
         }}
       />
+      
       <Row>
-        
-        <Col sm={12} className="normallist" style={{ marginTop: "30px", marginLeft: "20px" }}>
+        <h3 style={{paddingLeft:"43.5%",marginTop:"20px"}} >รายการหนังสือ</h3>
+        <Col sm={12} className="normallist" style={{ marginTop: "30px" ,paddingLeft:"200px",paddingRight:"320px"}}>
 
           <Row>
             {product ? (
@@ -269,12 +272,12 @@ function App() {
                 .filter((x) => x.status === "ปกติ")
                 .map((data) => {
                   return (
-                    <Col sm={3}>
+                    <Col sm={3} className="allbook">
                     <Card
                       border="gray"
                       style={{
-                        width: "12rem",
-                        height: "350px",
+                        width: "15rem",
+                        height: "365px",
                         marginLeft: "55px",
                         marginTop: "20px",
                         webkitBoxShadow: "0 12px 34px rgba(0, 0, 0, 0.12)",
@@ -286,21 +289,23 @@ function App() {
                         variant="top"
                         src={data.imageUrl}
                         style={{
-                          width: "135px",
-                          height: "150px",
+                          width: "160px",
+                          height: "180px",
                           marginTop: "10px",
-                          marginLeft: "25px",
+                          marginLeft: "40px",
+                          
                         }}
                       />
                       <Card.Body>
                         <Link to={`./BookDetail/${data._id}`} style={{textDecoration:"none"}}>
                           <Card.Title
                             style={{
-                              fontSize: "12px",
+                              fontSize: "13px",
                               fontFamily: "IBM Plex Sans Thai",
                               color:"#000",
                               textDecoration:"none",
-                              marginLeft:"15px"
+                              marginLeft:"30px",
+                              fontWeight:"bold"
                             }}
                           >
                             {data.name}
@@ -311,7 +316,7 @@ function App() {
                         style={{
                           fontSize: "16px",
                           fontFamily: "IBM Plex Sans Thai",
-                          marginLeft: "40px",
+                          marginLeft: "60px",
                         }}
                       >
                         ราคา : {data.price} บาท
@@ -320,12 +325,12 @@ function App() {
                         <Button variant="primary" data-id={data._id} onClick={(e)=>onSubmit(e,data._id)} className="btn"style={{
                           fontSize: "14px",
                           fontFamily: "IBM Plex Sans Thai",
-                          marginLeft: "25px",
+                          marginLeft: "35px",
                           marginBottom:"10px",
                           borderRadius: '10px',
-                          paddingLeft: '20px',
-                          paddingRight: '20px',
-                          background: 'none',
+                          paddingLeft: '35px',
+                          paddingRight: '35px',
+                          background: 'none', 
                           color: '#000'
 
 
@@ -347,12 +352,11 @@ function App() {
 }
 export default styled(App)`
   overflow: hidden;
-
-  .Card
-  {
-
-  .button:hover {
-    background: yellow;
+  .allbook{
+    .btn{
+      background-color: none;
+    }
   }
-}
+
+ 
 `;

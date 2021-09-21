@@ -7,42 +7,42 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function navbar_list({ className }) {
   return (
     <>
-        <footer style={{background:"#e65100"}}>
-            <Container>
+        <footer style={{background:"#e65100",marginTop:"20px"}}>
+           
                 <Row>
                     <Col sm={5} style={{marginTop:"22px"}}>
                        <ul>
                           
-                           <li style={{listStyleType:"none",color:"#fff"}}>
+                           <li style={{listStyleType:"none",color:"#fff",marginLeft:"38px"}}>
                            <box-icon name='location-plus' color='#005488' ></box-icon> ซอย สุโขทัย 5 สุเทพ อำเภอเมืองเชียงใหม่ เชียงใหม่ 50200
                            </li>
-                           <li style={{listStyleType:"none",color:"#fff",marginRight:"295px",marginTop:"10px"}}>
+                           <li style={{listStyleType:"none",color:"#fff",marginLeft:"38px",marginTop:"10px"}}>
                            <box-icon name='phone' color='#005488' ></box-icon> 053-120-446
                            </li>
                        </ul>
                     </Col>
                     <Col sm={3}>
                         <ul>
-                            <li style={{listStyleType:"none",marginTop:"40px"}}>
+                            <li style={{listStyleType:"none",marginTop:"40px",marginLeft:"55px"}}>
                             <box-icon name='copyright' type='solid' color='#005488' ></box-icon>
                             </li>
                         </ul>
                     </Col> 
                     <Col sm={4} style={{marginTop:"8px"}}>
                         <ul>
-                            <li style={{listStyleType:"none",color:"#fff"}}>
-                            <box-icon name='instagram' type='logo' color='#de0eb4'  style={{marginTop:"5px"}}></box-icon>chachax_bookstore  
+                            <li style={{listStyleType:"none",color:"#fff",marginLeft:"130px"}}>
+                            <box-icon name='instagram' type='logo' color='#005488'  style={{marginTop:"5px"}}></box-icon>chachax_bookstore  
                             </li >
-                            <li style={{listStyleType:"none",color:"#fff"}}>
+                            <li style={{listStyleType:"none",color:"#fff",marginLeft:"130px"}}>
                             <box-icon name='twitter' type='logo' color='#005488' ></box-icon>chachax_bookstore
                             </li>
-                            <li style={{listStyleType:"none",color:"#fff"}}>
+                            <li style={{listStyleType:"none",color:"#fff",marginLeft:"130px"}}>
                             <box-icon name='internet-explorer' type='logo' color='#005488' ></box-icon> www.chachax.com
                             </li>
                         </ul>
                     </Col> 
                 </Row>
-            </Container>
+            
             
         </footer>
     </>

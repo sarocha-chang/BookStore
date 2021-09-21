@@ -1,10 +1,15 @@
 import { Button, FormControl } from "react-bootstrap";
 import "boxicons";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function navbar_list({ className }) {
+
+    function logOut(){
+      localStorage.removeItem("username");
+      
+    }
   return (
     <>
       <header className={className}>
@@ -25,7 +30,9 @@ function navbar_list({ className }) {
           <Link to={localStorage.getItem("username") ? '#':'/login' }    className="login" >
           {localStorage.getItem("username") ?localStorage.getItem("username"):'เข้าสู่ระบบ' }   
           </Link>
-          
+          {localStorage.getItem("username")?
+          <Link onClick={logOut} to="/Home">Logout</Link>:null
+        }
           <Link to="/Cart" className="cart">
             <box-icon name="shopping-bag" color="#fff" ></box-icon>
           </Link>
