@@ -78,6 +78,7 @@ module.exports = {
 	},
 	delete_cart_item: (request, response) => {
 		const { id } = request.params;
+    console.log(id);
 		Buy.findByIdAndDelete(id).then((buy) => {
 			Receipt.findOneAndDelete({ Buy_id: id }).then((receipt) => {
 				response.status(200).json({ buy, receipt });
@@ -96,16 +97,16 @@ module.exports = {
 	},
 	payment: async (request, response) => {
 		const { cart, address } = request.body;
-		let bill = new Cart({ Cart: cart, Address: address });
-		bill.save().then(async (data) => {
-        // let receipt = await Receipt.find({Customer_id: cart.Customer})
-        // receipt.forEach(async(element) =>{
-        //   let buy = await Buy.findById(element.Buy_id)
-        //   let book = await Book.findById(buy.Book_id)
-        //   await Book.findByIdAndUpdate(buy.Book_id,{quantity: book.quantity - buy.quantity})
-        // })
-				response.status(200).json(data);
-			})
-			.catch(() => response.status(404).json("error"));
+		// let bill = new Cart({ Cart: cart, Address: address });
+		// bill.save().then(async (data) => {
+    //     // let receipt = await Receipt.find({Customer_id: cart.Customer})
+    //     // receipt.forEach(async(element) =>{
+    //     //   let buy = await Buy.findById(element.Buy_id)
+    //     //   let book = await Book.findById(buy.Book_id)
+    //     //   await Book.findByIdAndUpdate(buy.Book_id,{quantity: book.quantity - buy.quantity})
+    //     // })
+		// 		response.status(200).json(data);
+		// 	})
+		// 	.catch(() => response.status(404).json("error"));
 	},
 };

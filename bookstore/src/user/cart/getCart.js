@@ -24,14 +24,14 @@ function Cart({ className, data }) {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`/delete_cart_item/${data.Buy.Buy_id}`)
-          .then(() => {
-            Swal.fire(
-              "Deleted!",
-              "Your file has been deleted.",
-              "success"
+        .delete(`/delete_cart_item/${data.Buy.Buy_id}`)
+        .then(() => {
+          Swal.fire(
+            "Deleted!",
+            "Your file has been deleted.",
+            "success"
             ).then(() => {
-                dispatch(deleteReceipt(data.Buy.Buy_id))
+              dispatch(deleteReceipt(data.Buy.Buy_id))
             });
           })
           .catch((error) => {
