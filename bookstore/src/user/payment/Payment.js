@@ -6,7 +6,7 @@ import axios from "axios";
 import { Link , useHistory} from "react-router-dom";
 import Swal from "sweetalert2";
 
-import { fetchReceipts } from "../../app/Receipt/actions";
+import { fetchReceipts,searchReceipt } from "../../app/Receipt/actions";
 
 function Payment({ className }) {
   const cart = useSelector((state) => state.receipts);
@@ -26,7 +26,9 @@ function Payment({ className }) {
 	
 	useEffect(() => {
 		axios.get(`/get_cart/${user._id}`).then((res) => {
+      console.log(user._id);
 			dispatch(fetchReceipts(res.data));
+			// dispatch(searchReceipt());
 		});
 	}, [dispatch, user._id]);
 
@@ -198,7 +200,7 @@ function Payment({ className }) {
             </h4>
             {cart.Order ? (
               cart.Order.map((data) => {
-                return <Getitem key={data.Buy.Buy_id} data={data} />;
+                return <Getitem key={data.Book.Buy_id} data={data} />;
               })
             ) : (
               <h5>
