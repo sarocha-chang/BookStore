@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { Link, useParams, useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 
-import { updateBook } from "../app/Book/actions";
+import { updateBook } from "../../app/Book/actions";
 
 function EditBook({ className }) {
 	const { id } = useParams();
@@ -64,7 +64,7 @@ function EditBook({ className }) {
 			.then((response) => {
 				dispatch(updateBook(response.data));
 				alertSubmit(imageUrl);
-				history.push("/HomeAdmin");
+				history.push("/Admin");
 			})
 			.catch((error) => {
 				console.log(error);
@@ -189,7 +189,7 @@ function EditBook({ className }) {
 					<button type="submit" className="submit" onClick={onSubmit}>
 						ยืนยัน
 					</button>
-					<Link to="../HomeAdmin">
+					<Link to="/Admin">
 						<button type="cancel" className="cancel">
 							ยกเลิก
 						</button>

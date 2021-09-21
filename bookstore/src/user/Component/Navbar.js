@@ -33,7 +33,7 @@ function Navbar_list({ className }) {
 				</form>
 				<div className="nav-right">
 					<Link
-						to={localStorage.getItem("username") ? "#" : "/login"}
+						to={localStorage.getItem("username") ? "#" : "/Registration"}
 						className="login"
 						style={{ fontSize: "16px" }}>
 						{localStorage.getItem("username")
@@ -43,12 +43,12 @@ function Navbar_list({ className }) {
 					{localStorage.getItem("username") ? (
 						<Link
 							onClick={logOut}
-							to="/Home"
+							to="/User"
 							style={{ marginLeft: "2px", fontSize: "16px" }}>
 							Logout
 						</Link>
 					) : null}
-					<Link to="/Cart" className="cart" style={{ marginLeft: "8px" }}>
+					<Link to="/User/Cart" className="cart" style={{ marginLeft: "8px" }}>
 						<box-icon name="shopping-bag" color="#fff"></box-icon>
 					</Link>
 				</div>

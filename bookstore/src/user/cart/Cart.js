@@ -10,10 +10,10 @@ import { fetchReceipts } from "../../app/Receipt/actions";
 
 function ShowCart({ className }) {
 	const [user] = useState(JSON.parse(localStorage.getItem("InLogin")));
-
+	
 	const cart = useSelector((state) => state.receipts);
 	const dispatch = useDispatch();
-
+	
 	useEffect(() => {
 		const get = () =>{
 			axios.get(`/get_cart/${user._id}`).then((res) => {
@@ -52,7 +52,7 @@ function ShowCart({ className }) {
 						</tbody>
 					</table>
 					<div className="back">
-						<Link to="/List">
+						<Link to="/User">
 							<button className="btn btn-secondary">
 								<span>
 									<box-icon name="arrow-back" color="#fbf8f8"></box-icon>
@@ -76,7 +76,7 @@ function ShowCart({ className }) {
 						<h5>
 							ยอดรวมสุทธิ <span>{cart.Total} THB</span>
 						</h5>
-						<Link to="/Payment">
+						<Link to="/User/Payment">
 							<div className="btnsub">
 								<button className="btn btn-secondary">ดำเนินการชำระเงิน</button>
 							</div>

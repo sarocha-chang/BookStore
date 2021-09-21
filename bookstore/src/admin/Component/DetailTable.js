@@ -7,7 +7,7 @@ import axios from "axios";
 import React from "react";
 import "boxicons";
 
-import { deleteBook } from "../app/Book/actions";
+import { deleteBook } from "../../app/Book/actions";
 
 function DetailTable({ className, data }) {
   const [id] = React.useState(data._id);

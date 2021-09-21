@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import { fetchBooks } from "../app/Book/actions";
-
+import { fetchBooks } from "../../app/Book/actions";
 import DetailTable from "./DetailTable";
+
 function Books({ className }) {
 	const books = useSelector((state) => state.books);
 	const dispatch = useDispatch();

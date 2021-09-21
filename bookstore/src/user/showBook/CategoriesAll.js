@@ -46,7 +46,7 @@ export default function CategoriesAll({ data, size }) {
 				/>
 				<Card.Body>
 					<Link
-						to={`/BookDetail/${data._id}`}
+						to={`/User/BookDetail/${data._id}`}
 						style={{ textDecoration: "none" }}>
 						<Card.Title
 							style={{
@@ -69,7 +69,7 @@ export default function CategoriesAll({ data, size }) {
 					}}>
 					ราคา : {data.price} บาท
 				</Card.Text>
-				<Link to="/">
+				<Link to="/User">
 					<Button
 						variant="primary"
 						data-id={data._id}
