@@ -35,8 +35,16 @@ export default createReducer([], {
 			(receipt) => receipt.Buy.Buy_id === action.payload
 		);
 		state.Order.splice(receiptIndex, 1);
+		if(state.Order.length){
+			const calTotal = state.Order.map(receipt =>{
+				return receipt.Buy.total
+			})
+			state.Total = calTotal.reduce((a,b) => a+b)
+		}else{
+			state.Total = 0
+		}
 	},
     [searchReceipt]: (state, action) =>{
-        return state
+        return state = {}
     }
 });
