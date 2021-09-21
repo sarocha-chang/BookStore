@@ -1,11 +1,11 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import Sidebar from "./Sidebar";
-import ContainerAd from "./Container";
-import ShowBook from "./ShowBook";
-import AddBookAd from "./AddBook";
-import EditBookAd from "./EditBook";
+import Sidebar from "./Component/Sidebar";
+import ContainerAd from "./Component/Container";
+import ShowBook from "./Component/ShowBook";
+import AddBookAd from "./Component/AddBook";
+import EditBookAd from "./Component/EditBook";
 
 export default function Admin() {
 	return (

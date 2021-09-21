@@ -40,7 +40,7 @@ function Payment({ className }) {
         imageHeight: 200,
         imageAlt: "QR",
       }).then(() => {
-        history.push("/List");
+        history.push("/User");
       })
     } else {
       Swal.fire({
@@ -58,7 +58,7 @@ function Payment({ className }) {
         }
         axios.post("/payment",{cart,address}).then(() =>{
           dispatch(searchReceipt());
-          history.push("/List");
+          history.push("/User");
         }).catch((err) =>{
           console.log(err);
         })
@@ -218,7 +218,7 @@ function Payment({ className }) {
           </div>
           <div className="back">
             <div className="confirm">
-              <Link to="/List">
+              <Link to="/User/Cart">
                 <button className="btnBack">
                   <span>ย้อนกลับ</span>
                 </button>

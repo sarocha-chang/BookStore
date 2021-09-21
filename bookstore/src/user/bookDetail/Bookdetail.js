@@ -31,7 +31,7 @@ function BookDetail({ className }) {
 		axios.post(`/add_cart`, data)
 		.then(() => {
 			Swal.fire("Added success!").then(() => {
-				history.push("/List");
+				history.push("/User");
 			});
 		})
 		.catch((error) => {
@@ -88,7 +88,7 @@ function BookDetail({ className }) {
 						</div>
 					</div>
 					<div className="back">
-						<Link to="/List">
+						<Link to="/User">
 							<button className="btn btn-secondary">
 								<span>
 									<box-icon name="arrow-back" color="#fbf8f8"></box-icon>

@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 
-import { addBook } from "../app/Book/actions";
+import { addBook } from "../../app/Book/actions";
 
 function AddBook({ className }) {
 	const [name, setName] = useState("");
@@ -38,7 +38,7 @@ function AddBook({ className }) {
 			.then((book) => {
 				dispatch(addBook(book.data));
 				alertSubmit(imageUrl);
-				history.push("/HomeAdmin");
+				history.push("/Admin");
 			})
 			.catch((error) => {
 				console.log(error);
@@ -153,7 +153,7 @@ function AddBook({ className }) {
 					<button type="submit" className="submit" onClick={onSubmit}>
 						ยืนยัน
 					</button>
-					<Link to="./HomeAdmin">
+					<Link to="/Admin">
 						<button type="cancel" className="cancel">
 							ยกเลิก
 						</button>

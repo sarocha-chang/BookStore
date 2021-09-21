@@ -14,7 +14,7 @@ function Sidebar({ className }) {
 				<Link to="/Admin/AddBookAdmin" className="menu">
 					เพิ่มหนังสือใหม่
 				</Link>
-				<Link to="/" className="end">
+				<Link to="/User" className="end">
 					ออกจากระบบ
 				</Link>
 			</nav>
