@@ -27,13 +27,13 @@ function navbar_list({ className }) {
           <Button variant="outline-success" style={{color:"#fff",background:"#e65100",border:"none"}}>Search</Button>
         </form>
         <div className="nav-right" >
-          <Link to={localStorage.getItem("username") ? '#':'/login' }    className="login" >
+          <Link to={localStorage.getItem("username") ? '#':'/login' }    className="login"  style={{fontSize:"16px"}}>
           {localStorage.getItem("username") ?localStorage.getItem("username"):'เข้าสู่ระบบ' }   
           </Link>
           {localStorage.getItem("username")?
-          <Link onClick={logOut} to="/Home">Logout</Link>:null
+          <Link onClick={logOut} to="/Home"  style={{marginLeft:"2px",fontSize:"16px"}}>Logout</Link>:null
         }
-          <Link to="/Cart" className="cart">
+          <Link to="/Cart" className="cart" style={{marginLeft:"8px"}} >
             <box-icon name="shopping-bag" color="#fff" ></box-icon>
           </Link>
         </div>

@@ -11,11 +11,11 @@ export default function Navbar1() {
             <header>
                 <h3><a href="#">CHACHAX</a></h3>
                 <nav>
-                <Link to={localStorage.getItem("username") ? '#':'/login' }    className="login" >
+                <Link to={localStorage.getItem("username") ? '#':'/login' }    className="login" style={{marginRight:"5px",fontSize:"16px"}} >
           {localStorage.getItem("username") ?localStorage.getItem("username"):'เข้าสู่ระบบ' }   
           </Link>
           {localStorage.getItem("username")?
-          <Link onClick={logOut} to="/Home">Logout</Link>:null
+          <Link onClick={logOut} to="/Home" style={{marginLeft:"10px",fontSize:"16px"}}>Logout</Link>:null
         }
                 </nav>
             </header>
