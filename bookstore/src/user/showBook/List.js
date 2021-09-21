@@ -1,17 +1,14 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import { useDispatch, useSelector } from "react-redux";
-
+import styled from "styled-components";
 import Categories from "./Categories";
 import CategoriesAll from "./CategoriesAll";
-
 import { fetchBooks } from "../../app/Book/actions";
-
-export default function List() {
+function List({className}) {
 	const book = useSelector((state) => state.books);
-
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -21,8 +18,58 @@ export default function List() {
 	}, [dispatch]);
 
 	return (
-		<div className="App">
-			<Navbar
+		<div className={className}>
+			<div className="row">					
+			<h1>หนังสือมาใหม่</h1>
+						<div className="new">
+							{book ? (
+								book
+									.filter((x) => x.status === "มาใหม่")
+									.map((data) => {
+										return <Categories key={data._id} data={data} />;
+									})
+							) : (
+								<div>Loading books....</div>
+							)}
+						</div>
+					</div>
+					<div className="row">
+					<h1>ยอดนิยม</h1>
+				<div className="hit">
+							{book ? (
+								book
+									.filter((x) => x.status === "ยอดนิยม")
+									.map((data) => {
+										return <Categories key={data._id} data={data} />;
+									})
+							) : (
+								<div>Loading books....</div>
+							)}
+						</div>
+						</div>
+				</div>
+	);
+}
+export default styled(List)`
+	overflow: hidden;
+	width: 100%;
+	display: flex;
+	.row{
+		display: flex;
+		flex-direction: row;
+		padding-top: 2rem;
+		h1{
+		font-size: 30px;
+	}
+	}
+	.hit,.new{
+		width: 50%;
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: row;
+}
+`;
+			{/* <Navbar
 				bg="gray"
 				variant="light"
 				style={{ background: "#e65100", height: "60px" }}>
@@ -44,8 +91,8 @@ export default function List() {
 						</Nav.Link>
 					</Nav>
 				</Container>
-			</Navbar>
-			<Container style={{ paddingLeft: "65px" }}>
+			</Navbar> */}
+			{/* <Container style={{ paddingLeft: "65px" }}>
 				<Row>
 					<Col sm={6} className="newlist">
 						<h3 style={{ marginRight: "70px" }}>หนังสือมาใหม่</h3>
@@ -110,7 +157,4 @@ export default function List() {
 						)}
 					</Row>
 				</Col>
-			</Row>
-		</div>
-	);
-}
+			</Row> */}
