@@ -57,8 +57,8 @@ export default styled(CategoriesAll)`
     padding: 20px;
     text-align: center;
     width: 24rem;
-    margin-bottom: 5px;
-    .imgBookk {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;  
+            .imgBookk {
       padding: 5px;
       width: 150px;
       height: 220px;
