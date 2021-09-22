@@ -5,12 +5,20 @@ import { Link, useHistory } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useDispatch } from "react-redux";
+
+import { setCustomer,getCustomer } from "../../app/Customer/actions";
 
 function Login({ className }) {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
 	const history = useHistory();
+	const dispatch = useDispatch()
+
+	React.useEffect(() =>{
+		dispatch(getCustomer())
+	},[dispatch])
 
 	function onSubmit(event) {
 		event.preventDefault();
@@ -21,14 +29,13 @@ function Login({ className }) {
 		axios
 			.post("/login", data)
 			.then((response) => {
-				console.log("sss");
 				if (response.data.type === "admin") {
 					localStorage.setItem(`InLogin`, JSON.stringify(response.data));
-					localStorage.setItem(`username`, response.data.username);
+					dispatch(setCustomer(response.data))
 					history.push("/Admin");
 				} else {
 					localStorage.setItem(`InLogin`, JSON.stringify(response.data));
-					localStorage.setItem(`username`, response.data.username);
+					dispatch(setCustomer(response.data))
 					history.push("/List");
 				}
 			})

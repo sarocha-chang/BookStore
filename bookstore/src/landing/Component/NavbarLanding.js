@@ -1,11 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useDispatch,useSelector } from "react-redux"
+
+import { removeCustomer,setCustomer } from "../../app/Customer/actions"
 
 function NavbarLanding({className}) {
+	const dispatch = useDispatch()
+	const customer = useSelector((state) => state.customers)
+
 	function logOut() {
-		localStorage.removeItem("username");
+		localStorage.removeItem("InLogin")
+		dispatch(removeCustomer())
 	}
+
+	React.useEffect(() =>{
+		dispatch(setCustomer(JSON.parse(localStorage.getItem("InLogin"))))
+	},[dispatch])
+
+
 	return (
 		<header className={className}>
 			<h3>
@@ -13,17 +26,17 @@ function NavbarLanding({className}) {
 			</h3>
 			<nav>
 				<Link
-					to={localStorage.getItem("username") ? "/" : "/Registration"}
+					to={customer ? "/" : "/Registration"}
 					className="login"
 					style={{ padding: "10px 15px", fontSize: "16px" }}>
-					{localStorage.getItem("username")
-						? localStorage.getItem("username")
+					{customer
+						? customer.username
 						: "เข้าสู่ระบบ"}
 				</Link>
-				{localStorage.getItem("username") ? (
+				{customer ? (
 					<Link
 						onClick={logOut}
-						to="/User/List"
+						to="/"
 						style={{ padding: "10px 15px", fontSize: "16px" }}>
 						Logout
 					</Link>

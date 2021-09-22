@@ -1,15 +1,26 @@
+import React from "react";
 import { Button, FormControl } from "react-bootstrap";
 import "boxicons";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useDispatch,useSelector } from "react-redux"
 import "bootstrap/dist/css/bootstrap.min.css";
+
+import { removeCustomer,setCustomer } from "../../app/Customer/actions"
 
 function Navbar_list({ className }) {
 
+	const dispatch = useDispatch()
+	const customer = useSelector((state) => state.customers)
+
 	function logOut() {
-		localStorage.removeItem("username");
-		localStorage.removeItem("InLogin");
+		localStorage.removeItem("InLogin")
+		dispatch(removeCustomer())
 	}
+
+	React.useEffect(() =>{
+		dispatch(setCustomer(JSON.parse(localStorage.getItem("InLogin"))))
+	},[dispatch])
   
 	return (
 		<>
@@ -33,17 +44,17 @@ function Navbar_list({ className }) {
 				</form>
 				<div className="nav-right">
 					<Link
-						to={localStorage.getItem("username") ? "#" : "/Registration"}
+						to={customer ? "/" : "/Registration"}
 						className="login"
 						style={{ fontSize: "16px" ,marginTop: "2%"}}>
-						{localStorage.getItem("username")
-							? localStorage.getItem("username")
+						{customer
+							? customer.username
 							: "เข้าสู่ระบบ"}
 					</Link>
-					{localStorage.getItem("username") ? (
+					{customer ? (
 						<Link
 							onClick={logOut}
-							to="/User"
+							to="/"
 							style={{ fontSize: "16px" ,marginTop: "2%"}}>
 							Logout
 						</Link>
