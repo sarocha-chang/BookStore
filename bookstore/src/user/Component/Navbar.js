@@ -26,7 +26,6 @@ function Navbar_list({ className }) {
 						style={{ paddingRight: "140px" }}
 					/>
 					<Button
-						variant="outline-success"
 						style={{ color: "#fff", background: "#e65100", border: "none" }}>
 						Search
 					</Button>
