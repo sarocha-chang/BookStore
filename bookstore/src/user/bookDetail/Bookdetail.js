@@ -12,7 +12,6 @@ function BookDetail({ className }) {
 	const [book, setBook] = useState();
 	const { id } = useParams();
 	const [quantity, setQuantity] = useState(1);
-
 	const dispatch = useDispatch();
 	const history = useHistory();
 
@@ -36,14 +35,14 @@ function BookDetail({ className }) {
 		.then(() => {
 			axios.get(`/get_cart/${user._id}`).then((res) => {
 				dispatch(fetchReceipts(res.data));
-			});
-			Swal.fire("Added success!").then(() => {
-				history.push("/User");
-			});
+			});	
 		})
 		.catch((error) => {
 			Swal.fire("Fail Book is not enough!")
 			console.log(error);
+		});
+		Swal.fire("Added success!").then(() => {
+			history.push("/User");
 		});
 
 	}
