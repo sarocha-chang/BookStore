@@ -24,9 +24,10 @@ module.exports = {
 		} else if (find.length !== 0) {
 			let data = await Buy.find({ Book_id });
 			OldQuantity = data[0].quantity;
+			let QuantityReally = parseInt(OldQuantity) + parseInt(NewQuantity)
 			let update_buy = await Buy.findOneAndUpdate(
 				{ Book_id },
-				{ quantity: parseInt(OldQuantity) + parseInt(NewQuantity) },
+				{ quantity: QuantityReally,total:QuantityReally * book.price},
 				{ new: true },
 			);
 		} else {
