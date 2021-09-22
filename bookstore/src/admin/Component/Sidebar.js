@@ -77,7 +77,7 @@ export default styled(Sidebar)`
 	.end {
 		border: 1px solid #005488;
 		border-top: 1px solid #ffffff;
-		margin-top: 285%;
+		margin-top: 255%;
 		font-size: 20px;
 		color: #ffffff;
 		padding: 20px;

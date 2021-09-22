@@ -28,7 +28,7 @@ function Landing() {
 					</Carousel>
 				</section>
 				<Link to="/User">
-					<Button variant="primary">Go to site</Button>
+					<Button variant="primary">เข้าสู่เว็บไซต์</Button>
 				</Link>
 			</Container>
 		</div>
