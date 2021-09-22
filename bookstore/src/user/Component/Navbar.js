@@ -35,7 +35,7 @@ function Navbar_list({ className }) {
 					<Link
 						to={localStorage.getItem("username") ? "#" : "/Registration"}
 						className="login"
-						style={{ fontSize: "16px" }}>
+						style={{ fontSize: "16px" ,marginTop: "2%"}}>
 						{localStorage.getItem("username")
 							? localStorage.getItem("username")
 							: "เข้าสู่ระบบ"}
@@ -44,7 +44,7 @@ function Navbar_list({ className }) {
 						<Link
 							onClick={logOut}
 							to="/User"
-							style={{ marginLeft: "2px", fontSize: "16px" }}>
+							style={{ fontSize: "16px" ,marginTop: "2%"}}>
 							Logout
 						</Link>
 					) : null}
@@ -64,12 +64,10 @@ export default styled(Navbar_list)`
 		font-weight: normal;
 	}
 	.nav-right {
-		a.login {
-			margin-bottom: 1rem;
-			margin-right: 1rem;
-		}
-		.cart box-icon {
-			margin-top: 1rem;
+		display: flex;
+		margin-top: 0;
+		a{
+			padding: 10px 15px
 		}
 	}
 `;
