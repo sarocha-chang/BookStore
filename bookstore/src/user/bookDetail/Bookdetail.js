@@ -36,15 +36,16 @@ function BookDetail({ className }) {
 			axios.get(`/get_cart/${user._id}`).then((res) => {
 				dispatch(fetchReceipts(res.data));
 			});	
+		  Swal.fire("Added success!").then(() => {
+			history.push("/User");
+		  });
+
 		})
 		.catch((error) => {
 			Swal.fire("Fail Book is not enough!")
 			console.log(error);
 		});
-		Swal.fire("Added success!").then(() => {
-			history.push("/User");
-		});
-
+	
 	}
 
 	return (

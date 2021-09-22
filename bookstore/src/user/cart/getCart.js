@@ -9,7 +9,6 @@ import { deleteReceipt,updateReceipt } from "../../app/Receipt/actions"
 
 function Cart({ className, data }) {
   const [quantity,SetQuantity] = useState(data.Buy.quantity);
-
   const dispatch = useDispatch();
 
   function delete_item() {
@@ -49,6 +48,7 @@ function Cart({ className, data }) {
     dispatch(updateReceipt({id,quantity}))
     axios.put(`/change_quantity_in_cart/${id}`, data)
   }
+ 
 
   return (
     <tr className={className}>
