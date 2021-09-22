@@ -1,7 +1,7 @@
 import { Row, Col } from "react-bootstrap";
 import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import PropTypes from "prop-types";
 function navbar_list({ className }) {
   return (
     <>
@@ -53,6 +53,9 @@ function navbar_list({ className }) {
     </>
   );
 }
+navbar_list.propTypes = {
+	className: PropTypes.string.isRequired,
+};
 export default styled(navbar_list)`
   overflow: hidden;
   font-family: "IBM Plex Sans Thai", sans-serif;

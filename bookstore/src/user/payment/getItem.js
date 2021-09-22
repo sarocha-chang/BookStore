@@ -9,6 +9,7 @@ function Cart({ className, data }) {
     </h5>
   );
 }
+
 export default styled(Cart)`
   h5 {
     width: 20px;

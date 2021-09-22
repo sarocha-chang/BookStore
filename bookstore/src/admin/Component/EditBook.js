@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useParams, useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
-
+import PropTypes from "prop-types";
 import { updateBook } from "../../app/Book/actions";
 
 function EditBook({ className }) {
@@ -199,6 +199,9 @@ function EditBook({ className }) {
 		</div>
 	);
 }
+EditBook.propTypes = {
+	className: PropTypes.string.isRequired,
+};
 
 function alertSubmit(imageUrl) {
 	Swal.fire({

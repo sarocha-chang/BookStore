@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
-
+import PropTypes from 'prop-types';
 import { addBook } from "../../app/Book/actions";
 
 function AddBook({ className }) {
@@ -44,6 +44,10 @@ function AddBook({ className }) {
 				console.log(error);
 			});
 	}
+
+	AddBook.propTypes = {
+		className: PropTypes.string.isRequired
+	  };
 
 	return (
 		<div className={className}>

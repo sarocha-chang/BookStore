@@ -18,7 +18,9 @@ function ShowCart({ className }) {
 		const get = () =>{
 			axios.get(`/get_cart/${user._id}`).then((res) => {
 				dispatch(fetchReceipts(res.data));
-			});
+			}).catch(() =>{
+				
+			})
 		}
 		get()
 	}, [dispatch, user._id]);

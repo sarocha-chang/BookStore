@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { deleteReceipt,updateReceipt } from "../../app/Receipt/actions"
 
@@ -79,6 +79,10 @@ function Cart({ className, data }) {
     </tr>
   );
 }
+Cart.propTypes = {
+	className: PropTypes.string.isRequired,
+};
+
 export default styled(Cart)`
   img {
     width: 80px;
