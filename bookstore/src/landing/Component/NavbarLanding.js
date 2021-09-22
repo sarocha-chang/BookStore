@@ -36,7 +36,7 @@ function NavbarLanding({className}) {
 				{customer ? (
 					<Link
 						onClick={logOut}
-						to="/"
+						to="/User"
 						style={{ padding: "10px 15px", fontSize: "16px" }}>
 						Logout
 					</Link>
