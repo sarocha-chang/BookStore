@@ -140,6 +140,14 @@ function Register({ className }) {
 
 Register.propTypes = {
 	className: PropTypes.string.isRequired,
+	firstname: PropTypes.string.isRequired,
+	lastname: PropTypes.string.isRequired,
+	username: PropTypes.string.isRequired,
+	password: PropTypes.string.isRequired,
+	phone: PropTypes.string.isRequired,
+	email: PropTypes.string.isRequired,
+	onSubmit: PropTypes.func.isRequired,
+
 };
 
 export default styled(Register)`

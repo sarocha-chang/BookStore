@@ -7,8 +7,9 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { fetchReceipts } from "../../app/Receipt/actions";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
-function CategoriesAll({className, data, size }) {
+function CategoriesAll({className, data }) {
 	const [user] = React.useState(JSON.parse(localStorage.getItem("InLogin")));
 	const [quantity] = React.useState(1);
 	const dispatch = useDispatch();
@@ -44,6 +45,11 @@ function CategoriesAll({className, data, size }) {
       </div>
 			</div>
 	);
+}
+
+CategoriesAll.propTypes  = {
+  data: PropTypes.object.isRequired,
+  className: PropTypes.string.isRequired,
 }
 
 export default styled(CategoriesAll)`

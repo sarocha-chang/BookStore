@@ -201,6 +201,8 @@ function EditBook({ className }) {
 }
 EditBook.propTypes = {
 	className: PropTypes.string.isRequired,
+	book: PropTypes.object.isRequired,
+	onSubmit: PropTypes.func.isRequired,
 };
 
 function alertSubmit(imageUrl) {

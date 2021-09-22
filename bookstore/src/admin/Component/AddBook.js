@@ -179,6 +179,18 @@ function alertSubmit(imageUrl) {
 	});
 }
 
+AddBook.propTypes = {
+	className: PropTypes.string,
+	name: PropTypes.string,
+	author: PropTypes.string,
+	description: PropTypes.string,
+	type: PropTypes.string,
+	price: PropTypes.string,
+	quantity: PropTypes.string,
+	imageUrl: PropTypes.string,
+	status: PropTypes.string,
+}
+
 export default styled(AddBook)`
 	font-family: "IBM Plex Sans Thai", sans-serif;
 	h1.top {

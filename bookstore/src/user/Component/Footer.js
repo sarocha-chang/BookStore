@@ -56,6 +56,7 @@ function navbar_list({ className }) {
 navbar_list.propTypes = {
 	className: PropTypes.string.isRequired,
 };
+
 export default styled(navbar_list)`
   overflow: hidden;
   font-family: "IBM Plex Sans Thai", sans-serif;

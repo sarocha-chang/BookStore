@@ -1,13 +1,9 @@
 import React from "react";
-// import {
-// 	Button,
-// 	Col,
-// 	Card
-// } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 function Categories({ className, data }) {
   const [user] = React.useState(JSON.parse(localStorage.getItem("InLogin")));
@@ -40,6 +36,14 @@ function Categories({ className, data }) {
     </div>
   );
 }
+
+Categories.propTypes  = {
+  className: PropTypes.string.isRequired,
+  data: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+  quantity: PropTypes.number.isRequired,
+}
+
 export default styled(Categories)`
   overflow: hidden;
   margin-top: 15px;

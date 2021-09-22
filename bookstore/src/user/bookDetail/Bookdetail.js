@@ -113,6 +113,10 @@ function BookDetail({ className }) {
 }
 BookDetail.propTypes = {
 	className: PropTypes.string.isRequired,
+	book: PropTypes.object,
+	quantity: PropTypes.number,
+	user: PropTypes.object,
+	id: PropTypes.string,
 };
 
 export default styled(BookDetail)`

@@ -47,6 +47,7 @@ function NavbarLanding({className}) {
 }
 NavbarLanding.propTypes = {
 	className: PropTypes.string.isRequired,
+	customer: PropTypes.object.isRequired,
 };
 
 

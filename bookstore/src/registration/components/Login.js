@@ -104,6 +104,8 @@ function Login({ className }) {
 
 Login.propTypes = {
 	className: PropTypes.string.isRequired,
+	username: PropTypes.string.isRequired,
+	password: PropTypes.string.isRequired,
 };
 
 export default styled(Login)`

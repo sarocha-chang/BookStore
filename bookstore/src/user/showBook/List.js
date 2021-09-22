@@ -1,21 +1,18 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
  import { Container, Navbar, Nav } from "react-bootstrap";
  import "bootstrap/dist/css/bootstrap.min.css";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import PropTypes from "prop-types";
+
 import Categories from "./Categories";
 import CategoriesAll from "./CategoriesAll";
 import { fetchBooks } from "../../app/Book/actions";
-import PropTypes from "prop-types";
+
 function List({className}) {
 	const book = useSelector((state) => state.books);
 	const dispatch = useDispatch();
-function List({ className }) {
-  const book = useSelector((state) => state.books);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     axios.get("/show").then((res) => {
@@ -23,9 +20,6 @@ function List({ className }) {
     });
   }, [dispatch]);
 
-List.propTypes = {
-	className: PropTypes.string,
-};
   return (
 	  
     <div className={className}>
@@ -103,6 +97,12 @@ List.propTypes = {
     </div>
   );
 }
+
+List.propTypes = {
+	className: PropTypes.string,
+  books: PropTypes.object,
+};
+
 export default styled(List)`
   overflow: hidden;
   width: 100%;

@@ -92,7 +92,7 @@ function ShowCart({ className }) {
 
 ShowCart.propTypes = {
 	className: PropTypes.string,
-	cart: PropTypes.array,
+	cart: PropTypes.object,
 };
 
 export default styled(ShowCart)`

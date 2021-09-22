@@ -78,7 +78,6 @@ module.exports = {
 	},
 	delete_cart_item: (request, response) => {
 		const { id } = request.params;
-    console.log(id);
 		Buy.findByIdAndDelete(id).then((buy) => {
 			Receipt.findOneAndDelete({ Buy_id: id }).then((receipt) => {
 				response.status(200).json({ buy, receipt });

@@ -81,6 +81,7 @@ function Cart({ className, data }) {
 }
 Cart.propTypes = {
 	className: PropTypes.string.isRequired,
+  data: PropTypes.object.isRequired,
 };
 
 export default styled(Cart)`
