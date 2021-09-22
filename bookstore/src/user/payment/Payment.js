@@ -5,7 +5,7 @@ import Getitem from "./getItem";
 import axios from "axios";
 import { Link , useHistory} from "react-router-dom";
 import Swal from "sweetalert2";
-
+import PropTypes from "prop-types";
 import { fetchReceipts,searchReceipt } from "../../app/Receipt/actions";
 
 function Payment({ className }) {
@@ -233,6 +233,9 @@ function Payment({ className }) {
     </div>
   );
 }
+Payment.propTypes = {
+	className: PropTypes.string.isRequired,
+};
 
 export default styled(Payment)`
   overflow: hidden;

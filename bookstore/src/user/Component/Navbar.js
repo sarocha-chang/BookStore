@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch,useSelector } from "react-redux"
 import "bootstrap/dist/css/bootstrap.min.css";
+import PropTypes from "prop-types";
 
 import { removeCustomer,setCustomer } from "../../app/Customer/actions"
 
@@ -67,6 +68,9 @@ function Navbar_list({ className }) {
 		</>
 	);
 }
+Navbar_list.propTypes = {
+	className: PropTypes.string.isRequired,
+};
 export default styled(Navbar_list)`
 	font-family: "IBM Plex Sans Thai", sans-serif;
 	position: relative;

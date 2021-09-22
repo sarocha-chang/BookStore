@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch,useSelector } from "react-redux"
-
+import PropTypes from "prop-types";
 import { removeCustomer,setCustomer } from "../../app/Customer/actions"
 
 function NavbarLanding({className}) {
@@ -45,6 +45,10 @@ function NavbarLanding({className}) {
 		</header>
 	)
 }
+NavbarLanding.propTypes = {
+	className: PropTypes.string.isRequired,
+};
+
 
 export default styled(NavbarLanding)`
 	font-family: "IBM Plex Sans Thai", sans-serif;

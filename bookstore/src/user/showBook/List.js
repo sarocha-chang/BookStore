@@ -7,6 +7,7 @@ import styled from "styled-components";
 import Categories from "./Categories";
 import CategoriesAll from "./CategoriesAll";
 import { fetchBooks } from "../../app/Book/actions";
+import PropTypes from "prop-types";
 function List({className}) {
 	const book = useSelector((state) => state.books);
 	const dispatch = useDispatch();
@@ -111,6 +112,10 @@ function List({className}) {
 	</div>
 	);
 }
+
+List.propTypes = {
+	className: PropTypes.string,
+};
 export default styled(List)`
 	/* overflow: hidden;
 	width: 100%;

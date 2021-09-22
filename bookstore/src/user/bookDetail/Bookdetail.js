@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
-
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { fetchReceipts } from "../../app/Receipt/actions";
 
@@ -111,6 +111,9 @@ function BookDetail({ className }) {
 		</div>
 	);
 }
+BookDetail.propTypes = {
+	className: PropTypes.string.isRequired,
+};
 
 export default styled(BookDetail)`
 	font-family: "IBM Plex Sans Thai", sans-serif;
