@@ -56,7 +56,7 @@ function Navbar_list({ className }) {
 							onClick={logOut}
 							to="/"
 							style={{ fontSize: "16px" ,marginTop: "2%"}}>
-							Logout
+							ออกจากระบบ
 						</Link>
 					) : null}
 					<Link to="/User/Cart" className="cart" style={{ marginLeft: "8px" }}>

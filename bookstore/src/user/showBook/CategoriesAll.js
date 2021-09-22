@@ -1,39 +1,36 @@
 import React from "react";
-import { Button, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
-
 import { useDispatch } from "react-redux";
 import { fetchReceipts } from "../../app/Receipt/actions";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-function CategoriesAll({className, data }) {
-	const [user] = React.useState(JSON.parse(localStorage.getItem("InLogin")));
-	const [quantity] = React.useState(1);
-	const dispatch = useDispatch();
+function CategoriesAll({ className, data }) {
+  const [user] = React.useState(JSON.parse(localStorage.getItem("InLogin")));
+  const [quantity] = React.useState(1);
+  const dispatch = useDispatch();
 
+  function onSubmit(e, data_detail) {
+    e.preventDefault();
+    let data = {
+      Customer_id: user._id,
+      Book_id: data_detail,
+      quantity: quantity,
+    };
+    Swal.fire("Added success!").then(() => {
+      axios.post(`/add_cart`, data).then(() => {
+        axios.get(`/get_cart/${user._id}`).then((res) => {
+          dispatch(fetchReceipts(res.data));
+        });
+      });
+    });
+  }
 
-	function onSubmit(e, data_detail) {
-		e.preventDefault();
-		let data = {
-			Customer_id: user._id,
-			Book_id: data_detail,
-			quantity: quantity,
-		};
-		Swal.fire("Added success!").then(() => {
-			axios.post(`/add_cart`, data).then(() =>{
-				axios.get(`/get_cart/${user._id}`).then((res) => {
-					dispatch(fetchReceipts(res.data));
-				});
-			})
-		});
-	}
-
-	return (
-		<div className={className}>
-			      <div className="box">
+  return (
+    <div className={className}>
+      <div className="box">
         <img src={data.imageUrl} alt={data.name} className="imgBookk" />
         <Link to={`/User/BookDetail/${data._id}`}>
           <h2>{data.name}</h2>{" "}
@@ -43,14 +40,14 @@ function CategoriesAll({className, data }) {
           เพิ่มไปยังตระกร้า
         </button>
       </div>
-			</div>
-	);
+    </div>
+  );
 }
 
-CategoriesAll.propTypes  = {
+CategoriesAll.propTypes = {
   data: PropTypes.object.isRequired,
   className: PropTypes.string.isRequired,
-}
+};
 
 export default styled(CategoriesAll)`
   overflow: hidden;
@@ -70,8 +67,8 @@ export default styled(CategoriesAll)`
     }
     .imgBookk:hover {
       padding: 5px;
-      width: 210px;     
-       height: 290px;
+      width: 210px;
+      height: 290px;
       box-shadow: 0px 0px 6px black;
       transition: 0.7s;
     }
@@ -79,7 +76,7 @@ export default styled(CategoriesAll)`
       padding-top: 15px;
       font-size: 16px;
       font-weight: bold;
-}
+    }
     a {
       color: black;
       text-decoration: none;
@@ -91,14 +88,13 @@ export default styled(CategoriesAll)`
       font-size: 14px;
     }
     button {
-		font-size: 14px;
+      font-size: 14px;
       padding: 8px;
       border: 1px solid #005488;
       border-radius: 5px;
-      background-color: white;	
-	  bottom:500px;
-
-}
+      background-color: white;
+      bottom: 500px;
+    }
     button:hover {
       border: 1px solid white;
       background-color: #005488;
