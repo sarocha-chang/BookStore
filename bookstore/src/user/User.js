@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import List from "./showBook/List";
 import NavBar from "./Component/Navbar";
 import Container from "./Component/Container";
-import BookDetail from "./bookDetail/BookDetail";
+import BookDetail from "./bookDetail/Bookdetail";
 import Footer from "./Component/Footer";
 import Cart from "./cart/Cart";
 import Payment from "./payment/Payment";
