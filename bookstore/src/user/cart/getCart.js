@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import PropTypes from "prop-types";
@@ -9,7 +9,15 @@ import { deleteReceipt,updateReceipt } from "../../app/Receipt/actions"
 
 function Cart({ className, data }) {
   const [quantity,SetQuantity] = useState(data.Buy.quantity);
+  
   const dispatch = useDispatch();
+  
+  useEffect(() => {
+   SetQuantity(data.Buy.quantity)
+  },[data.Buy.quantity])
+
+
+
 
   function delete_item() {
     Swal.fire({
