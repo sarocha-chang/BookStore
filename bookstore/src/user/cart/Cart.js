@@ -2,7 +2,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import GetCart from "./getCart";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
@@ -10,6 +10,7 @@ import { fetchReceipts } from "../../app/Receipt/actions";
 
 function ShowCart({ className }) {
 	const [user] = useState(JSON.parse(localStorage.getItem("InLogin")));
+
 	
 	const cart = useSelector((state) => state.receipts);
 	const dispatch = useDispatch();
@@ -22,8 +23,12 @@ function ShowCart({ className }) {
 				
 			})
 		}
-		get()
-	}, [dispatch, user._id]);
+		if (user) get()
+	}, [dispatch,user]);
+	
+	if (!user) {
+		return <Redirect to="/" />
+	}
 
 	return (
 		<div className={className}>
