@@ -1,6 +1,5 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-
 import Container from "./components/ContainerForLogin";
 import Login from "./components/Login"
 import Register from "./components/Register"

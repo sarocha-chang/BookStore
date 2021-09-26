@@ -64,6 +64,7 @@ function DetailTable({ className, data }) {
 
 DetailTable.propTypes = {
   className: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default styled(DetailTable)`

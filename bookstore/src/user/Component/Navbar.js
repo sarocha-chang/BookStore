@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch,useSelector } from "react-redux"
 import "bootstrap/dist/css/bootstrap.min.css";
+import PropTypes from "prop-types";
 
 import { removeCustomer,setCustomer } from "../../app/Customer/actions"
 
@@ -37,7 +38,6 @@ function Navbar_list({ className }) {
 						style={{ paddingRight: "140px" }}
 					/>
 					<Button
-						variant="outline-success"
 						style={{ color: "#fff", background: "#e65100", border: "none" }}>
 						Search
 					</Button>
@@ -56,7 +56,7 @@ function Navbar_list({ className }) {
 							onClick={logOut}
 							to="/"
 							style={{ fontSize: "16px" ,marginTop: "2%"}}>
-							Logout
+							ออกจากระบบ
 						</Link>
 					) : null}
 					<Link to="/User/Cart" className="cart" style={{ marginLeft: "8px" }}>
@@ -67,6 +67,9 @@ function Navbar_list({ className }) {
 		</>
 	);
 }
+Navbar_list.propTypes = {
+	className: PropTypes.string.isRequired,
+};
 export default styled(Navbar_list)`
 	font-family: "IBM Plex Sans Thai", sans-serif;
 	position: relative;

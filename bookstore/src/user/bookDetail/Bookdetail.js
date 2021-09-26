@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
-
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { fetchReceipts } from "../../app/Receipt/actions";
 
@@ -12,7 +12,6 @@ function BookDetail({ className }) {
 	const [book, setBook] = useState();
 	const { id } = useParams();
 	const [quantity, setQuantity] = useState(1);
-
 	const dispatch = useDispatch();
 	const history = useHistory();
 
@@ -36,16 +35,17 @@ function BookDetail({ className }) {
 		.then(() => {
 			axios.get(`/get_cart/${user._id}`).then((res) => {
 				dispatch(fetchReceipts(res.data));
-			});
-			Swal.fire("Added success!").then(() => {
-				history.push("/User");
-			});
+			});	
+		  Swal.fire("Added success!").then(() => {
+			history.push("/User");
+		  });
+
 		})
 		.catch((error) => {
 			Swal.fire("Fail Book is not enough!")
 			console.log(error);
 		});
-
+	
 	}
 
 	return (
@@ -111,6 +111,13 @@ function BookDetail({ className }) {
 		</div>
 	);
 }
+BookDetail.propTypes = {
+	className: PropTypes.string.isRequired,
+	book: PropTypes.object,
+	quantity: PropTypes.number,
+	user: PropTypes.object,
+	id: PropTypes.string,
+};
 
 export default styled(BookDetail)`
 	font-family: "IBM Plex Sans Thai", sans-serif;

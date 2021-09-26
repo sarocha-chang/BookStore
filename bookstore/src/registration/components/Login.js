@@ -85,15 +85,15 @@ function Login({ className }) {
 							<div className="link">
 								<Link to="/Registration/Register">ยังไม่มีบัญชีผู้ใช้ ?</Link>
 							</div>
-
+							<button type="submit" className="Login" onClick={onSubmit}>
+								เข้าสู่ระบบ
+							</button>
+							
 							<Link to="/">
 								<button type="submit" className="Back">
 									กลับหน้าหลัก
 								</button>
 							</Link>
-							<button type="submit" className="Login" onClick={onSubmit}>
-								เข้าสู่ระบบ
-							</button>
 						</form>
 					</div>
 				</div>
@@ -104,6 +104,8 @@ function Login({ className }) {
 
 Login.propTypes = {
 	className: PropTypes.string.isRequired,
+	username: PropTypes.string.isRequired,
+	password: PropTypes.string.isRequired,
 };
 
 export default styled(Login)`

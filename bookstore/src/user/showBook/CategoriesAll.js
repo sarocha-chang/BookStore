@@ -1,103 +1,105 @@
 import React from "react";
-import { Button, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
-
 import { useDispatch } from "react-redux";
 import { fetchReceipts } from "../../app/Receipt/actions";
+import styled from "styled-components";
+import PropTypes from "prop-types";
 
-export default function CategoriesAll({ data, size }) {
-	const [user] = React.useState(JSON.parse(localStorage.getItem("InLogin")));
-	const [quantity] = React.useState(1);
-	const dispatch = useDispatch();
+function CategoriesAll({ className, data }) {
+  const [user] = React.useState(JSON.parse(localStorage.getItem("InLogin")));
+  const [quantity] = React.useState(1);
+  const dispatch = useDispatch();
 
+  function onSubmit(e, data_detail) {
+    e.preventDefault();
+    let data = {
+      Customer_id: user._id,
+      Book_id: data_detail,
+      quantity: quantity,
+    };
+    Swal.fire("Added success!").then(() => {
+      axios.post(`/add_cart`, data).then(() => {
+        axios.get(`/get_cart/${user._id}`).then((res) => {
+          dispatch(fetchReceipts(res.data));
+        });
+      });
+    });
+  }
 
-	function onSubmit(e, data_detail) {
-		e.preventDefault();
-		let data = {
-			Customer_id: user._id,
-			Book_id: data_detail,
-			quantity: quantity,
-		};
-		Swal.fire("Added success!").then(() => {
-			axios.post(`/add_cart`, data).then(() =>{
-				axios.get(`/get_cart/${user._id}`).then((res) => {
-					dispatch(fetchReceipts(res.data));
-				});
-			})
-		});
-	}
-
-	return (
-		<Col sm={3} key={data._id}>
-			<Card
-				border="gray"
-				style={{
-					width: "15rem",
-					height: "365px",
-					marginLeft: "55px",
-					marginTop: "20px",
-					WebkitBoxShadow: "0 12px 34px rgba(0, 0, 0, 0.12)",
-					MozBoxShadow: "0 12px 34px rgba(0, 0, 0, 0.12)",
-					boxShadow: " 0 12px 34px rgba(0, 0, 0, 0.12)",
-				}}>
-				<Card.Img
-					variant="top"
-					src={data.imageUrl}
-					style={{
-						width: "160px",
-						height: "180px",
-						marginTop: "10px",
-						marginLeft: "40px",
-					}}
-				/>
-				<Card.Body>
-					<Link
-						to={`/User/BookDetail/${data._id}`}
-						style={{ textDecoration: "none" }}>
-						<Card.Title
-							style={{
-								fontSize: "13px",
-								fontFamily: "IBM Plex Sans Thai",
-								color: "#000",
-								textDecoration: "none",
-								marginLeft: "30px",
-								fontWeight: "bold",
-							}}>
-							{data.name}
-						</Card.Title>
-					</Link>
-				</Card.Body>
-				<Card.Text
-					style={{
-						fontSize: "16px",
-						fontFamily: "IBM Plex Sans Thai",
-						marginLeft: "60px",
-					}}>
-					ราคา : {data.price} บาท
-				</Card.Text>
-				<Link to="/User">
-					<Button
-						variant="primary"
-						data-id={data._id}
-						onClick={(e) => onSubmit(e, data._id)}
-						className="btn"
-						style={{
-							fontSize: "14px",
-							fontFamily: "IBM Plex Sans Thai",
-							marginLeft: "35px",
-							marginBottom: "10px",
-							borderRadius: "10px",
-							paddingLeft: "35px",
-							paddingRight: "35px",
-							background: "none",
-							color: "#000",
-						}}>
-						เพิ่มไปยังตระกร้า
-					</Button>
-				</Link>
-			</Card>
-		</Col>
-	);
+  return (
+    <div className={className}>
+      <div className="box">
+        <img src={data.imageUrl} alt={data.name} className="imgBookk" />
+        <Link to={`/User/BookDetail/${data._id}`}>
+          <h2>{data.name}</h2>{" "}
+        </Link>
+        <h3>{data.price} บาท </h3>
+        <button onClick={(e) => onSubmit(e, data._id)}>
+          เพิ่มไปยังตระกร้า
+        </button>
+      </div>
+    </div>
+  );
 }
+
+CategoriesAll.propTypes = {
+  data: PropTypes.object.isRequired,
+  className: PropTypes.string.isRequired,
+};
+
+export default styled(CategoriesAll)`
+  overflow: hidden;
+  margin: 5px;
+  border-bottom: 1px solid #ccc;
+  div.box {
+    padding: 20px;
+    text-align: center;
+    width: 24rem;
+    margin-bottom: 5px;
+    .imgBookk {
+      padding: 5px;
+      width: 150px;
+      height: 220px;
+      box-shadow: 0px 0px 4px black;
+      transition: 0.5s;
+    }
+    .imgBookk:hover {
+      padding: 5px;
+      width: 210px;
+      height: 290px;
+      box-shadow: 0px 0px 6px black;
+      transition: 0.7s;
+    }
+    h2 {
+      padding-top: 15px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    a {
+      color: black;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    h3 {
+      font-size: 14px;
+    }
+    button {
+      font-size: 14px;
+      padding: 8px;
+      border: 1px solid #005488;
+      border-radius: 5px;
+      background-color: white;
+      bottom: 500px;
+    }
+    button:hover {
+      border: 1px solid white;
+      background-color: #005488;
+      color: white;
+      transition: 0.5s;
+    }
+  }
+`;

@@ -9,7 +9,7 @@ function Container({ children, className }) {
 
 Container.propTypes = {
   children: PropTypes.node.isRequired,
-  className: PropTypes.string.isRequired
+  className: PropTypes.string.isRequired,
 };
 
 export default styled(Container)`

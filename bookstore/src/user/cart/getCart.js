@@ -1,16 +1,23 @@
 import React from "react";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { deleteReceipt,updateReceipt } from "../../app/Receipt/actions"
 
 function Cart({ className, data }) {
   const [quantity,SetQuantity] = useState(data.Buy.quantity);
-
+  
   const dispatch = useDispatch();
+  
+  useEffect(() => {
+   SetQuantity(data.Buy.quantity)
+  },[data.Buy.quantity])
+
+
+
 
   function delete_item() {
     Swal.fire({
@@ -49,6 +56,7 @@ function Cart({ className, data }) {
     dispatch(updateReceipt({id,quantity}))
     axios.put(`/change_quantity_in_cart/${id}`, data)
   }
+ 
 
   return (
     <tr className={className}>
@@ -79,6 +87,11 @@ function Cart({ className, data }) {
     </tr>
   );
 }
+Cart.propTypes = {
+	className: PropTypes.string.isRequired,
+  data: PropTypes.object.isRequired,
+};
+
 export default styled(Cart)`
   img {
     width: 80px;

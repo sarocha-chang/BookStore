@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
-
+import PropTypes from 'prop-types';
 import { addBook } from "../../app/Book/actions";
 
 function AddBook({ className }) {
@@ -44,6 +44,10 @@ function AddBook({ className }) {
 				console.log(error);
 			});
 	}
+
+	AddBook.propTypes = {
+		className: PropTypes.string.isRequired
+	  };
 
 	return (
 		<div className={className}>
@@ -173,6 +177,18 @@ function alertSubmit(imageUrl) {
 		imageHeight: 200,
 		imageAlt: "Custom image",
 	});
+}
+
+AddBook.propTypes = {
+	className: PropTypes.string,
+	name: PropTypes.string,
+	author: PropTypes.string,
+	description: PropTypes.string,
+	type: PropTypes.string,
+	price: PropTypes.string,
+	quantity: PropTypes.string,
+	imageUrl: PropTypes.string,
+	status: PropTypes.string,
 }
 
 export default styled(AddBook)`

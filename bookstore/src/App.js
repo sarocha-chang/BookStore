@@ -1,6 +1,6 @@
 import { Switch, Route } from "react-router-dom";
 import "boxicons";
-
+import Footer from "./user/Component/Footer";
 import GlobalStyle from "./GlobalStyle";
 import Admin from "./admin/Admin";
 import Landing from "./landing/Landing";
@@ -26,6 +26,7 @@ function App() {
 
 				<Route path="/">
 					<Landing />
+					<Footer />
 				</Route>
 			</Switch>
 		</>
