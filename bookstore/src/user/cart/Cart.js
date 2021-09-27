@@ -5,7 +5,7 @@ import GetCart from "./getCart";
 import { Link, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-
+import Swal from "sweetalert2";
 import { fetchReceipts } from "../../app/Receipt/actions";
 
 function ShowCart({ className }) {
@@ -27,6 +27,10 @@ function ShowCart({ className }) {
 	}, [dispatch,user]);
 	
 	if (!user) {
+		Swal.fire({
+			icon: 'error',
+			title: 'Please login',
+		  })
 		return <Redirect to="/User" />
 	}
 

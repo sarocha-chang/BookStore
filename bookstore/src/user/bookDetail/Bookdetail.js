@@ -25,27 +25,34 @@ function BookDetail({ className }) {
 	}, [id]);
 
 	function onSubmit(event) {
+		
 		event.preventDefault();
-		let data = {
-			Customer_id: user._id,
-			Book_id: id,
-			quantity: quantity,
-		};
-		axios.post(`/add_cart`, data)
-		.then(() => {
-			axios.get(`/get_cart/${user._id}`).then((res) => {
-				dispatch(fetchReceipts(res.data));
-			});	
-		  Swal.fire("Added success!").then(() => {
-			history.push("/User");
-		  });
-
-		})
-		.catch((error) => {
-			Swal.fire("Fail Book is not enough!")
-			console.log(error);
-		});
+		if(user){
+			let data = {
+				Customer_id: user._id,
+				Book_id: id,
+				quantity: quantity,
+			};
+			axios.post(`/add_cart`, data)
+			.then(() => {
+				axios.get(`/get_cart/${user._id}`).then((res) => {
+					dispatch(fetchReceipts(res.data));
+				});	
+			  Swal.fire("Added success!").then(() => {
+				history.push("/User");
+			  });
 	
+			})
+			.catch((error) => {
+				Swal.fire("Fail Book is not enough!")
+				console.log(error);
+			});
+		}else{
+			Swal.fire({
+				icon: 'error',
+				text: 'Please login for into bookstore system',
+			  })
+		}
 	}
 
 	return (

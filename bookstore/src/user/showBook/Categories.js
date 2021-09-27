@@ -11,14 +11,21 @@ function Categories({ className, data }) {
 
   function onSubmit(e, data_detail) {
     e.preventDefault();
-    let data = {
-      Customer_id: user._id,
-      Book_id: data_detail,
-      quantity: quantity,
-    };
-    Swal.fire("Added success!").then(() => {
-      axios.post(`/add_cart`, data);
-    });
+    if (user) {
+      let data = {
+        Customer_id: user._id,
+        Book_id: data_detail,
+        quantity: quantity,
+      };
+      Swal.fire("Added success!").then(() => {
+        axios.post(`/add_cart`, data);
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        text: "Please login for into bookstore system",
+      });
+    }
   }
 
   return (
@@ -37,12 +44,12 @@ function Categories({ className, data }) {
   );
 }
 
-Categories.propTypes  = {
+Categories.propTypes = {
   className: PropTypes.string.isRequired,
   data: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
   quantity: PropTypes.number.isRequired,
-}
+};
 
 export default styled(Categories)`
   overflow: hidden;

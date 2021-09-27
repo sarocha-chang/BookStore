@@ -17,6 +17,7 @@ export default function User() {
 				<Container>
 					<BookDetail />
 				</Container>
+				<Footer />
 			</Route>
 
 			<Route path="/User/Cart">
@@ -29,16 +30,17 @@ export default function User() {
 			<Route path="/User/Payment">
 				<NavBar />
 				<Container>
-					<Payment />
+					<Payment/>
 				</Container>
+				<Footer />
 			</Route>
 
 			<Route path="/User">
-				<NavBar />
+				<NavBar/>
 				<Container>
 					<List />
 				</Container>
-				<Footer />
+				<Footer/>
 			</Route>
 		</Switch>
 	);

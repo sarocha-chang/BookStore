@@ -30,6 +30,10 @@ function Payment({ className }) {
 	}, [dispatch, user]);
 
   if (!user) {
+    Swal.fire({
+      icon: "error",
+      text: "Please Login",
+    });
 		return <Redirect to="/User" />
 	}
   
