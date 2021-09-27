@@ -27,7 +27,7 @@ function ShowCart({ className }) {
 	}, [dispatch,user]);
 	
 	if (!user) {
-		return <Redirect to="/" />
+		return <Redirect to="/User" />
 	}
 
 	return (
