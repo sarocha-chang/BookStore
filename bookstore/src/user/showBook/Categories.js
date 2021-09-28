@@ -23,7 +23,7 @@ function Categories({ className, data }) {
     } else {
       Swal.fire({
         icon: "error",
-        text: "กรุณาล็อคอินก่อนทำรายการ",
+        title: "กรุณาล็อคอินก่อนทำรายการ",
       });
     }
   }
