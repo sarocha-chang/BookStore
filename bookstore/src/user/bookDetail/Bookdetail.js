@@ -38,19 +38,19 @@ function BookDetail({ className }) {
 				axios.get(`/get_cart/${user._id}`).then((res) => {
 					dispatch(fetchReceipts(res.data));
 				});	
-			  Swal.fire("Added success!").then(() => {
+			  Swal.fire("เพิ่มสินค้าเสร็จสิ้น").then(() => {
 				history.push("/User");
 			  });
 	
 			})
 			.catch((error) => {
-				Swal.fire("Fail Book is not enough!")
+				Swal.fire("หนังสือในคลังไม่พอที่คุณต้องการซื้อ โปรดใส่จำนวนที่น้อยกว่านี้")
 				console.log(error);
 			});
 		}else{
 			Swal.fire({
 				icon: 'error',
-				text: 'Please login for into bookstore system',
+				text: 'กรุณาล็อคอินก่อนทำรายการ',
 			  })
 		}
 	}

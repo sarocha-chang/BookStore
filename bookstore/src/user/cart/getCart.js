@@ -21,21 +21,22 @@ function Cart({ className, data }) {
 
   function delete_item() {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "โปรดยืนยัน",
+      text: "ต้องการที่ละลบรายการนี้ออกจากตะกร้าหรือไม่",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "ใช่",
+      cancelButtonText: "ไม่",
     }).then((result) => {
       if (result.isConfirmed) {
         axios
         .delete(`/delete_cart_item/${data.Buy.Buy_id}`)
         .then(() => {
           Swal.fire(
-            "Deleted!",
-            "Your file has been deleted.",
+            "ลบเสร็จสิ้น",
+            "คุณได้ลบรายการนี้เรียบร้อยแล้ว",
             "success"
             ).then(() => {
               dispatch(deleteReceipt(data.Buy.Buy_id))

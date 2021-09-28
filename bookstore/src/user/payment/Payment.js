@@ -32,7 +32,7 @@ function Payment({ className }) {
   if (!user) {
     Swal.fire({
       icon: "error",
-      text: "Please Login",
+      text: "กรุณาล็อคอินก่อนทำรายการ",
     });
 		return <Redirect to="/User" />
 	}

@@ -17,13 +17,13 @@ function Categories({ className, data }) {
         Book_id: data_detail,
         quantity: quantity,
       };
-      Swal.fire("Added success!").then(() => {
+      Swal.fire("เพิ่มสินค้าเสร็จสิ้น").then(() => {
         axios.post(`/add_cart`, data);
       });
     } else {
       Swal.fire({
         icon: "error",
-        text: "Please login for into bookstore system",
+        text: "กรุณาล็อคอินก่อนทำรายการ",
       });
     }
   }

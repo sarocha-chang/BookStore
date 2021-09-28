@@ -29,7 +29,7 @@ function ShowCart({ className }) {
 	if (!user) {
 		Swal.fire({
 			icon: 'error',
-			title: 'Please login',
+			title: 'กรุณาล็อคอินก่อนทำรายการ',
 		  })
 		return <Redirect to="/User" />
 	}

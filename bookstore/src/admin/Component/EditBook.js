@@ -207,8 +207,8 @@ EditBook.propTypes = {
 
 function alertSubmit(imageUrl) {
 	Swal.fire({
-		title: "Success!",
-		text: "Your book has been updated.",
+		title: "แก้ไขสำเร็จ",
+		text: "แก้ไขหนังสือในคลังเรียบร้อยแล้ว",
 		confirmButtonColor: "#005488",
 		imageUrl: imageUrl,
 		imageHeight: 200,
