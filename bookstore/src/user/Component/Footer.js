@@ -43,7 +43,7 @@ function navbar_list({ className }) {
 				</div>
 				<span style={{
 					fontSize: "20px",
-				}}> :chachax_bookstore</span>
+				}}> chachax_bookstore</span>
 
               </li>
             </ul>

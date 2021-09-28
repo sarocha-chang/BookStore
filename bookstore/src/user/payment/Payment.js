@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Getitem from "./getItem";
 import axios from "axios";
-import { Link , useHistory} from "react-router-dom";
+import { Link , useHistory, Redirect} from "react-router-dom";
 import Swal from "sweetalert2";
 import PropTypes from "prop-types";
 import { fetchReceipts,searchReceipt } from "../../app/Receipt/actions";
@@ -27,8 +27,15 @@ function Payment({ className }) {
     axios.get(`/get_cart/${user._id}`).then((res) => {
       dispatch(fetchReceipts(res.data));
 		});
-	}, [dispatch, user._id,]);
-  
+	}, [dispatch, user]);
+
+  if (!user) {
+    Swal.fire({
+      icon: "error",
+      text: "กรุณาล็อคอินก่อนทำรายการ",
+    });
+		return <Redirect to="/User" />
+	}
   
   function onSubmit() {
     if (typePay === "promt") {

@@ -14,18 +14,25 @@ function CategoriesAll({ className, data }) {
 
   function onSubmit(e, data_detail) {
     e.preventDefault();
-    let data = {
-      Customer_id: user._id,
-      Book_id: data_detail,
-      quantity: quantity,
-    };
-    Swal.fire("Added success!").then(() => {
-      axios.post(`/add_cart`, data).then(() => {
-        axios.get(`/get_cart/${user._id}`).then((res) => {
-          dispatch(fetchReceipts(res.data));
+    if (user) {
+      let data = {
+        Customer_id: user._id,
+        Book_id: data_detail,
+        quantity: quantity,
+      };
+      Swal.fire("เพิ่มสินค้าเสร็จสิ้น").then(() => {
+        axios.post(`/add_cart`, data).then(() => {
+          axios.get(`/get_cart/${user._id}`).then((res) => {
+            dispatch(fetchReceipts(res.data));
+          });
         });
       });
-    });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "กรุณาล็อคอินก่อนทำรายการ",
+      });
+    }
   }
 
   return (

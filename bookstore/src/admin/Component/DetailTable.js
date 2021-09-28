@@ -16,16 +16,17 @@ function DetailTable({ className, data }) {
 
   function delete_book() {
     return Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "โปรดยืนยัน",
+      text: "ต้องการลบหนังสือเล่มนี้ออกจากคลังหรือไม่",
       icon: "warning",
       showCancelButton: true,
+      cancelButtonText: "ไม่",
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "ใช่",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        Swal.fire("ลบสำเร็จ", "ลบหนังสือในคลังเรียบร้อยแล้ว", "success");
         axios.delete(`/delete_book/${id}`).then(() => {
             dispatch(deleteBook({_id :id}))
         });

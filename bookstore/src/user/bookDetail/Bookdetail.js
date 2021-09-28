@@ -25,27 +25,34 @@ function BookDetail({ className }) {
 	}, [id]);
 
 	function onSubmit(event) {
+		
 		event.preventDefault();
-		let data = {
-			Customer_id: user._id,
-			Book_id: id,
-			quantity: quantity,
-		};
-		axios.post(`/add_cart`, data)
-		.then(() => {
-			axios.get(`/get_cart/${user._id}`).then((res) => {
-				dispatch(fetchReceipts(res.data));
-			});	
-		  Swal.fire("Added success!").then(() => {
-			history.push("/User");
-		  });
-
-		})
-		.catch((error) => {
-			Swal.fire("Fail Book is not enough!")
-			console.log(error);
-		});
+		if(user){
+			let data = {
+				Customer_id: user._id,
+				Book_id: id,
+				quantity: quantity,
+			};
+			axios.post(`/add_cart`, data)
+			.then(() => {
+				axios.get(`/get_cart/${user._id}`).then((res) => {
+					dispatch(fetchReceipts(res.data));
+				});	
+			  Swal.fire("เพิ่มสินค้าเสร็จสิ้น").then(() => {
+				history.push("/User");
+			  });
 	
+			})
+			.catch((error) => {
+				Swal.fire("หนังสือในคลังไม่พอที่คุณต้องการซื้อ โปรดใส่จำนวนที่น้อยกว่านี้")
+				console.log(error);
+			});
+		}else{
+			Swal.fire({
+				icon: 'error',
+				title: 'กรุณาล็อคอินก่อนทำรายการ',
+			  })
+		}
 	}
 
 	return (
