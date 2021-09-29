@@ -39,14 +39,14 @@ function Register({ className }) {
 	}
 	function alertSubmit() {
 		Swal.fire({
-			title: "Success!",
-			text: "Register success",
+			title: "ลงทะเบียนสำเร็จ",
+			text: "ท่านได้สมัครเป็นสมาชิกเรียบร้อย",
 			confirmButtonColor: "#005488",
 		});
 	}
 	function alertError() {
 		Swal.fire({
-			title: "Error",
+			icon: "error",
 			text: "กรุณากรอกข้อมูลให้ถูกต้อง",
 			confirmButtonColor: "#005488",
 		});

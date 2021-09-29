@@ -46,8 +46,8 @@ function Login({ className }) {
 
 	function alertError(error) {
 		Swal.fire({
-			title: "Email or Password incorrect",
-			text: "Email or Password incorrect",
+			icon: "error",
+			text: "อีเมลล์ หรือ รหัสผ่านของท่าน ไม่ถูกต้อง",
 			confirmButtonColor: "#005488",
 		});
 	}
@@ -75,7 +75,7 @@ function Login({ className }) {
 							<div className="input-group">
 								<input
 									name="name"
-									type="text"
+									type="password"
 									id="name"
 									placeholder="รหัสผ่าน"
 									onChange={(event) => setPassword(event.target.value)}
