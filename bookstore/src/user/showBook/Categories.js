@@ -33,7 +33,7 @@ function Categories({ className, data }) {
       <div className="box">
         <img src={data.imageUrl} alt={data.name} className="imgBookk" />
         <Link to={`/User/BookDetail/${data._id}`}>
-          <h2>{data.name}</h2>{" "}
+          <h2>{data.name}</h2>
         </Link>
         <h3>{data.price} บาท </h3>
         <button onClick={(e) => onSubmit(e, data._id)}>
