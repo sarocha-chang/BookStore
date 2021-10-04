@@ -9,7 +9,6 @@ import { updateBook } from "../../app/Book/actions";
 
 function EditBook({ className }) {
 	const { id } = useParams();
-
 	const [name, setName] = useState("");
 	const [author, setAuthor] = useState("");
 	const [description, setDescription] = useState("");
@@ -64,7 +63,7 @@ function EditBook({ className }) {
 			.then((response) => {
 				dispatch(updateBook(response.data));
 				alertSubmit(imageUrl);
-				history.push("/Admin");
+				history.push("/admin");
 			})
 			.catch((error) => {
 				console.log(error);
@@ -189,7 +188,7 @@ function EditBook({ className }) {
 					<button type="submit" className="submit" onClick={onSubmit}>
 						ยืนยัน
 					</button>
-					<Link to="/Admin">
+					<Link to="/admin">
 						<button type="cancel" className="cancel">
 							ยกเลิก
 						</button>

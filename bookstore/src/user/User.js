@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import {Switch, Route} from "react-router-dom";
 
 import List from "./showBook/List";
 import NavBar from "./Component/Navbar";
@@ -12,7 +12,7 @@ import Payment from "./payment/Payment";
 export default function User() {
 	return (
 		<Switch>
-			<Route path="/User/BookDetail/:id">
+			<Route path="/book-detail/:id">
 				<NavBar />
 				<Container>
 					<BookDetail />
@@ -20,27 +20,27 @@ export default function User() {
 				<Footer />
 			</Route>
 
-			<Route path="/User/Cart">
+			<Route path="/cart">
 				<NavBar />
 				<Container>
 					<Cart />
 				</Container>
 			</Route>
 
-			<Route path="/User/Payment">
+			<Route path="/payment">
 				<NavBar />
 				<Container>
-					<Payment/>
+					<Payment />
 				</Container>
 				<Footer />
 			</Route>
 
-			<Route path="/User">
-				<NavBar/>
+			<Route path="/home">
+				<NavBar />
 				<Container>
 					<List />
 				</Container>
-				<Footer/>
+				<Footer />
 			</Route>
 		</Switch>
 	);

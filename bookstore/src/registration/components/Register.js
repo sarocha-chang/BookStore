@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Link, useHistory } from "react-router-dom";
-import { useState } from "react";
+import {Link, useHistory} from "react-router-dom";
+import {useState} from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-function Register({ className }) {
+function Register({className}) {
 	const [firstname, setFirstname] = useState("");
 	const [lastname, setLastname] = useState("");
 	const [username, setUsername] = useState("");
@@ -31,7 +31,7 @@ function Register({ className }) {
 			.then((response) => {
 				console.log(response.data);
 				alertSubmit();
-				history.push("/Registration");
+				history.push("/login");
 			})
 			.catch((error) => {
 				alertError();
@@ -119,9 +119,9 @@ function Register({ className }) {
 									onChange={(event) => setEmail(event.target.value)}
 								/>
 							</div>
-							<Link to="/">
+							<Link to="/login">
 								<button type="submit" className="Back">
-									กลับหน้าหลัก
+									ย้อนกลับ
 								</button>
 							</Link>
 							<button type="submit" className="Login" onClick={onSubmit}>
@@ -147,7 +147,6 @@ Register.propTypes = {
 	phone: PropTypes.string.isRequired,
 	email: PropTypes.string.isRequired,
 	onSubmit: PropTypes.func.isRequired,
-
 };
 
 export default styled(Register)`

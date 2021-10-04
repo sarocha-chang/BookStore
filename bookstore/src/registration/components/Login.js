@@ -1,24 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Link, useHistory } from "react-router-dom";
-import { useState } from "react";
+import {Link, useHistory} from "react-router-dom";
+import {useState} from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useDispatch } from "react-redux";
+import {useDispatch} from "react-redux";
 
-import { setCustomer,getCustomer } from "../../app/Customer/actions";
+import {setCustomer, getCustomer} from "../../app/Customer/actions";
 
-function Login({ className }) {
+function Login({className}) {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
 	const history = useHistory();
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
 
-	React.useEffect(() =>{
-		dispatch(getCustomer())
-	},[dispatch])
+	React.useEffect(() => {
+		dispatch(getCustomer());
+	}, [dispatch]);
 
 	function onSubmit(event) {
 		event.preventDefault();
@@ -31,12 +31,12 @@ function Login({ className }) {
 			.then((response) => {
 				if (response.data.type === "admin") {
 					localStorage.setItem(`InLogin`, JSON.stringify(response.data));
-					dispatch(setCustomer(response.data))
-					history.push("/Admin");
+					dispatch(setCustomer(response.data));
+					history.push("/admin");
 				} else {
 					localStorage.setItem(`InLogin`, JSON.stringify(response.data));
-					dispatch(setCustomer(response.data))
-					history.push("/List");
+					dispatch(setCustomer(response.data));
+					history.push("/home");
 				}
 			})
 			.catch((error) => {
@@ -83,12 +83,12 @@ function Login({ className }) {
 							</div>
 
 							<div className="link">
-								<Link to="/Registration/Register">ยังไม่มีบัญชีผู้ใช้ ?</Link>
+								<Link to="/register">ยังไม่มีบัญชีผู้ใช้ ?</Link>
 							</div>
 							<button type="submit" className="Login" onClick={onSubmit}>
 								เข้าสู่ระบบ
 							</button>
-							
+
 							<Link to="/">
 								<button type="submit" className="Back">
 									กลับหน้าหลัก

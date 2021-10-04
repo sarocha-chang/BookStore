@@ -34,7 +34,7 @@ function Payment({ className }) {
       icon: "error",
       text: "กรุณาล็อคอินก่อนทำรายการ",
     });
-		return <Redirect to="/User" />
+		return <Redirect to="/home" />
 	}
   
   function onSubmit() {
@@ -47,7 +47,7 @@ function Payment({ className }) {
         imageHeight: 200,
         imageAlt: "QR",
       }).then(() => {
-        history.push("/User");
+        history.push("/home");
       })
     } else {
       Swal.fire({
@@ -65,7 +65,7 @@ function Payment({ className }) {
         }
         axios.post("/payment",{cart,address}).then(() =>{
           dispatch(searchReceipt());
-          history.push("/User");
+          history.push("/home");
         }).catch((err) =>{
           console.log(err);
         })
@@ -225,7 +225,7 @@ function Payment({ className }) {
           </div>
           <div className="back">
             <div className="confirm">
-              <Link to="/User/Cart">
+              <Link to="/cart">
                 <button className="btnBack">
                   <span>ย้อนกลับ</span>
                 </button>

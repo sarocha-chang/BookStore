@@ -38,7 +38,7 @@ function AddBook({ className }) {
 			.then((book) => {
 				dispatch(addBook(book.data));
 				alertSubmit(imageUrl);
-				history.push("/Admin");
+				history.push("/admin");
 			})
 			.catch((error) => {
 				console.log(error);
@@ -157,7 +157,7 @@ function AddBook({ className }) {
 					<button type="submit" className="submit" onClick={onSubmit}>
 						ยืนยัน
 					</button>
-					<Link to="/Admin">
+					<Link to="/admin">
 						<button type="cancel" className="cancel">
 							ยกเลิก
 						</button>

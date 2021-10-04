@@ -1,30 +1,30 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
 
-import { removeCustomer } from "../../app/Customer/actions";
-function Sidebar({ className }) {
+import {removeCustomer} from "../../app/Customer/actions";
+function Sidebar({className}) {
 	const dispatch = useDispatch();
 
 	function logOut() {
-		localStorage.removeItem("InLogin")
-		dispatch(removeCustomer())
+		localStorage.removeItem("InLogin");
+		dispatch(removeCustomer());
 	}
 
 	return (
 		<>
 			<nav className={className}>
-				<Link to="/" className="brand">
+				<Link to="/admin" className="brand">
 					CHACHAX
 				</Link>
-				<Link to="/Admin" className="menu">
+				<Link to="/admin" className="menu">
 					ข้อมูลหนังสือ
 				</Link>
-				<Link to="/Admin/AddBookAdmin" className="menu">
+				<Link to="/admin/add-book" className="menu">
 					เพิ่มหนังสือใหม่
 				</Link>
-				<Link to="/User" className="end" onClick={logOut}>
+				<Link to="/home" className="end" onClick={logOut}>
 					ออกจากระบบ
 				</Link>
 			</nav>

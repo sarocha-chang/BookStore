@@ -31,7 +31,7 @@ function ShowCart({ className }) {
 			icon: 'error',
 			title: 'กรุณาล็อคอินก่อนทำรายการ',
 		  })
-		return <Redirect to="/User" />
+		return <Redirect to="/home" />
 	}
 
 	return (
@@ -63,7 +63,7 @@ function ShowCart({ className }) {
 						</tbody>
 					</table>
 					<div className="back">
-						<Link to="/User">
+						<Link to="/home">
 							<button className="btn btn-secondary">
 								<span>
 									<box-icon name="arrow-back" color="#fbf8f8"></box-icon>
@@ -87,7 +87,7 @@ function ShowCart({ className }) {
 						<h5>
 							ยอดรวมสุทธิ <span>{cart.Total} THB</span>
 						</h5>
-						<Link to="/User/Payment">
+						<Link to="/payment">
 							<div className="btnsub">
 								<button className="btn btn-secondary">ดำเนินการชำระเงิน</button>
 							</div>
