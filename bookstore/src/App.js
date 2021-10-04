@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import {Switch, Route} from "react-router-dom";
 import "boxicons";
 import Footer from "./user/Component/Footer";
 import GlobalStyle from "./GlobalStyle";
@@ -12,21 +12,18 @@ function App() {
 		<>
 			<GlobalStyle />
 			<Switch>
-				<Route path="/User">
-					<User />
-				</Route>
-
-				<Route path="/Registration">
-					<Registration />
-				</Route>
-
-				<Route path="/Admin">
+				<Route path="/admin">
 					<Admin />
 				</Route>
 
-				<Route path="/">
+				<Route path="/" exact>
 					<Landing />
 					<Footer />
+				</Route>
+
+				<Route path="">
+					<User />
+					<Registration />
 				</Route>
 			</Switch>
 		</>

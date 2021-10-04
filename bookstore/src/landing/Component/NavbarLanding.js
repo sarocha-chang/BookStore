@@ -1,23 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import styled from "styled-components";
-import { useDispatch,useSelector } from "react-redux"
+import {useDispatch, useSelector} from "react-redux";
 import PropTypes from "prop-types";
-import { removeCustomer,setCustomer } from "../../app/Customer/actions"
+import {removeCustomer, setCustomer} from "../../app/Customer/actions";
 
 function NavbarLanding({className}) {
-	const dispatch = useDispatch()
-	const customer = useSelector((state) => state.customers)
+	const dispatch = useDispatch();
+	const customer = useSelector((state) => state.customers);
 
 	function logOut() {
-		localStorage.removeItem("InLogin")
-		dispatch(removeCustomer())
+		localStorage.removeItem("InLogin");
+		dispatch(removeCustomer());
 	}
 
-	React.useEffect(() =>{
-		dispatch(setCustomer(JSON.parse(localStorage.getItem("InLogin"))))
-	},[dispatch])
-
+	React.useEffect(() => {
+		dispatch(setCustomer(JSON.parse(localStorage.getItem("InLogin"))));
+	}, [dispatch]);
 
 	return (
 		<header className={className}>
@@ -26,37 +25,30 @@ function NavbarLanding({className}) {
 			</h3>
 			<nav>
 				<Link
-					to={customer ? "/" : "/Registration"}
+					to={customer ? "/" : "/login"}
 					className="login"
-					style={{ padding: "10px 15px", fontSize: "16px" }}>
-					{customer
-						? customer.username
-						: "เข้าสู่ระบบ"}
+					style={{padding: "10px 15px", fontSize: "16px"}}>
+					{customer ? customer.username : "เข้าสู่ระบบ"}
 				</Link>
 				{customer ? (
-					<Link
-						onClick={logOut}
-						to="/User"
-						style={{ padding: "10px 15px", fontSize: "16px" }}>
+					<Link onClick={logOut} to="/home" style={{padding: "10px 15px", fontSize: "16px"}}>
 						Logout
 					</Link>
 				) : null}
 			</nav>
 		</header>
-	)
+	);
 }
 NavbarLanding.propTypes = {
 	className: PropTypes.string.isRequired,
 	customer: PropTypes.object.isRequired,
 };
 
-
 export default styled(NavbarLanding)`
 	font-family: "IBM Plex Sans Thai", sans-serif;
-	h3{
+	h3 {
 		margin-top: 0.7%;
 		font-size: 26px;
 		font-weight: normal;
 	}
-
-`
+`;

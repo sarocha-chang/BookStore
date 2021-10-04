@@ -1,28 +1,27 @@
 import React from "react";
-import { Button, FormControl } from "react-bootstrap";
+import {Button, FormControl} from "react-bootstrap";
 import "boxicons";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import styled from "styled-components";
-import { useDispatch,useSelector } from "react-redux"
+import {useDispatch, useSelector} from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import PropTypes from "prop-types";
 
-import { removeCustomer,setCustomer } from "../../app/Customer/actions"
+import {removeCustomer, setCustomer} from "../../app/Customer/actions";
 
-function Navbar_list({ className }) {
-
-	const dispatch = useDispatch()
-	const customer = useSelector((state) => state.customers)
+function Navbar_list({className}) {
+	const dispatch = useDispatch();
+	const customer = useSelector((state) => state.customers);
 
 	function logOut() {
-		localStorage.removeItem("InLogin")
-		dispatch(removeCustomer())
+		localStorage.removeItem("InLogin");
+		dispatch(removeCustomer());
 	}
 
-	React.useEffect(() =>{
-		dispatch(setCustomer(JSON.parse(localStorage.getItem("InLogin"))))
-	},[dispatch])
-  
+	React.useEffect(() => {
+		dispatch(setCustomer(JSON.parse(localStorage.getItem("InLogin"))));
+	}, [dispatch]);
+
 	return (
 		<>
 			<header className={className}>
@@ -35,31 +34,23 @@ function Navbar_list({ className }) {
 						placeholder="Search"
 						className="search"
 						aria-label="Search"
-						style={{ paddingRight: "140px" }}
+						style={{paddingRight: "140px"}}
 					/>
-					<Button
-						style={{ color: "#fff", background: "#e65100", border: "none" }}>
-						Search
-					</Button>
+					<Button style={{color: "#fff", background: "#e65100", border: "none"}}>Search</Button>
 				</form>
 				<div className="nav-right">
 					<Link
-						to={customer ? "/" : "/Registration"}
+						to={customer ? "/" : "/login"}
 						className="login"
-						style={{ fontSize: "16px" ,marginTop: "2%"}}>
-						{customer
-							? customer.username
-							: "เข้าสู่ระบบ"}
+						style={{fontSize: "16px", marginTop: "2%"}}>
+						{customer ? customer.username : "เข้าสู่ระบบ"}
 					</Link>
 					{customer ? (
-						<Link
-							onClick={logOut}
-							to="/"
-							style={{ fontSize: "16px" ,marginTop: "2%"}}>
+						<Link onClick={logOut} to="/" style={{fontSize: "16px", marginTop: "2%"}}>
 							ออกจากระบบ
 						</Link>
 					) : null}
-					<Link to="/User/Cart" className="cart" style={{ marginLeft: "8px" }}>
+					<Link to="/cart" className="cart" style={{marginLeft: "8px"}}>
 						<box-icon name="shopping-bag" color="#fff"></box-icon>
 					</Link>
 				</div>
@@ -80,8 +71,8 @@ export default styled(Navbar_list)`
 	.nav-right {
 		display: flex;
 		margin-top: 0;
-		a{
-			padding: 10px 15px
+		a {
+			padding: 10px 15px;
 		}
 	}
 `;

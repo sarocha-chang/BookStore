@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import {Switch, Route} from "react-router-dom";
 
 import Sidebar from "./Component/Sidebar";
 import ContainerAd from "./Component/Container";
@@ -10,21 +10,21 @@ import EditBookAd from "./Component/EditBook";
 export default function Admin() {
 	return (
 		<Switch>
-			<Route path="/Admin/AddBookAdmin">
+			<Route path="/admin/add-book">
 				<Sidebar />
 				<ContainerAd>
 					<AddBookAd />
 				</ContainerAd>
 			</Route>
 
-			<Route path="/Admin/EditBookAdmin/:id">
+			<Route path="/admin/edit-book/:id">
 				<Sidebar />
 				<ContainerAd>
 					<EditBookAd />
 				</ContainerAd>
 			</Route>
 
-			<Route path="/Admin">
+			<Route path="/admin">
 				<Sidebar />
 				<ContainerAd>
 					<ShowBook />

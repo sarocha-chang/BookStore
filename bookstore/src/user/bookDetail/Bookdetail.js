@@ -1,16 +1,16 @@
 import axios from "axios";
 import styled from "styled-components";
-import { useState, useEffect } from "react";
-import { Link, useParams, useHistory } from "react-router-dom";
+import {useState, useEffect} from "react";
+import {Link, useParams, useHistory} from "react-router-dom";
 import Swal from "sweetalert2";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
-import { fetchReceipts } from "../../app/Receipt/actions";
+import {useDispatch} from "react-redux";
+import {fetchReceipts} from "../../app/Receipt/actions";
 
-function BookDetail({ className }) {
+function BookDetail({className}) {
 	const [user] = useState(JSON.parse(localStorage.getItem("InLogin")));
 	const [book, setBook] = useState();
-	const { id } = useParams();
+	const {id} = useParams();
 	const [quantity, setQuantity] = useState(1);
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -19,39 +19,38 @@ function BookDetail({ className }) {
 		const getBookDetail = () => {
 			axios.get(`/show_detail/${id}`).then((res) => {
 				setBook(res.data);
-			})
+			});
 		};
 		getBookDetail();
 	}, [id]);
 
 	function onSubmit(event) {
-		
 		event.preventDefault();
-		if(user){
+		if (user) {
 			let data = {
 				Customer_id: user._id,
 				Book_id: id,
 				quantity: quantity,
 			};
-			axios.post(`/add_cart`, data)
-			.then(() => {
-				axios.get(`/get_cart/${user._id}`).then((res) => {
-					dispatch(fetchReceipts(res.data));
-				});	
-			  Swal.fire("เพิ่มสินค้าเสร็จสิ้น").then(() => {
-				history.push("/User");
-			  });
-	
-			})
-			.catch((error) => {
-				Swal.fire("หนังสือในคลังไม่พอที่คุณต้องการซื้อ โปรดใส่จำนวนที่น้อยกว่านี้")
-				console.log(error);
-			});
-		}else{
+			axios
+				.post(`/add_cart`, data)
+				.then(() => {
+					axios.get(`/get_cart/${user._id}`).then((res) => {
+						dispatch(fetchReceipts(res.data));
+					});
+					Swal.fire("เพิ่มสินค้าเสร็จสิ้น").then(() => {
+						history.push("/home");
+					});
+				})
+				.catch((error) => {
+					Swal.fire("หนังสือในคลังไม่พอที่คุณต้องการซื้อ โปรดใส่จำนวนที่น้อยกว่านี้");
+					console.log(error);
+				});
+		} else {
 			Swal.fire({
-				icon: 'error',
-				title: 'กรุณาล็อคอินก่อนทำรายการ',
-			  })
+				icon: "error",
+				title: "กรุณาล็อคอินก่อนทำรายการ",
+			});
 		}
 	}
 
@@ -75,10 +74,7 @@ function BookDetail({ className }) {
 							<box-icon name="star" type="solid" color="#ffd058"></box-icon>
 							<box-icon name="star" type="solid" color="#ffd058"></box-icon>
 							<box-icon name="star" type="solid" color="#ffd058"></box-icon>
-							<box-icon
-								type="solid"
-								name="star-half"
-								color="#ffd058"></box-icon>
+							<box-icon type="solid" name="star-half" color="#ffd058"></box-icon>
 						</div>
 						<h2>{book.price} THB </h2>
 						<h3>คำอธิบาย:</h3>
@@ -102,7 +98,7 @@ function BookDetail({ className }) {
 						</div>
 					</div>
 					<div className="back">
-						<Link to="/User">
+						<Link to="/home">
 							<button className="btn btn-secondary">
 								<span>
 									<box-icon name="arrow-back" color="#fbf8f8"></box-icon>

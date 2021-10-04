@@ -49,7 +49,7 @@ function DetailTable({ className, data }) {
       <td>{data.quantity}</td>
       <td>{data.status}</td>
       <td>
-        <Link to={`/Admin/EditBookAdmin/${data._id}`}>
+        <Link to={`/admin/edit-book/${data._id}`}>
           <box-icon name="edit" />
         </Link>
         <box-icon
